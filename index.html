@@ -753,10 +753,12 @@ function agregarTarea() {
         JSON.stringify(tareas)
     );
 
-    campoTarea.value = "";
-    horaTarea.value = "";
+campoTarea.value = "";
+horaTarea.value = "";
 
-    mostrarTareas();
+mostrarTareas();
+
+crearEventoGoogle(texto, hora);
 }
 function mostrarTareas() {
 
