@@ -530,6 +530,11 @@ if ("serviceWorker" in navigator) {
             });
     });
 }
+if ("Notification" in window) {
+    Notification.requestPermission().then(function(permiso) {
+        console.log("Permiso de notificaciones:", permiso);
+    });
+}
 let historialPantallas = [];
 
 window.addEventListener('load', function() {
