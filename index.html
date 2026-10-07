@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempolíder Bienestar</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef1f5;
+            color: #222;
+        }
+
+        .app {
+            max-width: 430px;
+            min-height: 100vh;
+            margin: auto;
+            background: white;
+            padding: 25px 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 25px 0;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .header p {
+            color: #777;
+            margin-top: 6px;
+        }
+
+        .welcome {
+            margin: 20px 0 25px;
+        }
+
+        .welcome h2 {
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .option {
+            border: none;
+            border-radius: 15px;
+            padding: 20px;
+            background: #f3f5f7;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            transform: translateY(-2px);
+            background: #e9edf1;
+        }
+
+        .option h3 {
+            margin: 0 0 6px;
+            font-size: 18px;
+        }
+
+        .option p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .icon {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            margin-top: 35px;
+        }
+
+        /* PANTALLAS */
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .back {
+        display: none;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .question {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .question h2 {
+            font-size: 23px;
+        }
+
+        .question p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .levels {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .level {
+            border: 2px solid #e1e4e8;
+            background: white;
+            border-radius: 14px;
+            padding: 16px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .level:hover {
+            background: #f3f5f7;
+        }
+
+        .result {
+            display: none;
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .result.active {
+            display: block;
+        }
+
+        .result-number {
+            font-size: 50px;
+            font-weight: bold;
+            margin: 20px;
+        }
+
+        .primary-button {
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 20px;
+            background: #222;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .boton-atras {
+    display: none;
+    position: sticky;
+    top: 10px;
+    z-index: 100;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 9px 14px;
+    font-size: 14px;
+    color: #444;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.boton-atras.visible {
+    display: block;
+}
+    </style>
+</head>
+
+<body>
+
+    <main class="app">
+<button id="botonAtras" class="boton-atras" onclick="volverAtras()">
+    ← Atrás
+</button>
+        <!-- MENÚ PRINCIPAL -->
+<section id="configuracionHorario" class="screen">
+
+    <div class="question">
+
+        <h2>Configuremos tu jornada</h2>
+
+        <p>
+            Personaliza tu horario para adaptar la organización de tareas
+            y los recordatorios de bienestar a tu jornada laboral.
+        </p>
+
+        <label style="display:block; text-align:left; margin-top:25px; font-weight:bold;">
+            Hora de entrada
+        </label>
+
+        <input
+            type="time"
+            id="horaEntrada"
+            style="width:100%; padding:14px; border:1px solid #ddd; border-radius:10px; margin-top:8px;"
+        >
+
+        <label style="display:block; text-align:left; margin-top:18px; font-weight:bold;">
+            Inicio del almuerzo
+        </label>
+
+        <input
+            type="time"
+            id="inicioAlmuerzo"
+            style="width:100%; padding:14px; border:1px solid #ddd; border-radius:10px; margin-top:8px;"
+        >
+
+        <label style="display:block; text-align:left; margin-top:18px; font-weight:bold;">
+            Finalización del almuerzo
+        </label>
+
+        <input
+            type="time"
+            id="finAlmuerzo"
+            style="width:100%; padding:14px; border:1px solid #ddd; border-radius:10px; margin-top:8px;"
+        >
+
+                <label style="display:flex; align-items:center; gap:10px; text-align:left; margin-top:20px;">
+            <input
+                type="checkbox"
+                id="continuaJornada"
+                checked
+                onchange="actualizarSalida()"
+                style="width:18px; height:18px;"
+            >
+            Continúo mi jornada después del almuerzo
+        </label>
+
+               <label style="display:block; text-align:left; margin-top:18px; font-weight:bold;">
+    Hora de salida
+</label>
+
+<input
+    type="time"
+    id="horaSalida"
+    style="width:100%; padding:14px; border:1px solid #ddd; border-radius:10px; margin-top:8px;"
+>
+
+<button
+    class="primary-button"
+    onclick="guardarHorario()"
+    style="margin-top:25px;"
+>
+    Guardar mi horario
+</button>
+    </div>
+
+</section>
+        <section id="home" class="screen active">
+
+            <header class="header">
+                <h1>TEMPOLÍDER</h1>
+                <p>Bienestar laboral</p>
+            </header>
+
+            <section class="welcome">
+                <h2>¿Cómo podemos ayudarte hoy?</h2>
+                <p>
+                    Elige una opción para comenzar.
+                </p>
+            </section>
+
+            <section class="menu">
+
+                <button class="option" onclick="mostrarPantalla('bienestar')">
+                    <div class="icon">😊</div>
+                    <h3>¿Cómo me siento?</h3>
+                    <p>
+                        Registra cómo te encuentras durante tu jornada.
+                    </p>
+                </button>
+
+<button class="option" onclick="mostrarPantalla('organizar')">
+    <div class="icon">📋</div>
+    <h3>Organizar mi jornada</h3>
+    <p>
+        Organiza y prioriza tus tareas.
+    </p>
+</button>
+
+                <button class="option" onclick="alert('Esta función la construiremos después.')">
+                    <div class="icon">🧘</div>
+                    <h3>Hacer una pausa</h3>
+                    <p>
+                        Realiza una pausa breve para recuperar energía.
+                    </p>
+                </button>
+
+                <button class="option" onclick="alert('Esta función la construiremos después.')">
+                    <div class="icon">💡</div>
+                    <h3>Recursos de bienestar</h3>
+                    <p>
+                        Consulta estrategias breves para tu jornada.
+                    </p>
+                </button>
+                <button class="option" onclick="mostrarPantalla('evolucion')">
+    <div class="icon">📊</div>
+    <h3>Mi evolución</h3>
+    <p>
+        Consulta tus registros de bienestar.
+    </p>
+</button>
+
+            </section>
+
+            <footer class="footer">
+                Herramienta de promoción del bienestar laboral
+            </footer>
+
+</section>
+
+<!-- PANTALLA ORGANIZAR JORNADA -->
+
+<section id="organizar" class="screen">
+
+    <button class="back" onclick="mostrarPantalla('home')">
+        ← Volver
+    </button>
+
+    <div class="question">
+
+        <h2>Organizar mi jornada</h2>
+
+<button
+    class="primary-button"
+    onclick="cargarHorarioGuardado(); mostrarPantalla('configuracionHorario')"
+    style="margin-top:15px;"
+>
+    Configurar / editar mi jornada
+</button>
+
+<div
+    id="resumenHorario"
+    style="
+        background:#f3f5f7;
+        border-radius:12px;
+        padding:15px;
+        margin-top:15px;
+        text-align:left;
+    "
+></div>
+        <p>
+            Organiza tus tareas y establece cuáles requieren mayor prioridad.
+        </p>
+
+        <input
+            type="text"
+            id="nuevaTarea"
+            placeholder="Escribe una tarea"
+            style="width:100%; padding:14px; border:1px solid #ddd; border-radius:10px; margin-top:20px;"
+        >
+
+        <select
+            id="prioridadTarea"
+            style="width:100%; padding:14px; border:1px solid #ddd; border-radius:10px; margin-top:10px;"
+        >
+            <option value="Alta">Prioridad alta</option>
+            <option value="Media">Prioridad media</option>
+            <option value="Baja">Prioridad baja</option>
+        </select>
+<select
+    id="momentoTarea"
+    onchange="actualizarLimitesHora()"
+    style="width:100%; padding:14px; border:1px solid #ddd; border-radius:10px; margin-top:10px;"
+>
+    <option value="manana">Mañana</option>
+    <option value="tarde">Tarde</option>
+</select>
+<label
+    for="horaTarea"
+    style="display:block; text-align:left; margin-top:15px; font-weight:bold;"
+>
+    Hora de la tarea
+</label>
+
+<input
+    type="time"
+    id="horaTarea"
+    style="width:100%; padding:14px; border:1px solid #ddd; border-radius:10px; margin-top:8px;"
+>
+        <button
+            class="primary-button"
+            onclick="agregarTarea()"
+        >
+            Agregar tarea
+        </button>
+
+        <div id="listaTareas" style="margin-top:25px;"></div>
+
+    </div>
+
+</section>
+
+<!-- PANTALLA EVOLUCIÓN -->
+
+<section id="evolucion" class="screen">
+
+    <button class="back" onclick="mostrarPantalla('home')">
+        ← Volver
+    </button>
+
+    <div class="question">
+
+        <h2>Mi evolución</h2>
+
+        <p>
+            Aquí puedes consultar tus registros recientes.
+        </p>
+
+        <div id="listaRegistros"></div>
+
+    </div>
+
+</section>
+
+        <!-- PANTALLA BIENESTAR -->
+
+        <section id="bienestar" class="screen">
+
+            <button class="back" onclick="mostrarPantalla('home')">
+                ← Volver
+            </button>
+
+            <div class="question">
+
+                <h2>¿Cómo te encuentras en este momento?</h2>
+
+                <p>
+                    Selecciona la opción que mejor represente
+                    cómo te sientes durante tu jornada.
+                </p>
+
+                <div class="levels">
+
+                    <button class="level" onclick="registrarBienestar(1)">
+                        1 — Me siento muy bien
+                    </button>
+
+                    <button class="level" onclick="registrarBienestar(2)">
+                        2 — Me siento bien
+                    </button>
+
+                    <button class="level" onclick="registrarBienestar(3)">
+                        3 — Me siento regular
+                    </button>
+
+                    <button class="level" onclick="registrarBienestar(4)">
+                        4 — Me siento algo cargado/a
+                    </button>
+
+                    <button class="level" onclick="registrarBienestar(5)">
+                        5 — Me siento muy cargado/a
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULTADO -->
+
+            <div id="resultado" class="result">
+
+                <h2>Registro realizado</h2>
+
+                <div id="numeroResultado" class="result-number">
+                    3/5
+                </div>
+
+                <p id="mensajeResultado">
+                    Gracias por registrar cómo te encuentras.
+                </p>
+
+                <button class="primary-button" onclick="mostrarPantalla('home')">
+                    Volver al inicio
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function() {
+        navigator.serviceWorker.register("./service-worker.js")
+            .then(function(registro) {
+                console.log("Service Worker registrado:", registro.scope);
+            })
+            .catch(function(error) {
+                console.error("Error registrando Service Worker:", error);
+            });
+    });
+}
+let historialPantallas = [];
+
+window.addEventListener('load', function() {
+
+    let horarioGuardado = localStorage.getItem('horarioTempolider');
+
+    if (horarioGuardado) {
+        mostrarPantalla('home');
+    } else {
+        mostrarPantalla('configuracionHorario');
+        actualizarSalida();
+    }
+
+});
+function cargarHorarioGuardado() {
+
+    let horarioGuardado = localStorage.getItem('horarioTempolider');
+
+    if (!horarioGuardado) {
+        return;
+    }
+
+    let horario = JSON.parse(horarioGuardado);
+
+    document.getElementById('horaEntrada').value = horario.horaEntrada;
+    document.getElementById('inicioAlmuerzo').value = horario.inicioAlmuerzo;
+    document.getElementById('finAlmuerzo').value = horario.finAlmuerzo;
+    document.getElementById('continuaJornada').checked = horario.continuaJornada;
+    document.getElementById('horaSalida').value = horario.horaSalida;
+
+    actualizarSalida();
+}
+
+function mostrarPantalla(pantalla) {
+
+    let pantallaActual = document.querySelector('.screen.active');
+
+    if (pantallaActual && pantallaActual.id !== pantalla) {
+        historialPantallas.push(pantallaActual.id);
+    }
+
+    document.querySelectorAll('.screen').forEach(function(seccion) {
+        seccion.classList.remove('active');
+    });
+
+    document.getElementById(pantalla).classList.add('active');
+
+    let botonAtras = document.getElementById('botonAtras');
+
+    if (pantalla === 'home') {
+        botonAtras.classList.remove('visible');
+    } else {
+        botonAtras.classList.add('visible');
+    }
+
+    if (pantalla === 'organizar') {
+        mostrarHorario();
+        actualizarLimitesHora();
+        mostrarTareas();
+    }
+
+    if (pantalla === 'bienestar') {
+        document.querySelector('#bienestar .question').style.display = 'block';
+        document.getElementById('resultado').classList.remove('active');
+    }
+}
+
+
+function volverAtras() {
+
+    if (historialPantallas.length === 0) {
+        return;
+    }
+
+    let pantallaAnterior = historialPantallas.pop();
+
+    document.querySelectorAll('.screen').forEach(function(seccion) {
+        seccion.classList.remove('active');
+    });
+
+    document.getElementById(pantallaAnterior).classList.add('active');
+
+    let botonAtras = document.getElementById('botonAtras');
+
+    if (pantallaAnterior === 'home') {
+        botonAtras.classList.remove('visible');
+    } else {
+        botonAtras.classList.add('visible');
+    }
+
+    if (pantallaAnterior === 'bienestar') {
+        document.querySelector('#bienestar .question').style.display = 'block';
+        document.getElementById('resultado').classList.remove('active');
+    }
+}
+
+
+function registrarBienestar(nivel) {
+
+    document.getElementById('numeroResultado').textContent = nivel + "/5";
+
+    let mensaje = "";
+
+    if (nivel === 1) {
+        mensaje = "Parece que estás teniendo una buena jornada. Continúa cuidando tu bienestar.";
+    }
+
+    if (nivel === 2) {
+        mensaje = "Tu percepción es positiva. Recuerda mantener espacios de descanso durante la jornada.";
+    }
+
+    if (nivel === 3) {
+        mensaje = "Tu percepción es intermedia. Una pausa breve puede ayudarte a recuperar energía.";
+    }
+
+    if (nivel === 4) {
+        mensaje = "Has indicado sentirte algo cargado/a. Considera realizar una pausa breve.";
+    }
+
+    if (nivel === 5) {
+        mensaje = "Has indicado un nivel elevado de carga. Considera hacer una pausa y revisar tus prioridades.";
+    }
+
+    document.getElementById('mensajeResultado').textContent = mensaje;
+
+    document.querySelector('#bienestar .question').style.display = 'none';
+
+    document.getElementById('resultado').classList.add('active');
+
+    guardarRegistro(nivel);
+}
+
+
+function guardarRegistro(nivel) {
+
+    let registros = JSON.parse(localStorage.getItem('registrosBienestar')) || [];
+
+    let registro = {
+        nivel: nivel,
+        fecha: new Date().toISOString()
+    };
+
+    registros.push(registro);
+
+    localStorage.setItem('registrosBienestar', JSON.stringify(registros));
+}
+function agregarTarea() {
+
+    let campoTarea = document.getElementById('nuevaTarea');
+    let prioridad = document.getElementById('prioridadTarea');
+    let momento = document.getElementById('momentoTarea');
+    let horaTarea = document.getElementById('horaTarea');
+
+    let texto = campoTarea.value.trim();
+    let hora = horaTarea.value;
+
+    if (texto === "") {
+        alert("Escribe una tarea antes de agregarla.");
+        return;
+    }
+
+    if (hora === "") {
+        alert("Selecciona una hora para la tarea.");
+        return;
+    }
+
+    let horarioGuardado = localStorage.getItem('horarioTempolider');
+
+    if (!horarioGuardado) {
+        alert("Primero debes configurar tu jornada.");
+        return;
+    }
+
+    let horario = JSON.parse(horarioGuardado);
+
+    if (momento.value === "manana") {
+
+        if (hora <= horario.horaEntrada || hora >= horario.inicioAlmuerzo) {
+            alert("La tarea debe estar dentro del horario de la mañana y antes del almuerzo.");
+            return;
+        }
+    }
+
+    if (momento.value === "tarde") {
+
+        if (!horario.continuaJornada) {
+            alert("Tu jornada no continúa después del almuerzo.");
+            return;
+        }
+
+        if (hora <= horario.finAlmuerzo || hora > horario.horaSalida) {
+            alert("La tarea debe estar dentro del horario de la tarde.");
+            return;
+        }
+    }
+
+    let tareas = JSON.parse(
+        localStorage.getItem('tareasTempolider')
+    ) || [];
+
+    let tarea = {
+        nombre: texto,
+        prioridad: prioridad.value,
+        momento: momento.value,
+        hora: hora,
+        completada: false
+    };
+
+    tareas.push(tarea);
+
+    localStorage.setItem(
+        'tareasTempolider',
+        JSON.stringify(tareas)
+    );
+
+    campoTarea.value = "";
+    horaTarea.value = "";
+
+    mostrarTareas();
+}
+function mostrarTareas() {
+
+    let lista = document.getElementById('listaTareas');
+
+    if (!lista) {
+        return;
+    }
+
+    let tareas = JSON.parse(
+        localStorage.getItem('tareasTempolider')
+    ) || [];
+
+    lista.innerHTML = "";
+
+    if (tareas.length === 0) {
+        lista.innerHTML =
+            "<p style='color:#777;'>Todavía no has agregado tareas.</p>";
+        return;
+    }
+
+    let ordenPrioridad = {
+        "Alta": 1,
+        "Media": 2,
+        "Baja": 3
+    };
+
+    tareas.sort(function(a, b) {
+        return ordenPrioridad[a.prioridad] - ordenPrioridad[b.prioridad];
+    });
+
+    tareas.forEach(function(tarea) {
+
+        if (!tarea.id) {
+            tarea.id = Date.now() + Math.random();
+        }
+
+        let elemento = document.createElement('div');
+
+        elemento.style.background = "#f3f5f7";
+        elemento.style.borderRadius = "12px";
+        elemento.style.padding = "15px";
+        elemento.style.marginBottom = "10px";
+        elemento.style.textAlign = "left";
+
+        let textoMomento = "";
+
+        if (tarea.momento === "manana") {
+            textoMomento = "Mañana";
+        }
+
+        if (tarea.momento === "tarde") {
+            textoMomento = "Tarde";
+        }
+
+        let textoHora = tarea.hora || "Sin hora";
+
+        elemento.innerHTML =
+            "<strong>" + tarea.nombre + "</strong>" +
+            "<br>" +
+            "<span style='color:#666; font-size:14px;'>" +
+            "Prioridad: " + tarea.prioridad +
+            "</span>" +
+            "<br>" +
+            "<span style='color:#666; font-size:14px;'>" +
+            "Momento: " + textoMomento +
+            "</span>" +
+            "<br>" +
+            "<span style='color:#666; font-size:14px;'>" +
+            "Hora: " + textoHora +
+            "</span>" +
+
+            "<div style='display:flex; gap:8px; margin-top:12px;'>" +
+
+            "<button " +
+            "onclick=\"completarTarea('" + tarea.id + "')\" " +
+            "style='flex:1; padding:10px; border:none; border-radius:8px; background:#222; color:white; cursor:pointer;'>" +
+            "✓ Completar" +
+            "</button>" +
+
+            "<button " +
+            "onclick=\"aplazarTarea('" + tarea.id + "')\" " +
+            "style='flex:1; padding:10px; border:1px solid #ccc; border-radius:8px; background:white; color:#333; cursor:pointer;'>" +
+            "↻ Aplazar" +
+            "</button>" +
+
+            "</div>";
+
+        lista.appendChild(elemento);
+    });
+
+    localStorage.setItem(
+        'tareasTempolider',
+        JSON.stringify(tareas)
+    );
+}
+function completarTarea(id) {
+
+    let tareas = JSON.parse(
+        localStorage.getItem('tareasTempolider')
+    ) || [];
+
+    let tarea = tareas.find(function(t) {
+        return String(t.id) === String(id);
+    });
+
+    if (!tarea) {
+        return;
+    }
+
+    let confirmar = confirm(
+        "¿Marcar como completada la tarea:\n\n" + tarea.nombre + "?"
+    );
+
+    if (!confirmar) {
+        return;
+    }
+
+    tareas = tareas.filter(function(t) {
+        return String(t.id) !== String(id);
+    });
+
+    localStorage.setItem(
+        'tareasTempolider',
+        JSON.stringify(tareas)
+    );
+
+    let completadas = JSON.parse(
+        localStorage.getItem('tareasCompletadasTempolider')
+    ) || [];
+
+    tarea.completada = true;
+    tarea.fechaCompletada = new Date().toISOString();
+
+    completadas.push(tarea);
+
+    localStorage.setItem(
+        'tareasCompletadasTempolider',
+        JSON.stringify(completadas)
+    );
+
+    mostrarTareas();
+}
+function aplazarTarea(id) {
+
+    let tareas = JSON.parse(
+        localStorage.getItem('tareasTempolider')
+    ) || [];
+
+    let tarea = tareas.find(function(t) {
+        return String(t.id) === String(id);
+    });
+
+    if (!tarea) {
+        return;
+    }
+
+    let nuevaHora = prompt(
+        "Tarea: " + tarea.nombre +
+        "\n\nHora actual: " + tarea.hora +
+        "\n\nEscribe la nueva hora (formato HH:MM):"
+    );
+
+    if (nuevaHora === null) {
+        return;
+    }
+
+    nuevaHora = nuevaHora.trim();
+
+    if (!/^\d{2}:\d{2}$/.test(nuevaHora)) {
+        alert("Escribe una hora válida, por ejemplo: 15:30.");
+        return;
+    }
+
+    let horarioGuardado = localStorage.getItem('horarioTempolider');
+
+    if (!horarioGuardado) {
+        alert("Primero debes configurar tu jornada.");
+        return;
+    }
+
+    let horario = JSON.parse(horarioGuardado);
+
+    if (nuevaHora <= tarea.hora) {
+        alert("La nueva hora debe ser posterior a la hora actual de la tarea.");
+        return;
+    }
+
+    if (tarea.momento === "manana") {
+
+        if (
+            nuevaHora <= horario.horaEntrada ||
+            nuevaHora >= horario.inicioAlmuerzo
+        ) {
+            alert(
+                "La tarea solo puede aplazarse dentro del horario de la mañana y antes del almuerzo."
+            );
+            return;
+        }
+    }
+
+    if (tarea.momento === "tarde") {
+
+        if (!horario.continuaJornada) {
+            alert("Tu jornada no continúa después del almuerzo.");
+            return;
+        }
+
+        if (
+            nuevaHora <= horario.finAlmuerzo ||
+            nuevaHora > horario.horaSalida
+        ) {
+            alert(
+                "La tarea solo puede aplazarse dentro del horario de la tarde."
+            );
+            return;
+        }
+    }
+
+    tarea.hora = nuevaHora;
+
+    localStorage.setItem(
+        'tareasTempolider',
+        JSON.stringify(tareas)
+    );
+
+    mostrarTareas();
+}
+function guardarHorario() {
+
+    let horaEntrada = document.getElementById('horaEntrada').value;
+    let inicioAlmuerzo = document.getElementById('inicioAlmuerzo').value;
+    let finAlmuerzo = document.getElementById('finAlmuerzo').value;
+    let continuaJornada = document.getElementById('continuaJornada').checked;
+    let horaSalida = document.getElementById('horaSalida').value;
+
+    if (horaEntrada === "") {
+        alert("Selecciona tu hora de entrada.");
+        return;
+    }
+
+    if (inicioAlmuerzo === "") {
+        alert("Selecciona la hora de inicio del almuerzo.");
+        return;
+    }
+
+    if (finAlmuerzo === "") {
+        alert("Selecciona la hora de finalización del almuerzo.");
+        return;
+    }
+
+    if (inicioAlmuerzo <= horaEntrada) {
+        alert("El almuerzo debe comenzar después de la hora de entrada.");
+        return;
+    }
+
+    if (finAlmuerzo <= inicioAlmuerzo) {
+        alert("La finalización del almuerzo debe ser después de su inicio.");
+        return;
+    }
+
+    if (continuaJornada) {
+
+        if (horaSalida === "") {
+            alert("Selecciona tu hora de salida.");
+            return;
+        }
+
+        if (horaSalida <= finAlmuerzo) {
+            alert("La hora de salida debe ser después de finalizar el almuerzo.");
+            return;
+        }
+
+    } else {
+
+        horaSalida = "";
+    }
+
+    let horario = {
+        horaEntrada: horaEntrada,
+        inicioAlmuerzo: inicioAlmuerzo,
+        finAlmuerzo: finAlmuerzo,
+        continuaJornada: continuaJornada,
+        horaSalida: horaSalida
+    };
+
+    localStorage.setItem(
+        'horarioTempolider',
+        JSON.stringify(horario)
+    );
+
+    historialPantallas = [];
+
+    mostrarPantalla('home');
+}
+
+
+function mostrarHorario() {
+
+    let horarioGuardado = localStorage.getItem('horarioTempolider');
+
+    let resumen = document.getElementById('resumenHorario');
+
+    if (!horarioGuardado || !resumen) {
+        return;
+    }
+
+    let horario = JSON.parse(horarioGuardado);
+
+    let entrada = horario.horaEntrada;
+    let inicioAlmuerzo = horario.inicioAlmuerzo;
+    let finAlmuerzo = horario.finAlmuerzo;
+    let salida = horario.horaSalida;
+
+    resumen.innerHTML =
+        "<strong>Tu jornada de hoy</strong>" +
+        "<br><br>" +
+        "Mañana: " + entrada + " – " + inicioAlmuerzo +
+        "<br>" +
+        "Almuerzo: " + inicioAlmuerzo + " – " + finAlmuerzo +
+        "<br>" +
+        "Tarde: " + finAlmuerzo + " – " + salida;
+}
+function actualizarSalida() {
+
+    let continua = document.getElementById('continuaJornada');
+    let campoSalida = document.getElementById('horaSalida');
+
+    if (continua.checked) {
+
+        campoSalida.disabled = false;
+
+    } else {
+
+        campoSalida.disabled = true;
+        campoSalida.value = "";
+    }
+}
+function actualizarLimitesHora() {
+
+    let horarioGuardado = localStorage.getItem('horarioTempolider');
+
+    let momento = document.getElementById('momentoTarea');
+    let horaTarea = document.getElementById('horaTarea');
+
+    if (!horarioGuardado || !momento || !horaTarea) {
+        return;
+    }
+
+    let horario = JSON.parse(horarioGuardado);
+
+    if (momento.value === "manana") {
+
+        horaTarea.min = horario.horaEntrada;
+        horaTarea.max = horario.inicioAlmuerzo;
+
+    } else if (momento.value === "tarde") {
+
+        if (!horario.continuaJornada) {
+
+            horaTarea.value = "";
+            horaTarea.disabled = true;
+            return;
+
+        }
+
+        horaTarea.disabled = false;
+        horaTarea.min = horario.finAlmuerzo;
+        horaTarea.max = horario.horaSalida;
+    }
+}
+</script>
+
+</body>
+</html>
