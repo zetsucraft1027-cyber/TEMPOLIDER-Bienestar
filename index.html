@@ -356,7 +356,17 @@
 
     <div class="question">
 
-        <h2>Organizar mi jornada</h2>
+<h2>Organizar mi jornada</h2>
+
+<p
+    id="fechaActual"
+    style="
+        color:#666;
+        font-size:14px;
+        margin-top:8px;
+        margin-bottom:20px;
+    "
+></p>
 
 <button
     class="primary-button"
@@ -568,8 +578,33 @@ if ("Notification" in window) {
     });
 }
 let historialPantallas = [];
+function mostrarFechaActual() {
+
+    const fecha = new Date();
+
+    const opciones = {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    };
+
+    const fechaTexto = fecha.toLocaleDateString("es-CO", opciones);
+
+    const elementoFecha = document.getElementById("fechaActual");
+
+    if (elementoFecha) {
+        elementoFecha.textContent =
+            "📅 " +
+            fechaTexto.charAt(0).toUpperCase() +
+            fechaTexto.slice(1);
+    }
+}
 
 window.addEventListener('load', function() {
+
+    mostrarFechaActual();
+    limpiarTareasDeDiasAnteriores();
 
     let horarioGuardado = localStorage.getItem('horarioTempolider');
 
@@ -770,13 +805,21 @@ function agregarTarea() {
         localStorage.getItem('tareasTempolider')
     ) || [];
 
-    let tarea = {
-        nombre: texto,
-        prioridad: prioridad.value,
-        momento: momento.value,
-        hora: hora,
-        completada: false
-    };
+    let fechaActual = new Date();
+
+let fechaTarea =
+    fechaActual.getFullYear() + "-" +
+    String(fechaActual.getMonth() + 1).padStart(2, "0") + "-" +
+    String(fechaActual.getDate()).padStart(2, "0");
+
+let tarea = {
+    nombre: texto,
+    prioridad: prioridad.value,
+    momento: momento.value,
+    hora: hora,
+    fecha: fechaTarea,
+    completada: false
+};
 
     tareas.push(tarea);
 
@@ -793,6 +836,54 @@ mostrarTareas();
 crearEventoGoogle(texto, hora);
 }
 function mostrarTareas() {
+    function limpiarTareasDeDiasAnteriores() {
+
+    let fechaHoy = new Date();
+
+    let fechaActual =
+        fechaHoy.getFullYear() + "-" +
+        String(fechaHoy.getMonth() + 1).padStart(2, "0") + "-" +
+        String(fechaHoy.getDate()).padStart(2, "0");
+
+    let tareas = JSON.parse(
+        localStorage.getItem("tareasTempolider")
+    ) || [];
+
+    tareas = tareas.filter(function(tarea) {
+        return tarea.fecha === fechaActual;
+    });
+
+    localStorage.setItem(
+        "tareasTempolider",
+        JSON.stringify(tareas)
+    );
+
+
+    let tareasCompletadas = JSON.parse(
+        localStorage.getItem("tareasCompletadasTempolider")
+    ) || [];
+
+    tareasCompletadas = tareasCompletadas.filter(function(tarea) {
+
+        if (!tarea.fechaCompletada) {
+            return false;
+        }
+
+        let fechaCompletada = new Date(tarea.fechaCompletada);
+
+        let fechaCompletadaTexto =
+            fechaCompletada.getFullYear() + "-" +
+            String(fechaCompletada.getMonth() + 1).padStart(2, "0") + "-" +
+            String(fechaCompletada.getDate()).padStart(2, "0");
+
+        return fechaCompletadaTexto === fechaActual;
+    });
+
+    localStorage.setItem(
+        "tareasCompletadasTempolider",
+        JSON.stringify(tareasCompletadas)
+    );
+}
 
     let lista = document.getElementById('listaTareas');
 
@@ -800,11 +891,22 @@ function mostrarTareas() {
         return;
     }
 
-    let tareas = JSON.parse(
-        localStorage.getItem('tareasTempolider')
-    ) || [];
+let tareas = JSON.parse(
+    localStorage.getItem('tareasTempolider')
+) || [];
 
-    lista.innerHTML = "";
+let fechaHoy = new Date();
+
+let fechaActual =
+    fechaHoy.getFullYear() + "-" +
+    String(fechaHoy.getMonth() + 1).padStart(2, "0") + "-" +
+    String(fechaHoy.getDate()).padStart(2, "0");
+
+tareas = tareas.filter(function(tarea) {
+    return tarea.fecha === fechaActual;
+});
+
+lista.innerHTML = "";
 
     if (tareas.length === 0) {
         lista.innerHTML =
@@ -845,14 +947,18 @@ function mostrarTareas() {
         if (tarea.momento === "tarde") {
             textoMomento = "Tarde";
         }
-
+let textoFecha = tarea.fecha || "Sin fecha";
         let textoHora = tarea.hora || "Sin hora";
 
-        elemento.innerHTML =
-            "<strong>" + tarea.nombre + "</strong>" +
-            "<br>" +
-            "<span style='color:#666; font-size:14px;'>" +
-            "Prioridad: " + tarea.prioridad +
+elemento.innerHTML =
+    "<strong>" + tarea.nombre + "</strong>" +
+    "<br>" +
+    "<span style='color:#666; font-size:14px;'>" +
+    "Fecha: " + textoFecha +
+    "</span>" +
+    "<br>" +
+    "<span style='color:#666; font-size:14px;'>" +
+    "Prioridad: " + tarea.prioridad +
             "</span>" +
             "<br>" +
             "<span style='color:#666; font-size:14px;'>" +
