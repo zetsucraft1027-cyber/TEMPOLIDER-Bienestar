@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tempolíder Bienestar</title>
@@ -204,7 +205,9 @@
 </head>
 
 <body>
-
+<button onclick="iniciarSesionGoogle()">
+    Conectar con Google Calendar
+</button>
     <main class="app">
 <button id="botonAtras" class="boton-atras" onclick="volverAtras()">
     ← Atrás
@@ -1126,6 +1129,30 @@ function actualizarLimitesHora() {
     }
 }
 </script>
+<script>
+const CLIENT_ID = "994102754624-f38888p39ne1e06rht98obdvbnqval3q.apps.googleusercontent.com";
 
+let tokenClient;
+
+function iniciarSesionGoogle() {
+
+    tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: "https://www.googleapis.com/auth/calendar.events",
+        callback: function(respuesta) {
+
+            if (respuesta.error) {
+                console.error("Error de autorización:", respuesta);
+                return;
+            }
+
+            console.log("Google Calendar autorizado correctamente.");
+            console.log("Token recibido.");
+        }
+    });
+
+    tokenClient.requestAccessToken();
+}
+</script>
 </body>
 </html>
