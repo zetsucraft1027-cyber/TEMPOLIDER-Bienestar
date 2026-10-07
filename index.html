@@ -1160,7 +1160,9 @@ const CLIENT_ID = "994102754624-f38888p39ne1e06rht98obdvbnqval3q.apps.googleuser
 let tokenClient;
 
 function iniciarSesionGoogle() {
-
+if (window.tokenGoogle) {
+    return;
+}
     tokenClient = google.accounts.oauth2.initTokenClient({
         client_id: CLIENT_ID,
         scope: "https://www.googleapis.com/auth/calendar.events",
@@ -1174,6 +1176,14 @@ function iniciarSesionGoogle() {
             console.log("Google Calendar autorizado correctamente.");
             console.log("Token recibido.");
             window.tokenGoogle = respuesta.access_token;
+const botonGoogle = document.getElementById("botonGoogle");
+
+if (botonGoogle) {
+    botonGoogle.textContent = "Google Calendar conectado ✓";
+    botonGoogle.disabled = true;
+    botonGoogle.style.opacity = "0.7";
+    botonGoogle.style.cursor = "default";
+}
         }
     });
 
