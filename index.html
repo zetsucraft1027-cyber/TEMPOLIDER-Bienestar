@@ -205,9 +205,7 @@
 </head>
 
 <body>
-<button onclick="iniciarSesionGoogle()">
-    Conectar con Google Calendar
-</button>
+
     <main class="app">
 <button id="botonAtras" class="boton-atras" onclick="volverAtras()">
     ← Atrás
@@ -378,6 +376,31 @@
         text-align:left;
     "
 ></div>
+<div
+    style="
+        background:#f8f9fa;
+        border:1px solid #e1e4e8;
+        border-radius:12px;
+        padding:15px;
+        margin-top:15px;
+        text-align:left;
+    "
+>
+    <strong>Google Calendar</strong>
+
+    <p style="color:#666; font-size:14px; line-height:1.4; margin:8px 0 12px;">
+        Conecta tu calendario para recibir recordatorios de las tareas que programes.
+    </p>
+
+<button
+    id="botonGoogle"
+    class="primary-button"
+    onclick="iniciarSesionGoogle()"
+    style="margin-top:0;"
+>
+    Conectar Google Calendar
+</button>
+</div>
         <p>
             Organiza tus tareas y establece cuáles requieren mayor prioridad.
         </p>
@@ -1158,10 +1181,10 @@ function iniciarSesionGoogle() {
 }
 async function crearEventoGoogle(nombreTarea, horaTarea) {
 
-    if (!window.tokenGoogle) {
-        console.log("No hay conexión con Google Calendar.");
-        return;
-    }
+   if (!window.tokenGoogle) {
+    alert("Conecta primero tu cuenta de Google Calendar para sincronizar esta tarea.");
+    return;
+}
 
     const hoy = new Date();
 
