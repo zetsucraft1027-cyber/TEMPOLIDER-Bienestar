@@ -388,9 +388,14 @@
 >
     <strong>Google Calendar</strong>
 
-    <p style="color:#666; font-size:14px; line-height:1.4; margin:8px 0 12px;">
-        Conecta tu calendario para recibir recordatorios de las tareas que programes.
-    </p>
+<p style="color:#666; font-size:14px; line-height:1.4; margin:8px 0 12px;">
+    Conecta tu calendario para recibir recordatorios de las tareas que programes.
+</p>
+
+<p style="color:#888; font-size:12px; line-height:1.4; margin:10px 0 12px;">
+    Importante: para sincronizar tus tareas con Google Calendar debes autorizar tu cuenta.
+    Si cierras o recargas la aplicación, es posible que debas volver a conectarla.
+</p>
 
 <button
     id="botonGoogle"
@@ -575,6 +580,9 @@ window.addEventListener('load', function() {
         actualizarSalida();
     }
 
+});
+window.addEventListener("load", function() {
+    comprobarConexionGoogle();
 });
 function cargarHorarioGuardado() {
 
@@ -1161,12 +1169,15 @@ const CLIENT_ID = "994102754624-f38888p39ne1e06rht98obdvbnqval3q.apps.googleuser
 let tokenClient;
 
 function iniciarSesionGoogle() {
-if (window.tokenGoogle) {
-    return;
-}
+
+    if (window.tokenGoogle) {
+        return;
+    }
+
     tokenClient = google.accounts.oauth2.initTokenClient({
         client_id: CLIENT_ID,
         scope: "https://www.googleapis.com/auth/calendar.events",
+
         callback: function(respuesta) {
 
             if (respuesta.error) {
@@ -1175,20 +1186,53 @@ if (window.tokenGoogle) {
             }
 
             console.log("Google Calendar autorizado correctamente.");
-            console.log("Token recibido.");
-            window.tokenGoogle = respuesta.access_token;
-const botonGoogle = document.getElementById("botonGoogle");
 
-if (botonGoogle) {
-    botonGoogle.textContent = "Google Calendar conectado ✓";
-    botonGoogle.disabled = true;
-    botonGoogle.style.opacity = "0.7";
-    botonGoogle.style.cursor = "default";
-}
+            window.tokenGoogle = respuesta.access_token;
+
+            const botonGoogle = document.getElementById("botonGoogle");
+
+            if (botonGoogle) {
+                botonGoogle.textContent = "Google Calendar conectado ✓";
+                botonGoogle.disabled = true;
+                botonGoogle.style.opacity = "0.7";
+                botonGoogle.style.cursor = "default";
+            }
         }
     });
 
     tokenClient.requestAccessToken();
+}
+function comprobarConexionGoogle() {
+
+    tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: "https://www.googleapis.com/auth/calendar.events",
+
+        callback: function(respuesta) {
+
+            if (respuesta.error) {
+                console.log("Google Calendar requiere conexión manual.");
+                return;
+            }
+
+            window.tokenGoogle = respuesta.access_token;
+
+            const botonGoogle = document.getElementById("botonGoogle");
+
+            if (botonGoogle) {
+                botonGoogle.textContent = "Google Calendar conectado ✓";
+                botonGoogle.disabled = true;
+                botonGoogle.style.opacity = "0.7";
+                botonGoogle.style.cursor = "default";
+            }
+
+            console.log("Google Calendar conectado automáticamente.");
+        }
+    });
+
+    tokenClient.requestAccessToken({
+        prompt: "none"
+    });
 }
 
 async function crearEventoGoogle(nombreTarea, horaTarea) {
