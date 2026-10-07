@@ -556,9 +556,7 @@ if ("serviceWorker" in navigator) {
             });
     });
 }
-window.addEventListener("load", function() {
-    comprobarConexionGoogle();
-});
+
 if ("Notification" in window) {
     Notification.requestPermission().then(function(permiso) {
         console.log("Permiso de notificaciones:", permiso);
@@ -1192,40 +1190,7 @@ if (botonGoogle) {
 
     tokenClient.requestAccessToken();
 }
-async function comprobarConexionGoogle() {
 
-    if (!tokenClient) {
-        tokenClient = google.accounts.oauth2.initTokenClient({
-            client_id: CLIENT_ID,
-            scope: "https://www.googleapis.com/auth/calendar.events",
-            prompt: "",
-            callback: function(respuesta) {
-
-                if (respuesta.error) {
-                    console.log("No hay una conexión activa con Google Calendar.");
-                    return;
-                }
-
-                window.tokenGoogle = respuesta.access_token;
-
-                const botonGoogle = document.getElementById("botonGoogle");
-
-                if (botonGoogle) {
-                    botonGoogle.textContent = "Google Calendar conectado ✓";
-                    botonGoogle.disabled = true;
-                    botonGoogle.style.opacity = "0.7";
-                    botonGoogle.style.cursor = "default";
-                }
-
-                console.log("Google Calendar reconectado automáticamente.");
-            }
-        });
-    }
-
-    tokenClient.requestAccessToken({
-        prompt: ""
-    });
-}
 async function crearEventoGoogle(nombreTarea, horaTarea) {
 
    if (!window.tokenGoogle) {
