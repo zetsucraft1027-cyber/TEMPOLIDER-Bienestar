@@ -1148,10 +1148,70 @@ function iniciarSesionGoogle() {
 
             console.log("Google Calendar autorizado correctamente.");
             console.log("Token recibido.");
+            window.tokenGoogle = respuesta.access_token;
         }
     });
 
     tokenClient.requestAccessToken();
+}
+async function crearEventoGoogle(nombreTarea, horaTarea) {
+
+    if (!window.tokenGoogle) {
+        console.log("No hay conexión con Google Calendar.");
+        return;
+    }
+
+    const hoy = new Date();
+
+    const [horas, minutos] = horaTarea.split(":");
+
+    const inicio = new Date(
+        hoy.getFullYear(),
+        hoy.getMonth(),
+        hoy.getDate(),
+        Number(horas),
+        Number(minutos)
+    );
+
+    const fin = new Date(inicio.getTime() + 30 * 60 * 1000);
+
+    const evento = {
+        summary: nombreTarea,
+        description: "Tarea creada desde TEMPOLÍDER Bienestar",
+        start: {
+            dateTime: inicio.toISOString(),
+            timeZone: "America/Bogota"
+        },
+        end: {
+            dateTime: fin.toISOString(),
+            timeZone: "America/Bogota"
+        },
+        reminders: {
+            useDefault: false,
+            overrides: [
+                {
+                    method: "popup",
+                    minutes: 10
+                }
+            ]
+        }
+    };
+
+    const respuesta = await fetch(
+        "https://www.googleapis.com/calendar/v3/calendars/primary/events",
+        {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + window.tokenGoogle,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(evento)
+        }
+    );
+
+    const resultado = await respuesta.json();
+
+    console.log("Resultado Google Calendar:", resultado);
 }
 </script>
 </body>
