@@ -484,7 +484,11 @@
             Aquí puedes consultar tus registros recientes.
         </p>
 
-        <div id="listaRegistros"></div>
+        
+<div id="estadisticasBienestar"></div>
+
+<div id="listaRegistros"></div>
+
 
     </div>
 
@@ -665,6 +669,9 @@ function mostrarPantalla(pantalla) {
         actualizarLimitesHora();
         mostrarTareas();
     }
+    if (pantalla === 'evolucion') {
+    mostrarEstadisticasBienestar();
+}
 
     if (pantalla === 'bienestar') {
         document.querySelector('#bienestar .question').style.display = 'block';
@@ -738,19 +745,285 @@ function registrarBienestar(nivel) {
 }
 
 
+
 function guardarRegistro(nivel) {
 
-    let registros = JSON.parse(localStorage.getItem('registrosBienestar')) || [];
+    let registros = JSON.parse(
+        localStorage.getItem('registrosBienestar')
+    ) || [];
 
-    let registro = {
+    const ahora = new Date();
+
+    const fechaLocal =
+        ahora.getFullYear() + "-" +
+        String(ahora.getMonth() + 1).padStart(2, "0") + "-" +
+        String(ahora.getDate()).padStart(2, "0");
+
+    const horaLocal =
+        String(ahora.getHours()).padStart(2, "0") + ":" +
+        String(ahora.getMinutes()).padStart(2, "0");
+
+    const registro = {
         nivel: nivel,
-        fecha: new Date().toISOString()
+        fecha: ahora.toISOString(),
+        fechaLocal: fechaLocal,
+        horaLocal: horaLocal
     };
 
     registros.push(registro);
 
-    localStorage.setItem('registrosBienestar', JSON.stringify(registros));
+    localStorage.setItem(
+        'registrosBienestar',
+        JSON.stringify(registros)
+    );
 }
+
+function mostrarEstadisticasBienestar() {
+
+    const registros = JSON.parse(
+        localStorage.getItem("registrosBienestar")
+    ) || [];
+
+    const contenedor = document.getElementById("estadisticasBienestar");
+    const lista = document.getElementById("listaRegistros");
+
+    if (!contenedor) return;
+
+    const ahora = new Date();
+
+    const fechaHoy =
+        ahora.getFullYear() + "-" +
+        String(ahora.getMonth() + 1).padStart(2, "0") + "-" +
+        String(ahora.getDate()).padStart(2, "0");
+
+    function obtenerFecha(registro) {
+        if (registro.fechaLocal) {
+            return registro.fechaLocal;
+        }
+
+        if (registro.fecha) {
+            const fecha = new Date(registro.fecha);
+
+            return fecha.getFullYear() + "-" +
+                String(fecha.getMonth() + 1).padStart(2, "0") + "-" +
+                String(fecha.getDate()).padStart(2, "0");
+        }
+
+        return "";
+    }
+
+    const registrosHoy = registros.filter(function(registro) {
+        return obtenerFecha(registro) === fechaHoy;
+    });
+
+    function calcularPromedio(datos) {
+        if (datos.length === 0) return null;
+
+        const suma = datos.reduce(function(total, registro) {
+            return total + Number(registro.nivel);
+        }, 0);
+
+        return suma / datos.length;
+    }
+
+    const promedioHoy = calcularPromedio(registrosHoy);
+    const promedioGeneral = calcularPromedio(registros);
+
+    function textoPromedio(promedio) {
+        return promedio === null ? "Sin datos" : promedio.toFixed(1) + " / 5";
+    }
+
+    function crearTarjeta(titulo, valor, descripcion) {
+        return `
+            <div style="
+                background:#f3f5f7;
+                border-radius:12px;
+                padding:15px;
+                text-align:left;
+            ">
+                <div style="font-size:14px;color:#666;">${titulo}</div>
+                <div style="font-size:25px;font-weight:bold;margin:8px 0;">
+                    ${valor}
+                </div>
+                <div style="font-size:12px;color:#777;">${descripcion}</div>
+            </div>
+        `;
+    }
+
+    function crearBarra(nivel, cantidad, total) {
+        const porcentaje = total ? (cantidad / total) * 100 : 0;
+
+        const etiquetas = {
+            1: "Muy bien",
+            2: "Bien",
+            3: "Regular",
+            4: "Algo cargado/a",
+            5: "Muy cargado/a"
+        };
+
+        return `
+            <div style="margin:12px 0;text-align:left;">
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    gap:8px;
+                    font-size:13px;
+                    margin-bottom:5px;
+                ">
+                    <span>${nivel} — ${etiquetas[nivel]}</span>
+                    <span>${cantidad} (${Math.round(porcentaje)}%)</span>
+                </div>
+                <div style="
+                    background:#e1e4e8;
+                    height:10px;
+                    border-radius:10px;
+                    overflow:hidden;
+                ">
+                    <div style="
+                        width:${porcentaje}%;
+                        height:100%;
+                        background:#526b83;
+                        border-radius:10px;
+                    "></div>
+                </div>
+            </div>
+        `;
+    }
+
+    function crearDistribucion(datos) {
+        let html = "";
+
+        for (let nivel = 1; nivel <= 5; nivel++) {
+            const cantidad = datos.filter(function(registro) {
+                return Number(registro.nivel) === nivel;
+            }).length;
+
+            html += crearBarra(nivel, cantidad, datos.length);
+        }
+
+        return html;
+    }
+
+    contenedor.innerHTML = `
+        <h3 style="text-align:left;margin-top:25px;">Estadísticas de hoy</h3>
+
+        <div style="
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:10px;
+            margin-top:12px;
+        ">
+            ${crearTarjeta(
+                "Registros de hoy",
+                registrosHoy.length,
+                "Veces que registraste tu estado"
+            )}
+
+            ${crearTarjeta(
+                "Promedio de hoy",
+                textoPromedio(promedioHoy),
+                "Menor valor = menor carga percibida"
+            )}
+        </div>
+
+        <div style="
+            background:#f8f9fa;
+            border:1px solid #e1e4e8;
+            border-radius:12px;
+            padding:15px;
+            margin-top:15px;
+        ">
+            <strong>Distribución de hoy</strong>
+            ${
+                registrosHoy.length
+                    ? crearDistribucion(registrosHoy)
+                    : "<p style='color:#777;font-size:14px;'>Todavía no hay registros de hoy.</p>"
+            }
+        </div>
+
+        <h3 style="text-align:left;margin-top:28px;">Estadísticas generales</h3>
+
+        <div style="
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:10px;
+            margin-top:12px;
+        ">
+            ${crearTarjeta(
+                "Total de registros",
+                registros.length,
+                "Desde el primer registro guardado"
+            )}
+
+            ${crearTarjeta(
+                "Promedio general",
+                textoPromedio(promedioGeneral),
+                "Menor valor = menor carga percibida"
+            )}
+        </div>
+
+        <div style="
+            background:#f8f9fa;
+            border:1px solid #e1e4e8;
+            border-radius:12px;
+            padding:15px;
+            margin-top:15px;
+        ">
+            <strong>Distribución general</strong>
+            ${
+                registros.length
+                    ? crearDistribucion(registros)
+                    : "<p style='color:#777;font-size:14px;'>Aún no hay registros guardados.</p>"
+            }
+        </div>
+    `;
+
+    if (lista) {
+        const recientes = [...registros].reverse().slice(0, 10);
+
+        lista.innerHTML = `
+            <h3 style="text-align:left;margin-top:28px;">Registros recientes</h3>
+            ${
+                recientes.length
+                    ? recientes.map(function(registro) {
+                        const fecha = obtenerFecha(registro);
+                        const hora = registro.horaLocal ||
+                            (registro.fecha
+                                ? new Date(registro.fecha).toLocaleTimeString(
+                                    "es-CO",
+                                    { hour: "2-digit", minute: "2-digit" }
+                                )
+                                : "Hora desconocida");
+
+                        const etiquetas = {
+                            1: "Muy bien",
+                            2: "Bien",
+                            3: "Regular",
+                            4: "Algo cargado/a",
+                            5: "Muy cargado/a"
+                        };
+
+                        return `
+                            <div style="
+                                background:#f3f5f7;
+                                border-radius:10px;
+                                padding:12px;
+                                margin:8px 0;
+                                text-align:left;
+                            ">
+                                <strong>${registro.nivel}/5 — ${etiquetas[registro.nivel] || "Sin descripción"}</strong>
+                                <div style="font-size:13px;color:#666;margin-top:5px;">
+                                    ${fecha} · ${hora}
+                                </div>
+                            </div>
+                        `;
+                    }).join("")
+                    : "<p style='color:#777;'>Todavía no hay registros de bienestar.</p>"
+            }
+        `;
+    }
+}
+
 function agregarTarea() {
 
     let campoTarea = document.getElementById('nuevaTarea');
