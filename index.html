@@ -7,201 +7,3281 @@
     <title>Tempolíder Bienestar</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+       
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #eef1f5;
-            color: #222;
-        }
+:root {
+    --verde: #287a68;
+    --verde-oscuro: #203b35;
+    --verde-claro: #eaf4ed;
+    --fondo: #f2f6f3;
+    --texto: #263b33;
+    --texto-secundario: #6a786f;
+    --borde: #dfe9e2;
+    --blanco: #ffffff;
+    --sombra: 0 8px 24px rgba(35, 72, 52, 0.07);
+}
 
-        .app {
-            max-width: 430px;
-            min-height: 100vh;
-            margin: auto;
-            background: white;
-            padding: 25px 20px;
-        }
+html {
+    min-height: 100%;
+    background: var(--fondo);
+}
 
-        .header {
-            text-align: center;
-            padding: 25px 0;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(ellipse at top left, #e4f0e7 0%, transparent 45%),
+        var(--fondo);
+    color: var(--texto);
+    line-height: 1.5;
+}
 
-        .header h1 {
-            margin: 0;
-            font-size: 26px;
-        }
+.app {
+    width: 100%;
+    max-width: 900px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 28px 32px 36px;
+    background: rgba(255, 255, 255, 0.82);
+    border-left: 1px solid rgba(223, 233, 226, 0.7);
+    border-right: 1px solid rgba(223, 233, 226, 0.7);
+}
 
-        .header p {
-            color: #777;
-            margin-top: 6px;
-        }
+/* Encabezado principal */
 
-        .welcome {
-            margin: 20px 0 25px;
-        }
+.header {
+    text-align: left;
+    padding: 20px 0 22px;
+    border-bottom: 1px solid var(--borde);
+}
 
-        .welcome h2 {
-            font-size: 23px;
-            margin-bottom: 8px;
-        }
+.header h1 {
+    margin: 0;
+    color: var(--verde-oscuro);
+    font-size: 29px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
 
-        .welcome p {
-            color: #666;
-            line-height: 1.5;
-        }
+.header p {
+    margin: 5px 0 0;
+    color: var(--verde);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+}
 
-        .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
+/* Bienvenida */
 
-        .option {
-            border: none;
-            border-radius: 15px;
-            padding: 20px;
-            background: #f3f5f7;
-            text-align: left;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+.welcome {
+    margin: 28px 0 25px;
+    padding: 27px 25px;
+    border: 1px solid #dceade;
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at 95% 5%, rgba(153, 205, 173, 0.3), transparent 35%),
+        linear-gradient(135deg, #f0f8f1, #e5f1e8);
+}
 
-        .option:hover {
-            transform: translateY(-2px);
-            background: #e9edf1;
-        }
+.welcome h2 {
+    margin: 0 0 9px;
+    color: var(--verde-oscuro);
+    font-size: clamp(23px, 4vw, 30px);
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+}
 
-        .option h3 {
-            margin: 0 0 6px;
-            font-size: 18px;
-        }
+.welcome p {
+    margin: 0;
+    color: #607267;
+    font-size: 15px;
+    line-height: 1.7;
+}
 
-        .option p {
-            margin: 0;
-            color: #666;
-            font-size: 14px;
-            line-height: 1.4;
-        }
+/* Menú principal */
 
-        .icon {
-            font-size: 25px;
-            margin-bottom: 8px;
-        }
+.menu {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
 
-        .footer {
-            text-align: center;
-            color: #999;
-            font-size: 12px;
-            margin-top: 35px;
-        }
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 185px;
+    padding: 21px;
+    border: 1px solid var(--borde);
+    border-radius: 19px;
+    background: var(--blanco);
+    color: var(--texto);
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(35, 72, 52, 0.045);
+    transition: transform 0.2s ease, box-shadow 0.2s ease,
+                border-color 0.2s ease, background 0.2s ease;
+}
 
-        /* PANTALLAS */
+.option:hover {
+    transform: translateY(-3px);
+    border-color: #b9d7c2;
+    background: #fbfefb;
+    box-shadow: var(--sombra);
+}
 
-        .screen {
-            display: none;
-        }
+.option:focus-visible {
+    outline: 3px solid #8bc9a3;
+    outline-offset: 3px;
+}
 
-        .screen.active {
-            display: block;
-        }
+.option .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 49px;
+    height: 49px;
+    margin: 0 0 17px;
+    border: 1px solid #d8eadc;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #edf7ef, #dcefe1);
+    font-size: 25px;
+}
 
-        .back {
-        display: none;
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            font-size: 15px;
-            color: #555;
-            margin-bottom: 25px;
-        }
+.option h3 {
+    margin: 0 0 7px;
+    color: var(--verde-oscuro);
+    font-size: 16px;
+    line-height: 1.4;
+}
 
-        .question {
-            text-align: center;
-            margin-top: 30px;
-        }
+.option p {
+    margin: 0;
+    color: var(--texto-secundario);
+    font-size: 13px;
+    line-height: 1.6;
+}
 
-        .question h2 {
-            font-size: 23px;
-        }
+/* Botón de navegación */
 
-        .question p {
-            color: #666;
-            line-height: 1.5;
-        }
-
-        .levels {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 25px;
-        }
-
-        .level {
-            border: 2px solid #e1e4e8;
-            background: white;
-            border-radius: 14px;
-            padding: 16px;
-            text-align: left;
-            cursor: pointer;
-            font-size: 15px;
-        }
-
-        .level:hover {
-            background: #f3f5f7;
-        }
-
-        .result {
-            display: none;
-            text-align: center;
-            margin-top: 35px;
-        }
-
-        .result.active {
-            display: block;
-        }
-
-        .result-number {
-            font-size: 50px;
-            font-weight: bold;
-            margin: 20px;
-        }
-
-        .primary-button {
-            width: 100%;
-            border: none;
-            border-radius: 12px;
-            padding: 16px;
-            margin-top: 20px;
-            background: #222;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .boton-atras {
+.boton-atras {
     display: none;
     position: sticky;
     top: 10px;
     z-index: 100;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 9px 14px;
+    width: fit-content;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    background: #ffffff;
+    color: var(--verde-oscuro);
     font-size: 14px;
-    color: #444;
+    font-weight: 700;
     cursor: pointer;
-    margin-bottom: 5px;
+    box-shadow: 0 3px 10px rgba(35, 72, 52, 0.06);
 }
 
 .boton-atras.visible {
     display: block;
 }
+
+.back {
+    display: none;
+}
+
+/* Pantallas internas */
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+.question {
+    margin-top: 12px;
+}
+
+.question h2 {
+    margin: 0 0 10px;
+    color: var(--verde-oscuro);
+    font-size: clamp(23px, 4vw, 29px);
+    line-height: 1.3;
+    letter-spacing: -0.4px;
+}
+
+.question > p {
+    color: var(--texto-secundario);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Registro del estado de bienestar */
+
+#bienestar .question {
+    padding: 27px 24px;
+    border: 1px solid var(--borde);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: var(--sombra);
+}
+
+.levels {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.level {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    background: #ffffff;
+    color: var(--texto);
+    text-align: left;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.level:hover {
+    border-color: #a9cbbb;
+    background: var(--verde-claro);
+    transform: translateX(2px);
+}
+
+.level:focus-visible {
+    outline: 3px solid #8bc9a3;
+    outline-offset: 2px;
+}
+
+.result {
+    margin-top: 25px;
+    padding: 28px 22px;
+    border: 1px solid var(--borde);
+    border-radius: 22px;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: var(--sombra);
+}
+
+.result h2 {
+    color: var(--verde-oscuro);
+}
+
+.result-number {
+    color: var(--verde);
+    font-size: 52px;
+    font-weight: 800;
+}
+
+/* Botones principales */
+
+.primary-button {
+    width: 100%;
+    min-height: 51px;
+    margin-top: 20px;
+    padding: 14px 18px;
+    border: 1px solid var(--verde);
+    border-radius: 13px;
+    background: linear-gradient(135deg, #348b70, #246a57);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 11px rgba(40, 122, 104, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primary-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 7px 16px rgba(40, 122, 104, 0.22);
+}
+
+.primary-button:focus-visible {
+    outline: 3px solid #8bc9a3;
+    outline-offset: 3px;
+}
+
+/* Campos de texto y listas */
+
+#configuracionHorario input[type="time"],
+#organizar input[type="text"],
+#organizar input[type="time"],
+#organizar select {
+    max-width: 100%;
+    min-height: 46px;
+    border: 1px solid #d7e2da !important;
+    border-radius: 11px !important;
+    background-color: #ffffff;
+    color: var(--texto);
+    font-family: inherit;
+    font-size: 14px;
+}
+
+#organizar input:focus,
+#organizar select:focus,
+#configuracionHorario input:focus {
+    outline: 2px solid #8bc9a3;
+    outline-offset: 1px;
+}
+
+#nuevaTarea {
+    width: 100%;
+}
+
+/* Informe y evolución */
+
+#evolucion .question {
+    padding: 25px 22px;
+    border: 1px solid var(--borde);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: var(--sombra);
+}
+
+#evolucion .btn {
+    padding: 11px 16px;
+    border: 1px solid var(--verde);
+    border-radius: 11px;
+    background: var(--verde);
+    color: #ffffff;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#evolucion .btn:hover {
+    background: #206452;
+}
+
+/* Pie de página */
+
+.footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--borde);
+    color: #829087;
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Adaptación a pantallas pequeñas */
+
+@media (max-width: 600px) {
+    .app {
+        padding: 18px 16px 28px;
+        border: none;
+    }
+
+    .header {
+        padding: 17px 0 19px;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .welcome {
+        margin: 21px 0;
+        padding: 23px 19px;
+        border-radius: 19px;
+    }
+
+    .menu {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .option {
+        min-height: auto;
+        display: grid;
+        grid-template-columns: 48px minmax(0, 1fr);
+        column-gap: 14px;
+        padding: 17px;
+        border-radius: 17px;
+    }
+
+    .option .icon {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        width: 46px;
+        height: 46px;
+        margin: 0;
+        font-size: 23px;
+    }
+
+    .option h3 {
+        grid-column: 2;
+        align-self: end;
+        margin: 0 0 4px;
+    }
+
+    .option p {
+        grid-column: 2;
+    }
+
+    #bienestar .question,
+    #evolucion .question {
+        padding: 22px 16px;
+    }
+}
+
+/* Accesibilidad */
+
+@media (prefers-reduced-motion: reduce) {
+    .option,
+    .level,
+    .primary-button,
+    .boton-atras {
+        transition: none;
+    }
+}
+
+
+/* ===== DISEÑO DE LA PANTALLA DE PAUSAS ===== */
+
+#pausa {
+    color: #263b33;
+}
+
+.pausa-encabezado {
+    padding: 12px 0 24px;
+}
+
+.pausa-etiqueta {
+    display: block;
+    margin-bottom: 10px;
+    color: #287a68;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.pausa-encabezado h2,
+.pausa-panel h2 {
+    margin: 0 0 12px;
+    color: #203b35;
+    font-size: 27px;
+    line-height: 1.3;
+}
+
+.pausa-encabezado p,
+.pausa-panel > p {
+    margin: 0;
+    color: #637169;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.pausa-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+#pausa button.pausa-tarjeta {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 100px;
+    gap: 13px;
+    padding: 17px 13px;
+    border: 1px solid #dce8df;
+    border-radius: 17px;
+    background: #f6f9f6;
+    color: #203b35;
+    text-align: left;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 3px 9px rgba(30, 60, 45, 0.05);
+    transition: background 0.2s, border-color 0.2s;
+}
+
+#pausa button.pausa-tarjeta:hover {
+    background: #eaf3ec;
+    border-color: #a9cbbb;
+}
+
+.pausa-icono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: #e1eee5;
+    color: #287a68;
+    font-size: 25px;
+}
+
+.pausa-texto {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.pausa-texto strong {
+    color: #203b35;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.pausa-texto small {
+    color: #637169;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.pausa-flecha {
+    flex-shrink: 0;
+    color: #287a68;
+    font-size: 27px;
+}
+
+.pausa-panel {
+    margin-top: 15px;
+    padding: 23px 16px;
+    border: 1px solid #dce8df;
+    border-radius: 19px;
+    background: #f6f9f6;
+    text-align: center;
+}
+
+.pausa-reloj {
+    margin: 25px 0 5px;
+    color: #287a68;
+    font-size: 58px;
+    font-weight: bold;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+
+.pausa-panel .pausa-restante {
+    margin: 5px 0 23px !important;
+    color: #637169 !important;
+    font-size: 13px !important;
+}
+
+.pausa-instruccion {
+    margin-bottom: 18px;
+    padding: 20px 15px;
+    border: 1px solid #dce8df;
+    border-radius: 14px;
+    background: #ffffff;
+    text-align: left;
+}
+
+.pausa-numero {
+    color: #287a68;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.pausa-instruccion p {
+    margin: 12px 0 0;
+    color: #263b33;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+#pausa button.primary-button {
+    display: block;
+    width: 100%;
+    min-height: 52px;
+    margin-top: 10px;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #287a68;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#pausa button.primary-button:hover {
+    background: #206452;
+}
+
+#pausa button.pausa-salir {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px solid #d5dfd8;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #46564d;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.pausa-fin-icono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #e1eee5;
+    color: #287a68;
+    font-size: 32px;
+}
+
+.pausa-fin h2 {
+    margin-bottom: 14px;
+}
+
+.pausa-fin > p {
+    margin-bottom: 18px !important;
+}
+
+#pausa [hidden] {
+    display: none !important;
+}
+
+/* ===== MEJORA VISUAL: TEMPOLÍDER BIENESTAR ===== */
+
+#pausa {
+    max-width: 760px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    color: #203b35;
+}
+
+/* Encabezado */
+#pausa .pausa-encabezado {
+    position: relative;
+    overflow: hidden;
+    margin: 8px 0 25px;
+    padding: 28px 23px;
+    border: 1px solid #d9e9df;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 95% 5%, rgba(153, 205, 173, .36), transparent 36%),
+        linear-gradient(135deg, #f0f8f1 0%, #e4f1e8 100%);
+}
+
+#pausa .pausa-etiqueta {
+    display: inline-block;
+    margin-bottom: 13px;
+    padding: 7px 11px;
+    border: 1px solid #c9e1d0;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, .75);
+    color: #287a68;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+#pausa .pausa-encabezado h2 {
+    max-width: 390px;
+    margin: 0 0 12px;
+    color: #193d32;
+    font-size: clamp(25px, 5vw, 32px);
+    font-weight: 800;
+    letter-spacing: -.8px;
+    line-height: 1.2;
+}
+
+#pausa .pausa-encabezado p {
+    max-width: 440px;
+    color: #526a5d;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* Lista de actividades */
+#pausa .pausa-lista {
+    gap: 15px;
+}
+
+#pausa button.pausa-tarjeta {
+    position: relative;
+    overflow: hidden;
+    min-height: 112px;
+    padding: 20px 17px;
+    gap: 16px;
+    border: 1px solid #e0e9e2;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 5px 16px rgba(35, 72, 52, .055);
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease,
+        background .22s ease;
+}
+
+#pausa button.pausa-tarjeta::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    background: #70ae8b;
+    content: "";
+    opacity: 0;
+    transition: opacity .2s ease;
+}
+
+#pausa button.pausa-tarjeta:hover {
+    transform: translateY(-3px);
+    border-color: #b8d8c2;
+    background: linear-gradient(110deg, #ffffff, #f5faf6);
+    box-shadow: 0 10px 24px rgba(35, 72, 52, .10);
+}
+
+#pausa button.pausa-tarjeta:hover::before {
+    opacity: 1;
+}
+
+#pausa button.pausa-tarjeta:active {
+    transform: scale(.99);
+}
+
+#pausa button.pausa-tarjeta:focus-visible,
+#pausa button.primary-button:focus-visible,
+#pausa button.pausa-salir:focus-visible {
+    outline: 3px solid #8bc9a3;
+    outline-offset: 3px;
+}
+
+/* Iconos */
+#pausa .pausa-icono {
+    flex-basis: 53px;
+    width: 53px;
+    height: 53px;
+    border: 1px solid #d8eadc;
+    border-radius: 17px;
+    background: linear-gradient(145deg, #edf7ef, #dcefe1);
+    color: #287a68;
+    font-size: 27px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9);
+}
+
+#pausa .pausa-texto {
+    gap: 7px;
+}
+
+#pausa .pausa-texto strong {
+    color: #203b35;
+    font-size: 15px;
+    font-weight: 750;
+    letter-spacing: -.15px;
+}
+
+#pausa .pausa-texto small {
+    color: #728076;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+#pausa .pausa-flecha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f0f6f1;
+    color: #398467;
+    font-size: 23px;
+    transition: transform .2s ease, background .2s ease;
+}
+
+#pausa button.pausa-tarjeta:hover .pausa-flecha {
+    transform: translateX(3px);
+    background: #dcefe1;
+}
+
+/* Panel de la actividad */
+#pausa .pausa-panel {
+    margin-top: 20px;
+    padding: 28px 22px;
+    border: 1px solid #dce9df;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(210, 235, 216, .4), transparent 34%),
+        #f8fbf8;
+    box-shadow: 0 8px 24px rgba(35, 72, 52, .06);
+}
+
+#pausa .pausa-panel h2 {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
+#pausa .pausa-reloj {
+    display: inline-block;
+    min-width: 190px;
+    margin: 26px 0 8px;
+    padding: 15px 24px;
+    border: 1px solid #d9eadf;
+    border-radius: 22px;
+    background: linear-gradient(145deg, #ffffff, #edf7ef);
+    color: #26765f;
+    font-size: clamp(48px, 11vw, 62px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    font-variant-numeric: tabular-nums;
+    box-shadow: 0 5px 15px rgba(35, 72, 52, .06);
+}
+
+#pausa .pausa-instruccion {
+    margin: 22px 0;
+    padding: 22px 19px;
+    border: 1px solid #e0eae2;
+    border-radius: 17px;
+    background: rgba(255, 255, 255, .94);
+    box-shadow: 0 4px 12px rgba(35, 72, 52, .035);
+}
+
+#pausa .pausa-numero {
+    display: inline-block;
+    padding: 6px 9px;
+    border-radius: 7px;
+    background: #eaf5ed;
+    color: #287a68;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+}
+
+#pausa .pausa-instruccion p {
+    margin-top: 15px;
+    color: #304a3c;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* Botones de acción */
+#pausa button.primary-button {
+    min-height: 54px;
+    margin-top: 14px;
+    border: 1px solid #287a68;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #348b70, #246a57);
+    box-shadow: 0 5px 12px rgba(40, 122, 104, .18);
+    color: #ffffff;
+    font-weight: 750;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+#pausa button.primary-button:hover {
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, #2f8068, #1f5e4d);
+    box-shadow: 0 8px 17px rgba(40, 122, 104, .24);
+}
+
+#pausa button.pausa-salir {
+    min-height: 49px;
+    margin-top: 12px;
+    border-color: #dce6de;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .8);
+    transition: background .2s ease, border-color .2s ease;
+}
+
+#pausa button.pausa-salir:hover {
+    border-color: #c3d9c9;
+    background: #edf5ef;
+}
+
+/* Pantalla de finalización */
+#pausa .pausa-fin-icono {
+    width: 72px;
+    height: 72px;
+    border: 1px solid #cce5d3;
+    background: linear-gradient(145deg, #edf8ef, #d9eddf);
+    color: #287a68;
+    box-shadow: 0 5px 16px rgba(35, 72, 52, .07);
+}
+
+/* Transición discreta */
+@keyframes pausaEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#pausa.screen.active .pausa-encabezado,
+#pausa.screen.active .pausa-lista,
+#pausa.screen.active .pausa-panel {
+    animation: pausaEntrada .35s ease both;
+}
+
+#pausa [hidden] {
+    display: none !important;
+}
+
+/* Adaptación a celulares */
+@media (max-width: 480px) {
+    #pausa .pausa-encabezado {
+        padding: 23px 18px;
+        border-radius: 20px;
+    }
+
+    #pausa button.pausa-tarjeta {
+        min-height: 100px;
+        gap: 12px;
+        padding: 16px 12px;
+        border-radius: 17px;
+    }
+
+    #pausa .pausa-icono {
+        flex-basis: 45px;
+        width: 45px;
+        height: 45px;
+        border-radius: 14px;
+        font-size: 23px;
+    }
+
+    #pausa .pausa-texto strong {
+        font-size: 14px;
+    }
+
+    #pausa .pausa-texto small {
+        font-size: 11px;
+    }
+
+    #pausa .pausa-panel {
+        padding: 23px 15px;
+    }
+
+    #pausa .pausa-instruccion {
+        padding: 18px 15px;
+    }
+}
+
+/* Respeta la preferencia de reducir animaciones */
+@media (prefers-reduced-motion: reduce) {
+    #pausa *,
+    #pausa *::before,
+    #pausa *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ===== REDISEÑO VISUAL GENERAL: TEMPOLÍDER BIENESTAR ===== */
+
+:root {
+    --bienestar-verde: #287a68;
+    --bienestar-verde-oscuro: #203b35;
+    --bienestar-verde-suave: #eaf4ec;
+    --bienestar-fondo: #f5f8f5;
+    --bienestar-borde: #dfe9e1;
+    --bienestar-texto: #263b33;
+    --bienestar-secundario: #69796f;
+}
+
+/* Fondo y contenedor */
+body {
+    background:
+        radial-gradient(ellipse at top left, #e8f2e9 0%, transparent 42%),
+        #f5f8f5;
+    color: var(--bienestar-texto);
+}
+
+.app {
+    max-width: 960px;
+    padding: 28px;
+    border-radius: 24px;
+}
+
+/* Encabezado general */
+.header {
+    padding: 12px 0 22px;
+    border-bottom: 1px solid var(--bienestar-borde);
+}
+
+.header h1 {
+    color: var(--bienestar-verde-oscuro);
+    font-size: clamp(23px, 4vw, 30px);
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+.header p {
+    color: var(--bienestar-verde);
+    line-height: 1.7;
+}
+
+/* Bienvenida */
+.welcome {
+    position: relative;
+    overflow: hidden;
+    margin: 25px 0;
+    padding: 30px 26px;
+    border: 1px solid #d7e7d9;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 95% 5%,
+            rgba(132, 190, 148, .24), transparent 34%),
+        linear-gradient(135deg, #f0f7f0, #e4f1e6);
+    box-shadow: 0 7px 22px rgba(35, 72, 52, .045);
+}
+
+.welcome h2 {
+    color: var(--bienestar-verde-oscuro);
+    font-size: clamp(25px, 4vw, 33px);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.8px;
+}
+
+.welcome p {
+    color: #5c7163;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* Menú principal */
+.menu {
+    gap: 17px;
+}
+
+.option {
+    position: relative;
+    overflow: hidden;
+    min-height: 180px;
+    padding: 23px;
+    border: 1px solid var(--bienestar-borde);
+    border-radius: 21px;
+    background: #fff;
+    box-shadow: 0 5px 17px rgba(35, 72, 52, .045);
+    transition: transform .22s ease,
+                box-shadow .22s ease,
+                border-color .22s ease;
+}
+
+.option::after {
+    position: absolute;
+    right: 18px;
+    bottom: 0;
+    left: 18px;
+    height: 3px;
+    border-radius: 5px 5px 0 0;
+    background: linear-gradient(90deg, #287a68, #a8d2af);
+    content: "";
+    opacity: 0;
+    transition: opacity .2s ease;
+}
+
+.option:hover {
+    transform: translateY(-4px);
+    border-color: #bcd8c2;
+    box-shadow: 0 12px 26px rgba(35, 72, 52, .09);
+}
+
+.option:hover::after {
+    opacity: 1;
+}
+
+/* Iconos del menú: conserva los emojis existentes */
+.option .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    margin-bottom: 18px;
+    border: 1px solid #d9eadd;
+    border-radius: 17px;
+    background: linear-gradient(145deg, #f0f8f1, #dfefe2);
+    font-size: 27px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9);
+}
+
+.option h3 {
+    color: var(--bienestar-verde-oscuro);
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.45;
+}
+
+.option p {
+    color: var(--bienestar-secundario);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Tarjetas y apartados internos */
+.question {
+    margin-top: 20px;
+    padding: 23px;
+    border: 1px solid var(--bienestar-borde);
+    border-radius: 21px;
+    background: #fff;
+    box-shadow: 0 5px 17px rgba(35, 72, 52, .045);
+}
+
+.question h2,
+.question h3 {
+    color: var(--bienestar-verde-oscuro);
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.question > p {
+    color: var(--bienestar-secundario);
+    line-height: 1.75;
+}
+
+/* Opciones de respuesta de bienestar */
+.level {
+    border: 1px solid var(--bienestar-borde);
+    border-radius: 15px;
+    background: #fbfdfb;
+    color: var(--bienestar-texto);
+    transition: transform .2s ease,
+                background .2s ease,
+                border-color .2s ease,
+                box-shadow .2s ease;
+}
+
+.level:hover {
+    transform: translateY(-2px);
+    border-color: #b8d7bf;
+    background: #edf6ef;
+    box-shadow: 0 5px 14px rgba(35, 72, 52, .06);
+}
+
+/* Resultados y evolución */
+.result {
+    padding: 22px;
+    border: 1px solid var(--bienestar-borde);
+    border-radius: 21px;
+    background: linear-gradient(145deg, #fff, #f7fbf7);
+    box-shadow: 0 5px 17px rgba(35, 72, 52, .05);
+}
+
+.result h2,
+.result h3 {
+    color: var(--bienestar-verde-oscuro);
+}
+
+.result-number {
+    color: var(--bienestar-verde);
+    font-weight: 800;
+}
+
+/* Botones principales */
+.primary-button {
+    min-height: 49px;
+    padding: 13px 19px;
+    border: 1px solid #287a68;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #348b70, #246a57);
+    color: #fff;
+    font-weight: 750;
+    box-shadow: 0 5px 13px rgba(40, 122, 104, .15);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.primary-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 17px rgba(40, 122, 104, .22);
+}
+
+/* Botones para volver */
+.boton-atras {
+    min-height: 42px;
+    padding: 10px 15px;
+    border: 1px solid var(--bienestar-borde);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--bienestar-verde-oscuro);
+    font-weight: 650;
+}
+
+.boton-atras:hover {
+    border-color: #bcd8c2;
+    background: var(--bienestar-verde-suave);
+}
+
+/* Campos de entrada */
+input,
+select,
+textarea {
+    border-radius: 11px;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+    outline: 3px solid rgba(40, 122, 104, .24);
+    outline-offset: 2px;
+}
+
+/* Tarjetas de tareas */
+#listaTareas > div {
+    border: 1px solid var(--bienestar-borde);
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 4px 13px rgba(35, 72, 52, .045);
+}
+
+/* Paneles de estadísticas y registros */
+#estadisticasBienestar > div,
+#listaRegistros > div {
+    border-radius: 15px;
+}
+
+/* Pie de página */
+.footer {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--bienestar-borde);
+    color: #7a887e;
+}
+
+/* Adaptación a móviles */
+@media (max-width: 600px) {
+    .app {
+        padding: 17px;
+        border-radius: 0;
+    }
+
+    .welcome {
+        padding: 24px 19px;
+        border-radius: 20px;
+    }
+
+    .option {
+        min-height: 150px;
+        padding: 19px;
+        border-radius: 18px;
+    }
+
+    .question {
+        padding: 19px 16px;
+        border-radius: 18px;
+    }
+
+    .result {
+        padding: 18px;
+    }
+}
+
+/* Accesibilidad: respetar reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .option,
+    .option::after,
+    .level,
+    .primary-button {
+        transition: none !important;
+    }
+}
+
+/* ===== FIN DEL REDISEÑO GENERAL ===== */
+/* ===== RECURSOS DE BIENESTAR ===== */
+
+#recursos .recursos-contenedor {
+    max-width: 760px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+#recursos .recursos-volver {
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    border: 1px solid #dfe9e1;
+    border-radius: 12px;
+    background: #fff;
+    color: #203b35;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#recursos .recursos-encabezado {
+    margin-bottom: 24px;
+    padding: 28px 23px;
+    border: 1px solid #d7e7d9;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #f0f7f0, #e2f0e5);
+}
+
+#recursos .recursos-etiqueta {
+    display: inline-block;
+    margin-bottom: 13px;
+    color: #287a68;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+#recursos .recursos-encabezado h2 {
+    margin: 0 0 12px;
+    color: #203b35;
+    font-size: clamp(26px, 5vw, 33px);
+    line-height: 1.25;
+    letter-spacing: -0.7px;
+}
+
+#recursos .recursos-encabezado p {
+    margin: 0;
+    color: #5c7163;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+#recursos .recursos-tarjeta {
+    display: grid;
+    grid-template-columns: 43px minmax(0, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+    padding: 23px 20px;
+    border: 1px solid #dfe9e1;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 5px 17px rgba(35, 72, 52, .045);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+#recursos .recursos-tarjeta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(35, 72, 52, .08);
+}
+
+#recursos .recursos-numero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 43px;
+    height: 43px;
+    border: 1px solid #d8eadc;
+    border-radius: 14px;
+    background: #eaf4ec;
+    color: #287a68;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+#recursos .recursos-tarjeta h3 {
+    margin: 3px 0 10px;
+    color: #203b35;
+    font-size: 17px;
+    line-height: 1.45;
+}
+
+#recursos .recursos-tarjeta p {
+    margin: 0 0 13px;
+    color: #69796f;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+#recursos .recursos-tarjeta ul {
+    display: grid;
+    gap: 10px;
+    margin: 15px 0;
+    padding-left: 20px;
+    color: #40564a;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+#recursos .recursos-tarjeta li::marker {
+    color: #398467;
+}
+
+#recursos .recursos-tarjeta .recursos-consejo {
+    margin: 17px 0 0;
+    padding: 14px;
+    border: 1px solid #dceade;
+    border-radius: 12px;
+    background: #f2f8f2;
+    color: #405d4a;
+}
+
+#recursos .recursos-consejo strong {
+    color: #287a68;
+}
+
+#recursos .recursos-pie {
+    margin-top: 22px;
+    padding: 18px;
+    border-left: 4px solid #8dbb98;
+    border-radius: 0 12px 12px 0;
+    background: #edf5ee;
+    color: #5c7163;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+#recursos button:focus-visible {
+    outline: 3px solid #8bc9a3;
+    outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+    #recursos .recursos-encabezado {
+        padding: 23px 18px;
+        border-radius: 20px;
+    }
+
+    #recursos .recursos-tarjeta {
+        grid-template-columns: 35px minmax(0, 1fr);
+        gap: 12px;
+        padding: 18px 13px;
+        border-radius: 17px;
+    }
+
+    #recursos .recursos-numero {
+        width: 35px;
+        height: 35px;
+        border-radius: 11px;
+        font-size: 11px;
+    }
+
+    #recursos .recursos-tarjeta h3 {
+        font-size: 15px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #recursos .recursos-tarjeta {
+        transition: none;
+    }
+}
+
+/* ===== RECURSOS INTERACTIVOS ===== */
+
+#recursos .recursos-tarjeta {
+    position: relative;
+    overflow: hidden;
+}
+
+#recursos .recursos-tarjeta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #4c9974, #c4d9a7);
+    opacity: .85;
+}
+
+#recursos .recursos-icono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 43px;
+    height: 43px;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #e5f3e8, #f5f2df);
+    font-size: 22px;
+}
+
+/* Elementos visuales del apartado Recursos */
+
+#recursos .recursos-tarjeta {
+    background:
+        radial-gradient(ellipse at top right,
+            rgba(220, 239, 222, .65), transparent 48%),
+        #ffffff;
+    border-radius: 22px;
+    padding: 24px;
+}
+
+#recursos .recursos-icono {
+    width: 54px;
+    height: 54px;
+    border-radius: 17px;
+    background: #e5f1e5;
+    box-shadow: inset 0 0 0 1px #d5e6d6;
+    font-size: 27px;
+}
+
+#recursos .recursos-numero {
+    background: #203f35;
+    color: #ffffff;
+    border: none;
+    border-radius: 13px;
+}
+
+#recursos .recursos-tarjeta h3 {
+    font-size: 18px;
+    letter-spacing: -.3px;
+}
+
+#recursos .recursos-toggle {
+    min-height: 46px;
+    justify-content: center;
+    gap: 10px;
+    border: none;
+    background: #21483b;
+    color: #ffffff;
+    border-radius: 13px;
+}
+
+#recursos .recursos-toggle:hover {
+    background: #316550;
+}
+
+#recursos .recursos-tarjeta.recurso-abierto {
+    background: #ffffff;
+    border-color: #b9d7bf;
+}
+
+#recursos .recursos-tarjeta ul {
+    padding: 16px 16px 16px 34px;
+    border-radius: 14px;
+    background: #f5f8f2;
+}
+
+#recursos .recursos-tarjeta .recursos-consejo {
+    border: none;
+    border-left: 3px solid #9bbd80;
+    border-radius: 4px 12px 12px 4px;
+    background: #edf5e9;
+}
+
+#recursos .recursos-tarjeta ul,
+#recursos .recursos-tarjeta .recursos-consejo {
+    display: none;
+}
+
+#recursos .recursos-tarjeta.recurso-abierto ul {
+    display: grid;
+}
+
+#recursos .recursos-tarjeta.recurso-abierto .recursos-consejo {
+    display: block;
+}
+
+#recursos .recursos-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px 15px;
+    border: 1px solid #d5e7d9;
+    border-radius: 12px;
+    background: #f1f7f1;
+    color: #28634e;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+
+#recursos .recursos-toggle:hover {
+    background: #e4f1e6;
+    transform: translateY(-1px);
+}
+
+#recursos .recursos-toggle span {
+    font-size: 18px;
+    transition: transform .2s ease;
+}
+
+#recursos .recurso-abierto .recursos-toggle span {
+    transform: rotate(180deg);
+}
+
+#recursos .recursos-tarjeta.recurso-abierto {
+    border-color: #bfdac6;
+    box-shadow: 0 8px 24px rgba(35, 72, 52, .09);
+}
+
+@media (max-width: 480px) {
+    #recursos .recursos-icono {
+        width: 39px;
+        height: 39px;
+        font-size: 20px;
+    }
+}
+
+/* ===== SIMULADOR DE INTERRUPCIONES LABORALES ===== */
+
+#recursos .simulador-laboral {
+    margin: 0 0 28px;
+    overflow: hidden;
+    border: 1px solid #d9e5d8;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 12px 35px rgba(32, 63, 53, .08);
+}
+
+#recursos .simulador-portada {
+    position: relative;
+    padding: 30px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #193e33, #285c48);
+    color: #fff;
+}
+
+#recursos .simulador-portada::after {
+    content: "";
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    right: -90px;
+    top: -95px;
+    border: 30px solid rgba(224, 239, 211, .08);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+#recursos .simulador-portada-icono {
+    display: grid;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 24px;
+    place-items: center;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 18px;
+    background: rgba(255,255,255,.12);
+    font-size: 28px;
+}
+
+#recursos .simulador-etiqueta {
+    display: block;
+    margin-bottom: 10px;
+    color: #94c9a0;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+#recursos .simulador-portada h3,
+#recursos .simulador-juego h3,
+#recursos .simulador-final h3 {
+    margin: 0 0 12px;
+    color: inherit;
+    font-size: clamp(21px, 4vw, 27px);
+    line-height: 1.3;
+}
+
+#recursos .simulador-portada > p {
+    max-width: 470px;
+    margin: 0;
+    color: #d6e4d8;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+#recursos .simulador-datos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 25px 0;
+}
+
+#recursos .simulador-datos div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 13px 10px;
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 13px;
+    background: rgba(255,255,255,.06);
+}
+
+#recursos .simulador-datos strong {
+    color: #f0dca5;
+    font-size: 20px;
+}
+
+#recursos .simulador-datos span {
+    color: #d6e4d8;
+    font-size: 10px;
+}
+
+#recursos .simulador-boton-principal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 48px;
+    padding: 13px 18px;
+    border: 0;
+    border-radius: 13px;
+    background: #e5edcf;
+    color: #203f35;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease;
+}
+
+#recursos .simulador-boton-principal:hover {
+    transform: translateY(-2px);
+    background: #f0f5df;
+}
+
+#recursos .simulador-portada > small {
+    display: block;
+    margin-top: 13px;
+    color: #c5d8ca;
+    font-size: 10px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+#recursos .simulador-juego,
+#recursos .simulador-final {
+    padding: 25px;
+    color: #294438;
+}
+
+#recursos .simulador-barra-superior {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: #6b8070;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .8px;
+}
+
+#recursos .simulador-puntos {
+    letter-spacing: 0;
+    font-weight: 500;
+}
+
+#recursos .simulador-puntos strong {
+    color: #2b7654;
+    font-size: 15px;
+}
+
+#recursos .simulador-progreso,
+#recursos .simulador-resultado-barra {
+    height: 6px;
+    margin: 13px 0 24px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #e8eee5;
+}
+
+#recursos #simuladorProgresoRelleno,
+#recursos #simuladorResultadoRelleno {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #4c9870, #a4c887);
+    transition: width .35s ease;
+}
+
+#recursos .simulador-escenario-icono {
+    display: grid;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 19px;
+    place-items: center;
+    border-radius: 19px;
+    background: #edf4e9;
+    font-size: 28px;
+}
+
+#recursos .simulador-juego .simulador-etiqueta,
+#recursos .simulador-final .simulador-etiqueta {
+    color: #4b8b68;
+}
+
+#recursos .simulador-juego h3,
+#recursos .simulador-final h3 {
+    color: #203f35;
+}
+
+#recursos .simulador-juego > p,
+#recursos .simulador-final > p {
+    color: #65776a;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+#recursos .simulador-opciones {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#recursos .simulador-opcion {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #e0e8dd;
+    border-radius: 14px;
+    background: #fff;
+    color: #344d3e;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color .2s ease, background .2s ease;
+}
+
+#recursos .simulador-opcion:hover:not(:disabled) {
+    border-color: #8cb99a;
+    background: #f3f8f0;
+}
+
+#recursos .simulador-opcion:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+#recursos .simulador-opcion-letra {
+    display: grid;
+    flex: 0 0 31px;
+    width: 31px;
+    height: 31px;
+    place-items: center;
+    border-radius: 10px;
+    background: #edf3e9;
+    color: #35694d;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+#recursos .simulador-opcion-contenido {
+    display: block;
+    padding-top: 3px;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+#recursos .simulador-opcion.seleccion-correcta {
+    border-color: #79ae87;
+    background: #edf7ec;
+}
+
+#recursos .simulador-opcion.seleccion-incorrecta {
+    border-color: #d8b879;
+    background: #fbf5e8;
+}
+
+#recursos .simulador-retroalimentacion {
+    margin-top: 18px;
+    padding: 18px;
+    border: 1px solid #dbe8d7;
+    border-radius: 16px;
+    background: #f2f7ee;
+}
+
+#recursos .simulador-retroalimentacion strong {
+    color: #2f6d4b;
+    font-size: 14px;
+}
+
+#recursos .simulador-retroalimentacion p {
+    margin: 8px 0 17px;
+    color: #536b59;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+#recursos .simulador-final {
+    text-align: center;
+}
+
+#recursos .simulador-final-icono {
+    display: grid;
+    width: 72px;
+    height: 72px;
+    margin: 5px auto 22px;
+    place-items: center;
+    border-radius: 24px;
+    background: #e9f2df;
+    font-size: 32px;
+}
+
+#recursos .simulador-puntuacion {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    margin: 24px 0 10px;
+}
+
+#recursos .simulador-puntuacion strong {
+    color: #2b7654;
+    font-size: 43px;
+    letter-spacing: -2px;
+}
+
+#recursos .simulador-puntuacion span {
+    color: #718073;
+    font-size: 12px;
+}
+
+#recursos .simulador-resultado-barra {
+    height: 10px;
+    margin-bottom: 24px;
+}
+
+#recursos .simulador-aprendizaje {
+    margin: 20px 0;
+    padding: 17px;
+    border-radius: 15px;
+    background: #f1f6ed;
+    text-align: left;
+}
+
+#recursos .simulador-aprendizaje strong {
+    color: #35694d;
+    font-size: 13px;
+}
+
+#recursos .simulador-aprendizaje p {
+    margin: 8px 0 0;
+    color: #5e7162;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+#recursos .simulador-laboral [hidden] {
+    display: none !important;
+}
+
+@media (max-width: 480px) {
+    #recursos .simulador-portada {
+        padding: 22px 18px;
+    }
+
+    #recursos .simulador-juego,
+    #recursos .simulador-final {
+        padding: 20px 16px;
+    }
+
+    #recursos .simulador-datos {
+        gap: 6px;
+    }
+
+    #recursos .simulador-datos div {
+        padding: 11px 7px;
+    }
+
+    #recursos .simulador-datos strong {
+        font-size: 17px;
+    }
+}
+
+/* ===== JUEGA Y APRENDE SST ===== */
+
+#juegosSST .sst-contenedor {
+    max-width: 850px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+#juegosSST .sst-volver {
+    margin-bottom: 18px;
+    padding: 10px 15px;
+    border: 1px solid #dce7da;
+    border-radius: 12px;
+    background: #fff;
+    color: #294b3b;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#juegosSST .sst-encabezado {
+    margin-bottom: 22px;
+    padding: 27px;
+    border-radius: 23px;
+    background: linear-gradient(140deg, #1b4034, #2e6850);
+    color: white;
+}
+
+#juegosSST .sst-insignia {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 8px 11px;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 9px;
+    background: rgba(255,255,255,.09);
+    color: #dcebc9;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+#juegosSST .sst-encabezado h2 {
+    margin: 0 0 10px;
+    color: #fff;
+    font-size: clamp(27px, 5vw, 36px);
+    line-height: 1.2;
+}
+
+#juegosSST .sst-encabezado p {
+    max-width: 540px;
+    margin: 0;
+    color: #dce8dd;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+#juegosSST .sst-mini-datos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 20px;
+}
+
+#juegosSST .sst-mini-datos span {
+    padding: 9px 12px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 10px;
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    font-size: 11px;
+}
+
+#juegosSST .sst-juego {
+    overflow: hidden;
+    border: 1px solid #dfe8dc;
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0 9px 28px rgba(32, 63, 53, .06);
+}
+
+#juegosSST .sst-inicio,
+#juegosSST .sst-resultado {
+    padding: 28px;
+    text-align: center;
+}
+
+#juegosSST .sst-inicio-ilustracion {
+    width: 155px;
+    max-width: 100%;
+    margin: 0 auto 12px;
+}
+
+#juegosSST .sst-inicio-ilustracion svg {
+    display: block;
+    width: 100%;
+}
+
+#juegosSST .sst-inicio h3,
+#juegosSST .sst-resultado h3 {
+    margin: 0 0 12px;
+    color: #254737;
+    font-size: 22px;
+    line-height: 1.4;
+}
+
+#juegosSST .sst-inicio > p,
+#juegosSST .sst-resultado > p {
+    max-width: 510px;
+    margin: 0 auto 22px;
+    color: #6a796d;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+#juegosSST .sst-boton-principal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 48px;
+    padding: 13px 18px;
+    border: 0;
+    border-radius: 13px;
+    background: #244c3b;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+
+#juegosSST .sst-boton-principal:hover {
+    transform: translateY(-2px);
+    background: #347054;
+}
+
+#juegosSST .sst-estado {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 22px 23px 0;
+}
+
+#juegosSST .sst-estado > div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#juegosSST .sst-caption {
+    color: #829084;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+#juegosSST .sst-estado strong {
+    color: #284b39;
+    font-size: 21px;
+}
+
+#juegosSST .sst-puntos {
+    text-align: right;
+}
+
+#juegosSST .sst-puntos strong {
+    color: #43845c;
+}
+
+#juegosSST .sst-progreso {
+    height: 6px;
+    margin: 16px 23px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #edf1e9;
+}
+
+#juegosSST #sstBarraProgreso {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #43845c, #b1cb87);
+    transition: width .3s ease;
+}
+
+#juegosSST .sst-instruccion {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 23px 17px;
+    padding: 13px;
+    border-radius: 12px;
+    background: #f1f6ed;
+}
+
+#juegosSST .sst-instruccion > span {
+    font-size: 20px;
+}
+
+#juegosSST .sst-instruccion p {
+    margin: 0;
+    color: #516b58;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+#juegosSST .sst-escena {
+    margin: 0 16px;
+    overflow: hidden;
+    border: 1px solid #e3e6d8;
+    border-radius: 15px;
+    background: #f4f0e5;
+}
+
+#juegosSST .sst-escena svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+#juegosSST .sst-zona-riesgo {
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 3;
+    cursor: crosshair;
+    transition: fill .18s ease, stroke .18s ease;
+}
+
+#juegosSST .sst-zona-riesgo:hover,
+#juegosSST .sst-zona-riesgo:focus-visible {
+    fill: rgba(231, 183, 78, .18);
+    stroke: #c18d31;
+    stroke-dasharray: 7 5;
+    outline: none;
+}
+
+#juegosSST .sst-zona-riesgo.sst-detectado {
+    fill: rgba(73, 147, 96, .2);
+    stroke: #348151;
+    stroke-dasharray: none;
+    cursor: default;
+}
+
+#juegosSST .sst-leyenda {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 14px 22px;
+    color: #738174;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+#juegosSST #sstMensajeRiesgo {
+    color: #347451;
+    font-weight: 800;
+}
+
+#juegosSST .sst-riesgos-encontrados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 22px 22px;
+}
+
+#juegosSST .sst-riesgos-encontrados span {
+    padding: 8px 11px;
+    border: 1px solid #e0e7dd;
+    border-radius: 9px;
+    background: #f7f8f4;
+    color: #9aa397;
+    font-size: 10px;
+    transition: .2s ease;
+}
+
+#juegosSST .sst-riesgos-encontrados span.sst-etiqueta-detectada {
+    border-color: #c9dfc6;
+    background: #eaf4e7;
+    color: #316b45;
+    font-weight: 800;
+}
+
+#juegosSST .sst-nota {
+    margin: 16px 4px 0;
+    color: #7c887e;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+#juegosSST .sst-trofeo {
+    display: grid;
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 20px;
+    place-items: center;
+    border-radius: 25px;
+    background: #f3edda;
+    font-size: 35px;
+}
+
+#juegosSST .sst-resultado .sst-caption {
+    display: block;
+    margin-bottom: 10px;
+    color: #4b8b61;
+}
+
+#juegosSST .sst-total {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    margin: 19px 0;
+}
+
+#juegosSST .sst-total strong {
+    color: #347c50;
+    font-size: 46px;
+    letter-spacing: -2px;
+}
+
+#juegosSST .sst-total span {
+    color: #7b887b;
+    font-size: 12px;
+}
+
+#juegosSST .sst-aprendizaje {
+    margin: 20px 0;
+    padding: 17px;
+    border-radius: 14px;
+    background: #f1f6ed;
+    text-align: left;
+}
+
+#juegosSST .sst-aprendizaje strong {
+    color: #35694d;
+    font-size: 13px;
+}
+
+#juegosSST .sst-aprendizaje p {
+    margin: 8px 0 0;
+    color: #5d7060;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+#juegosSST [hidden] {
+    display: none !important;
+}
+
+#juegosSST button:focus-visible {
+    outline: 3px solid #a8c99d;
+    outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+    #juegosSST .sst-encabezado {
+        padding: 22px 18px;
+    }
+
+    #juegosSST .sst-inicio,
+    #juegosSST .sst-resultado {
+        padding: 23px 17px;
+    }
+
+    #juegosSST .sst-estado {
+        padding: 19px 14px 0;
+    }
+
+    #juegosSST .sst-progreso {
+        margin-right: 14px;
+        margin-left: 14px;
+    }
+
+    #juegosSST .sst-instruccion {
+        margin-right: 14px;
+        margin-left: 14px;
+    }
+
+    #juegosSST .sst-escena {
+        margin-right: 8px;
+        margin-left: 8px;
+    }
+
+    #juegosSST .sst-leyenda {
+        padding-right: 13px;
+        padding-left: 13px;
+    }
+
+    #juegosSST .sst-riesgos-encontrados {
+        padding-right: 13px;
+        padding-left: 13px;
+    }
+}
+
+/* ===== RETO SST ALEATORIO ===== */
+
+#juegosSST .sst-reto {
+    margin-top: 24px;
+    overflow: hidden;
+    border: 1px solid #dce7da;
+    border-radius: 23px;
+    background: #fff;
+    box-shadow: 0 9px 28px rgba(32, 63, 53, .06);
+}
+
+#juegosSST .sst-reto-portada {
+    padding: 26px;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(198, 220, 157, .18), transparent 38%),
+        linear-gradient(145deg, #263c52, #375a6b);
+    color: #fff;
+}
+
+#juegosSST .sst-reto-icono {
+    display: grid;
+    width: 57px;
+    height: 57px;
+    margin-bottom: 22px;
+    place-items: center;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 18px;
+    background: rgba(255,255,255,.1);
+    font-size: 28px;
+}
+
+#juegosSST .sst-reto-etiqueta {
+    display: block;
+    margin-bottom: 10px;
+    color: #c7dfa9;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+}
+
+#juegosSST .sst-reto-portada h3,
+#juegosSST .sst-reto-partida h3,
+#juegosSST .sst-reto-final h3 {
+    margin: 0 0 12px;
+    color: inherit;
+    font-size: clamp(21px, 4vw, 27px);
+    line-height: 1.35;
+}
+
+#juegosSST .sst-reto-portada > p {
+    margin: 0;
+    color: #e0e9ee;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+#juegosSST .sst-reto-estadisticas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 23px 0;
+}
+
+#juegosSST .sst-reto-estadisticas div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 13px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 13px;
+    background: rgba(255,255,255,.07);
+}
+
+#juegosSST .sst-reto-estadisticas strong {
+    color: #e1e9bb;
+    font-size: 23px;
+}
+
+#juegosSST .sst-reto-estadisticas span {
+    color: #dce5e6;
+    font-size: 11px;
+}
+
+#juegosSST .sst-reto-portada .sst-boton-principal {
+    background: #e4edcf;
+    color: #263e35;
+}
+
+#juegosSST .sst-reto-partida,
+#juegosSST .sst-reto-final {
+    padding: 24px;
+    color: #2a4537;
+}
+
+#juegosSST .sst-reto-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: #748174;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .7px;
+}
+
+#juegosSST .sst-reto-cabecera strong {
+    color: #3d7955;
+    font-size: 14px;
+    letter-spacing: 0;
+}
+
+#juegosSST .sst-reto-progreso {
+    height: 6px;
+    margin: 14px 0 24px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #edf1e9;
+}
+
+#juegosSST #sstRetoBarra,
+#juegosSST #sstRetoFinalBarra {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #4d8b67, #b3ce8d);
+    transition: width .3s ease;
+}
+
+#juegosSST .sst-reto-categoria {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: #edf3e6;
+    color: #457450;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+#juegosSST .sst-reto-emoji {
+    display: grid;
+    width: 58px;
+    height: 58px;
+    margin-bottom: 16px;
+    place-items: center;
+    border-radius: 18px;
+    background: #f2f0e4;
+    font-size: 28px;
+}
+
+#juegosSST .sst-reto-partida h3,
+#juegosSST .sst-reto-final h3 {
+    color: #284838;
+}
+
+#juegosSST .sst-reto-contexto,
+#juegosSST .sst-reto-final > p {
+    margin: 0;
+    color: #68786b;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+#juegosSST .sst-reto-opciones {
+    display: grid;
+    gap: 10px;
+    margin-top: 21px;
+}
+
+#juegosSST .sst-reto-opcion {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #e0e8dd;
+    border-radius: 14px;
+    background: #fff;
+    color: #344c3c;
+    text-align: left;
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease;
+}
+
+#juegosSST .sst-reto-opcion:hover:not(:disabled) {
+    border-color: #9ab99a;
+    background: #f4f8f0;
+}
+
+#juegosSST .sst-reto-opcion:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+#juegosSST .sst-reto-letra {
+    display: grid;
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border-radius: 10px;
+    background: #edf2e7;
+    color: #47704e;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+#juegosSST .sst-reto-texto-opcion {
+    padding-top: 4px;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+#juegosSST .sst-reto-opcion.reto-acierto {
+    border-color: #8bb993;
+    background: #edf7ec;
+}
+
+#juegosSST .sst-reto-opcion.reto-error {
+    border-color: #d8bd83;
+    background: #faf4e6;
+}
+
+#juegosSST .sst-reto-feedback {
+    margin-top: 18px;
+    padding: 17px;
+    border: 1px solid #dce7d6;
+    border-radius: 15px;
+    background: #f1f6eb;
+}
+
+#juegosSST .sst-reto-feedback strong {
+    color: #39734d;
+    font-size: 14px;
+}
+
+#juegosSST .sst-reto-feedback p {
+    margin: 9px 0 16px;
+    color: #5e7060;
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+#juegosSST .sst-reto-final {
+    text-align: center;
+}
+
+#juegosSST .sst-reto-final-icono {
+    display: grid;
+    width: 72px;
+    height: 72px;
+    margin: 5px auto 20px;
+    place-items: center;
+    border-radius: 23px;
+    background: #f2edd9;
+    font-size: 34px;
+}
+
+#juegosSST .sst-reto-final .sst-reto-etiqueta {
+    color: #56865c;
+}
+
+#juegosSST .sst-reto-total {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    margin: 22px 0;
+}
+
+#juegosSST .sst-reto-total strong {
+    color: #3d8054;
+    font-size: 45px;
+    letter-spacing: -2px;
+}
+
+#juegosSST .sst-reto-total span {
+    color: #7a877b;
+    font-size: 12px;
+}
+
+#juegosSST .sst-reto-insignia {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 20px 0;
+    padding: 16px;
+    border-radius: 14px;
+    background: #f1f6ed;
+    text-align: left;
+}
+
+#juegosSST .sst-reto-insignia > span {
+    font-size: 25px;
+}
+
+#juegosSST .sst-reto-insignia strong {
+    color: #3d704b;
+    font-size: 13px;
+}
+
+#juegosSST .sst-reto-insignia p {
+    margin: 7px 0 0;
+    color: #647465;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+#juegosSST .sst-reto [hidden] {
+    display: none !important;
+}
+
+@media (max-width: 480px) {
+    #juegosSST .sst-reto-portada {
+        padding: 22px 18px;
+    }
+
+    #juegosSST .sst-reto-partida,
+    #juegosSST .sst-reto-final {
+        padding: 19px 15px;
+    }
+}
+
+/* =========================================
+   ALERTA 60 — DISEÑO DEL VIDEOJUEGO SST
+   ========================================= */
+
+#juegosSST .alerta60 {
+    --a60-fondo: #101d19;
+    --a60-panel: #192a23;
+    --a60-verde: #83d6a5;
+    --a60-dorado: #e8c779;
+    --a60-texto: #f3f5ef;
+    --a60-secundario: #a8b9ae;
+
+    margin: 28px 0;
+    overflow: hidden;
+    color: var(--a60-texto);
+    background: var(--a60-fondo);
+    border: 1px solid rgba(131, 214, 165, .25);
+    border-radius: 24px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, .16);
+    font-family: inherit;
+}
+
+#juegosSST .alerta60 [hidden] {
+    display: none !important;
+}
+
+#juegosSST .a60-portada,
+#juegosSST .a60-final {
+    padding: clamp(24px, 5vw, 48px);
+    text-align: center;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(83, 160, 112, .19), transparent 60%),
+        var(--a60-fondo);
+}
+
+#juegosSST .a60-etiqueta {
+    display: inline-block;
+    padding: 8px 13px;
+    color: var(--a60-verde);
+    background: rgba(131, 214, 165, .09);
+    border: 1px solid rgba(131, 214, 165, .25);
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+
+#juegosSST .a60-emblema {
+    display: grid;
+    place-items: center;
+    width: 92px;
+    height: 92px;
+    margin: 26px auto 12px;
+    background: linear-gradient(145deg, #244d39, #172b21);
+    border: 1px solid rgba(131, 214, 165, .45);
+    border-radius: 27px;
+    box-shadow: 0 0 38px rgba(93, 202, 139, .12);
+    font-size: 43px;
+}
+
+#juegosSST .a60-portada h2 {
+    margin: 12px 0;
+    color: var(--a60-texto);
+    font-size: clamp(38px, 7vw, 64px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+#juegosSST .a60-portada h2 span {
+    color: var(--a60-verde);
+}
+
+#juegosSST .a60-subtitulo {
+    margin: 16px 0 10px;
+    color: var(--a60-dorado);
+    font-size: clamp(15px, 2.8vw, 20px);
+    font-weight: 700;
+}
+
+#juegosSST .a60-descripcion {
+    max-width: 540px;
+    margin: 0 auto;
+    color: var(--a60-secundario);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+#juegosSST .a60-datos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    max-width: 540px;
+    margin: 28px auto;
+}
+
+#juegosSST .a60-datos > div {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 17px 8px;
+    background: rgba(255, 255, 255, .035);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 14px;
+}
+
+#juegosSST .a60-datos strong {
+    color: var(--a60-verde);
+    font-size: 20px;
+}
+
+#juegosSST .a60-datos span {
+    color: var(--a60-secundario);
+    font-size: 11px;
+}
+
+#juegosSST .a60-portada label {
+    display: block;
+    margin: 22px 0 9px;
+    color: var(--a60-texto);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#juegosSST .a60-portada input {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 14px 16px;
+    color: var(--a60-texto);
+    background: #0c1511;
+    border: 1px solid #3c5748;
+    border-radius: 12px;
+    outline: none;
+    font: inherit;
+    font-size: 14px;
+    text-align: center;
+}
+
+#juegosSST .a60-portada input:focus {
+    border-color: var(--a60-verde);
+    box-shadow: 0 0 0 3px rgba(131, 214, 165, .12);
+}
+
+#juegosSST .a60-boton {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    margin: 18px auto 0;
+    padding: 16px 20px;
+    color: #102219;
+    background: linear-gradient(110deg, #9ce5b5, #69c992);
+    border: 0;
+    border-radius: 12px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: .7px;
+    transition: transform .2s, filter .2s;
+}
+
+#juegosSST .a60-boton:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+}
+
+#juegosSST .a60-boton-secundario {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    margin: 10px auto 0;
+    padding: 13px 18px;
+    color: var(--a60-texto);
+    background: transparent;
+    border: 1px solid #3c5748;
+    border-radius: 12px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#juegosSST .a60-record {
+    margin: 20px 0 0;
+    color: var(--a60-secundario);
+    font-size: 12px;
+}
+
+#juegosSST .a60-record strong {
+    color: var(--a60-dorado);
+}
+
+/* PANEL DE PARTIDA */
+
+#juegosSST .a60-partida {
+    padding: clamp(15px, 4vw, 30px);
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(83, 160, 112, .12), transparent 65%),
+        var(--a60-fondo);
+}
+
+#juegosSST .a60-panel-superior {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+#juegosSST .a60-panel-superior > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 8px;
+    background: var(--a60-panel);
+    border: 1px solid rgba(255, 255, 255, .07);
+    border-radius: 13px;
+    text-align: center;
+}
+
+#juegosSST .a60-mini-etiqueta {
+    color: var(--a60-secundario);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+#juegosSST .a60-panel-superior strong {
+    color: var(--a60-verde);
+    font-size: clamp(23px, 5vw, 32px);
+    font-variant-numeric: tabular-nums;
+}
+
+#juegosSST .a60-panel-superior > div:nth-child(2) strong {
+    color: var(--a60-dorado);
+}
+
+#juegosSST .a60-tiempo-fondo,
+#juegosSST .a60-seguridad-fondo {
+    overflow: hidden;
+    background: #29382f;
+    border-radius: 50px;
+}
+
+#juegosSST .a60-tiempo-fondo {
+    height: 7px;
+    margin: 14px 0 22px;
+}
+
+#juegosSST #a60BarraTiempo {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #85dda5, #e8c779);
+    border-radius: inherit;
+    transition: width .25s linear;
+}
+
+#juegosSST .a60-seguridad {
+    margin-bottom: 22px;
+    color: var(--a60-secundario);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .7px;
+}
+
+#juegosSST .a60-seguridad > strong {
+    float: right;
+    color: var(--a60-verde);
+}
+
+#juegosSST .a60-seguridad-fondo {
+    height: 8px;
+    margin-top: 10px;
+}
+
+#juegosSST #a60BarraSeguridad {
+    width: 100%;
+    height: 100%;
+    background: #78d49b;
+    border-radius: inherit;
+    transition: width .25s, background .25s;
+}
+
+#juegosSST .a60-incidente {
+    padding: clamp(18px, 4vw, 30px);
+    background: linear-gradient(150deg, #1d3027, #17251e);
+    border: 1px solid rgba(131, 214, 165, .18);
+    border-radius: 20px;
+}
+
+#juegosSST .a60-incidente-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--a60-verde);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+#juegosSST .a60-incidente-top span:last-child {
+    color: var(--a60-secundario);
+}
+
+#juegosSST .a60-icono {
+    display: grid;
+    place-items: center;
+    width: 70px;
+    height: 70px;
+    margin: 26px auto 16px;
+    background: rgba(232, 199, 121, .09);
+    border: 1px solid rgba(232, 199, 121, .24);
+    border-radius: 20px;
+    font-size: 35px;
+}
+
+#juegosSST .a60-incidente h3 {
+    margin: 0 0 12px;
+    color: var(--a60-texto);
+    font-size: clamp(19px, 4vw, 27px);
+    line-height: 1.35;
+    text-align: center;
+}
+
+#juegosSST #a60Contexto {
+    max-width: 570px;
+    margin: 0 auto 24px;
+    color: var(--a60-secundario);
+    font-size: 13px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+#juegosSST .a60-opciones {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+#juegosSST .a60-opcion {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    width: 100%;
+    padding: 15px;
+    color: var(--a60-texto);
+    background: rgba(255, 255, 255, .035);
+    border: 1px solid #354c3e;
+    border-radius: 12px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: left;
+    transition: background .18s, border-color .18s, transform .18s;
+}
+
+#juegosSST .a60-opcion:hover:not(:disabled) {
+    background: rgba(131, 214, 165, .09);
+    border-color: var(--a60-verde);
+    transform: translateX(3px);
+}
+
+#juegosSST .a60-opcion:focus-visible,
+#juegosSST .a60-boton:focus-visible,
+#juegosSST .a60-boton-secundario:focus-visible {
+    outline: 3px solid var(--a60-dorado);
+    outline-offset: 3px;
+}
+
+#juegosSST .a60-opcion:disabled {
+    cursor: default;
+    opacity: .85;
+}
+
+#juegosSST .a60-opcion .a60-letra {
+    display: grid;
+    flex: 0 0 30px;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    color: var(--a60-verde);
+    background: rgba(131, 214, 165, .09);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+#juegosSST .a60-opcion.a60-correcta {
+    background: rgba(76, 190, 120, .13);
+    border-color: #70d69a;
+}
+
+#juegosSST .a60-opcion.a60-incorrecta {
+    background: rgba(226, 109, 91, .12);
+    border-color: #e17868;
+}
+
+#juegosSST .a60-feedback {
+    margin-top: 18px;
+    padding: 15px;
+    color: var(--a60-texto);
+    background: rgba(255, 255, 255, .045);
+    border-left: 3px solid var(--a60-verde);
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+#juegosSST .a60-feedback.a60-error {
+    border-left-color: #e17868;
+}
+
+#juegosSST .a60-pie {
+    margin: 20px 0 0;
+    color: var(--a60-secundario);
+    font-size: 11px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+/* RESULTADOS Y CLASIFICACIÓN */
+
+#juegosSST .a60-final-icono {
+    margin: 12px 0;
+    font-size: 55px;
+}
+
+#juegosSST .a60-final h2 {
+    margin: 18px 0;
+    color: var(--a60-texto);
+    font-size: clamp(25px, 5vw, 36px);
+}
+
+#juegosSST .a60-total {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 22px 0;
+}
+
+#juegosSST .a60-total strong {
+    color: var(--a60-verde);
+    font-size: clamp(48px, 10vw, 76px);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+}
+
+#juegosSST .a60-total span {
+    color: var(--a60-secundario);
+    font-size: 13px;
+}
+
+#juegosSST #a60MensajeFinal {
+    color: var(--a60-secundario);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+#juegosSST .a60-resumen {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 9px;
+    margin: 25px 0;
+}
+
+#juegosSST .a60-resumen > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 7px;
+    background: var(--a60-panel);
+    border: 1px solid rgba(255, 255, 255, .07);
+    border-radius: 12px;
+}
+
+#juegosSST .a60-resumen span {
+    color: var(--a60-secundario);
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+#juegosSST .a60-resumen strong {
+    color: var(--a60-dorado);
+    font-size: 22px;
+}
+
+#juegosSST .a60-final > h3 {
+    margin: 28px 0 8px;
+    color: var(--a60-verde);
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+#juegosSST .a60-nota-ranking {
+    color: var(--a60-secundario);
+    font-size: 11px;
+}
+
+#juegosSST .a60-ranking-lista {
+    max-width: 480px;
+    margin: 18px auto;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+}
+
+#juegosSST .a60-ranking-lista li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 8px 0;
+    padding: 13px 15px;
+    background: var(--a60-panel);
+    border: 1px solid rgba(255, 255, 255, .07);
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+#juegosSST .a60-ranking-lista li:first-child {
+    border-color: rgba(232, 199, 121, .4);
+}
+
+#juegosSST .a60-ranking-lista strong {
+    color: var(--a60-verde);
+    white-space: nowrap;
+}
+
+@media (min-width: 600px) {
+    #juegosSST .a60-opciones {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 420px) {
+    #juegosSST .a60-datos {
+        gap: 6px;
+    }
+
+    #juegosSST .a60-datos > div {
+        padding: 13px 4px;
+    }
+
+    #juegosSST .a60-datos strong {
+        font-size: 16px;
+    }
+
+    #juegosSST .a60-datos span {
+        font-size: 10px;
+    }
+
+    #juegosSST .a60-resumen {
+        gap: 5px;
+    }
+
+    #juegosSST .a60-resumen span {
+        font-size: 9px;
+    }
+
+    #juegosSST .a60-resumen strong {
+        font-size: 19px;
+    }
+}
+
     </style>
+
 </head>
 
 <body>
@@ -306,6 +3386,7 @@
                         Registra cómo te encuentras durante tu jornada.
                     </p>
                 </button>
+                
 
 <button class="option" onclick="mostrarPantalla('organizar')">
     <div class="icon">📋</div>
@@ -315,21 +3396,25 @@
     </p>
 </button>
 
-                <button class="option" onclick="alert('Esta función la construiremos después.')">
-                    <div class="icon">🧘</div>
-                    <h3>Hacer una pausa</h3>
-                    <p>
-                        Realiza una pausa breve para recuperar energía.
-                    </p>
-                </button>
 
-                <button class="option" onclick="alert('Esta función la construiremos después.')">
-                    <div class="icon">💡</div>
-                    <h3>Recursos de bienestar</h3>
-                    <p>
-                        Consulta estrategias breves para tu jornada.
-                    </p>
-                </button>
+<button class="option" onclick="mostrarPantalla('pausa')">
+    <div class="icon">🧘</div>
+    <h3>Hacer una pausa</h3>
+    <p>
+        Realiza una pausa breve para recuperar energía.
+    </p>
+</button>
+
+
+                
+<button class="option" onclick="mostrarPantalla('recursos')">
+    <div class="icon">💡</div>
+    <h3>Recursos de bienestar</h3>
+    <p>
+        Consulta estrategias breves para tu jornada.
+    </p>
+</button>
+
                 <button class="option" onclick="mostrarPantalla('evolucion')">
     <div class="icon">📊</div>
     <h3>Mi evolución</h3>
@@ -337,6 +3422,15 @@
         Consulta tus registros de bienestar.
     </p>
 </button>
+
+<button class="option" onclick="mostrarPantalla('juegosSST')">
+    <div class="icon">🦺</div>
+    <h3>Juega y aprende SST</h3>
+    <p>
+        Aprende sobre seguridad laboral a través de minijuegos y desafíos.
+    </p>
+</button>
+
 
             </section>
 
@@ -468,6 +3562,528 @@
 
 </section>
 
+
+<!-- PANTALLA HACER UNA PAUSA -->
+<section id="pausa" class="screen">
+
+    <div class="pausa-encabezado">
+        <span class="pausa-etiqueta">TEMPOLÍDER BIENESTAR</span>
+        <h2>Hagamos una pausa</h2>
+        <p>Un momento para ti. Respira, muévete o despeja tu mente antes de continuar.</p>
+    </div>
+
+    <div id="menuPausas" class="pausa-lista">
+
+        <button class="pausa-tarjeta" onclick="iniciarPausa('respiracion')">
+            <span class="pausa-icono">◉</span>
+            <span class="pausa-texto">
+                <strong>Respiración consciente</strong>
+                <small>1 minuto · Reduce el ritmo y concéntrate en respirar.</small>
+            </span>
+            <span class="pausa-flecha">›</span>
+        </button>
+
+        <button class="pausa-tarjeta" onclick="iniciarPausa('corporal')">
+            <span class="pausa-icono">↗</span>
+            <span class="pausa-texto">
+                <strong>Descanso corporal</strong>
+                <small>1 min 30 s · Moviliza suavemente cuello y hombros.</small>
+            </span>
+            <span class="pausa-flecha">›</span>
+        </button>
+
+        <button class="pausa-tarjeta" onclick="iniciarPausa('mental')">
+            <span class="pausa-icono">◎</span>
+            <span class="pausa-texto">
+                <strong>Despeja tu mente</strong>
+                <small>1 minuto · Aparta la atención de tus tareas.</small>
+            </span>
+            <span class="pausa-flecha">›</span>
+        </button>
+
+    </div>
+
+    <div id="actividadPausa" class="pausa-panel" hidden>
+        <span class="pausa-etiqueta">TU MOMENTO DE BIENESTAR</span>
+        <h2 id="tituloActividadPausa">Tu pausa</h2>
+
+        <div class="pausa-reloj" id="relojPausa">1:00</div>
+        <p class="pausa-restante">Tiempo restante</p>
+
+        <div class="pausa-instruccion">
+            <span class="pausa-numero" id="numeroInstruccionPausa">PASO 1</span>
+            <p id="instruccionPausa">Sigue las instrucciones a tu propio ritmo.</p>
+        </div>
+
+        <button id="botonSiguientePausa" class="primary-button"
+                onclick="siguienteInstruccionPausa()">
+            Siguiente instrucción
+        </button>
+
+        <button class="pausa-salir" onclick="finalizarPausa()">
+            Terminar pausa
+        </button>
+    </div>
+
+    <div id="pausaFinalizada" class="pausa-panel pausa-fin" hidden>
+        <div class="pausa-fin-icono">✓</div>
+        <h2>Pausa completada</h2>
+        <p>Has dedicado unos minutos a tu bienestar. Puedes continuar con tu jornada cuando estés listo.</p>
+        <button class="primary-button" onclick="finalizarPausa()">
+            Volver a las pausas
+        </button>
+    </div>
+
+</section>
+<!-- FIN PANTALLA HACER UNA PAUSA -->
+
+<!-- NUEVO APARTADO: JUEGOS SST -->
+<section id="juegosSST" class="screen">
+    <div class="sst-contenedor">
+
+        <button class="sst-volver" onclick="mostrarPantalla('home')">
+            ← Volver al inicio
+        </button>
+
+        <header class="sst-encabezado">
+            <div class="sst-insignia">🦺 DESAFÍO SST</div>
+            <h2>Juega y aprende</h2>
+            <p>
+                Observa la oficina, encuentra los peligros y demuestra
+                qué tan buena es tu mirada preventiva.
+            </p>
+            <div class="sst-mini-datos">
+                <span>🎯 5 peligros</span>
+                <span>⭐ 100 puntos posibles</span>
+            </div>
+        </header>
+
+        <div class="sst-juego" id="sstJuego">
+            <div class="sst-inicio" id="sstInicio">
+                <div class="sst-inicio-ilustracion">
+                    <svg viewBox="0 0 200 150" aria-hidden="true">
+                        <rect x="25" y="20" width="150" height="110" rx="18" fill="#E5F0DF"/>
+                        <rect x="52" y="38" width="96" height="64" rx="8" fill="#294D3D"/>
+                        <rect x="60" y="46" width="80" height="47" rx="4" fill="#A9D1A7"/>
+                        <path d="M100 102V115M78 117H122" stroke="#294D3D" stroke-width="6" stroke-linecap="round"/>
+                        <circle cx="135" cy="43" r="19" fill="#F3DFA5"/>
+                        <path d="M135 31L138 40L147 43L138 46L135 55L132 46L123 43L132 40Z" fill="#98792D"/>
+                    </svg>
+                </div>
+                <h3>¿Puedes detectar los 5 peligros?</h3>
+                <p>
+                    Recorre visualmente la oficina y pulsa directamente
+                    sobre cada situación peligrosa. Cada acierto suma
+                    20 puntos. ¡Intenta encontrar todos!
+                </p>
+                <button type="button" class="sst-boton-principal" id="sstComenzar">
+                    Empezar el juego <span>→</span>
+                </button>
+            </div>
+
+            <div class="sst-partida" id="sstPartida" hidden>
+                <div class="sst-estado">
+                    <div>
+                        <span class="sst-caption">PELIGROS DETECTADOS</span>
+                        <strong><span id="sstEncontrados">0</span> / 5</strong>
+                    </div>
+                    <div class="sst-puntos">
+                        <span class="sst-caption">PUNTUACIÓN</span>
+                        <strong><span id="sstPuntos">0</span> pts</strong>
+                    </div>
+                </div>
+
+                <div class="sst-progreso">
+                    <div id="sstBarraProgreso"></div>
+                </div>
+
+                <div class="sst-instruccion">
+                    <span>👀</span>
+                    <p>Busca objetos o situaciones que puedan provocar un accidente o afectar la salud.</p>
+                </div>
+
+                <div class="sst-escena">
+                    <svg id="sstEscena" viewBox="0 0 640 390"
+                         role="group" aria-label="Escena interactiva de una oficina. Pulsa los peligros que identifiques.">
+
+                        <!-- Pared y suelo -->
+                        <rect width="640" height="390" fill="#F4F0E5"/>
+                        <rect y="280" width="640" height="110" fill="#D9CDB6"/>
+                        <path d="M0 280H640" stroke="#B7A88C" stroke-width="3"/>
+
+                        <!-- Ventana -->
+                        <rect x="25" y="25" width="155" height="125" rx="5" fill="#D5E9E5"/>
+                        <path d="M102 25V150M25 87H180" stroke="#FFFFFF" stroke-width="7"/>
+                        <circle cx="147" cy="49" r="15" fill="#F0D88F"/>
+                        <path d="M35 130L74 94L105 123L137 83L173 128V143H35Z" fill="#A9C9B5"/>
+
+                        <!-- Puerta de salida -->
+                        <rect x="514" y="28" width="100" height="218" rx="4" fill="#C5B49A"/>
+                        <rect x="524" y="38" width="80" height="198" rx="3" fill="#E6D9C3"/>
+                        <rect x="530" y="46" width="68" height="33" rx="3" fill="#2C7658"/>
+                        <text x="564" y="60" text-anchor="middle" font-size="9" font-weight="bold" fill="#FFFFFF">SALIDA</text>
+                        <path d="M554 68H575M570 63L575 68L570 73" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+
+                        <!-- Escritorio -->
+                        <path d="M130 194H440L421 218H145Z" fill="#B98A5D"/>
+                        <rect x="145" y="215" width="14" height="94" rx="3" fill="#886747"/>
+                        <rect x="408" y="215" width="14" height="94" rx="3" fill="#886747"/>
+                        <rect x="170" y="218" width="228" height="9" rx="3" fill="#A77A50"/>
+
+                        <!-- Monitor -->
+                        <rect x="250" y="111" width="112" height="75" rx="6" fill="#344E49"/>
+                        <rect x="258" y="119" width="96" height="58" rx="3" fill="#C6E1CE"/>
+                        <rect x="267" y="130" width="58" height="4" rx="2" fill="#7FA88B"/>
+                        <rect x="267" y="141" width="75" height="4" rx="2" fill="#7FA88B"/>
+                        <rect x="267" y="152" width="45" height="4" rx="2" fill="#7FA88B"/>
+                        <path d="M306 186V194M286 194H326" stroke="#344E49" stroke-width="6" stroke-linecap="round"/>
+
+                        <!-- Teclado -->
+                        <path d="M275 200H351L341 211H267Z" fill="#E9E8DE" stroke="#B6B9A9" stroke-width="2"/>
+                        <path d="M281 204H341M278 207H337" stroke="#B6B9A9" stroke-width="1.5"/>
+
+                        <!-- Taza -->
+                        <rect x="373" y="185" width="23" height="23" rx="5" fill="#F5F1E6" stroke="#A88C6D" stroke-width="2"/>
+                        <path d="M396 190Q409 190 402 200H396" fill="none" stroke="#A88C6D" stroke-width="3"/>
+
+                        <!-- Silla -->
+                        <rect x="190" y="242" width="80" height="50" rx="12" fill="#537D6B"/>
+                        <rect x="202" y="292" width="55" height="10" rx="4" fill="#365747"/>
+                        <path d="M229 302V324M201 324H258" stroke="#365747" stroke-width="6" stroke-linecap="round"/>
+                        <path d="M211 252L248 280" stroke="#79A18A" stroke-width="4"/>
+
+                        <!-- Papelera -->
+                        <path d="M459 243H500L494 281H465Z" fill="#85998B"/>
+                        <path d="M456 242H503" stroke="#526D5C" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M467 253L470 272M480 253V272M491 253L488 272" stroke="#D6E1D5" stroke-width="2"/>
+
+                        <!-- Planta -->
+                        <path d="M70 260H113L108 296H76Z" fill="#BF886A"/>
+                        <path d="M92 260V210M92 241Q62 236 65 211Q87 211 92 241M93 230Q118 227 120 204Q99 205 93 230M91 220Q72 204 80 188Q97 199 91 220" fill="#538665"/>
+
+                        <!-- Caja que bloquea el paso -->
+                        <g id="sstRiesgoCaja">
+                            <path d="M520 237L573 226L612 246L558 260Z" fill="#D9A66D" stroke="#A87D4C" stroke-width="2"/>
+                            <path d="M520 237V278L558 301V260Z" fill="#C59159" stroke="#A87D4C" stroke-width="2"/>
+                            <path d="M558 260L612 246V284L558 301Z" fill="#E5B77F" stroke="#A87D4C" stroke-width="2"/>
+                            <path d="M558 260V298" stroke="#A87D4C" stroke-width="2"/>
+                        </g>
+
+                        <!-- Cable atravesado en el suelo -->
+                        <path d="M330 308C354 293 370 343 398 328S444 341 466 324"
+                              fill="none" stroke="#3D4944" stroke-width="7" stroke-linecap="round"/>
+                        <path d="M330 308C354 293 370 343 398 328S444 341 466 324"
+                              fill="none" stroke="#79827D" stroke-width="2" stroke-linecap="round"/>
+
+                        <!-- Derrame en el suelo -->
+                        <path d="M295 344Q308 326 330 340Q351 325 369 345Q361 362 332 360Q307 365 295 344Z"
+                              fill="#87B8CF" opacity=".9"/>
+                        <ellipse cx="333" cy="346" rx="24" ry="9" fill="#B7DDE8" opacity=".7"/>
+                        <circle cx="300" cy="359" r="3" fill="#87B8CF"/>
+                        <circle cx="367" cy="357" r="4" fill="#87B8CF"/>
+
+                        <!-- Persona trabajando -->
+                        <circle cx="213" cy="160" r="18" fill="#C98F69"/>
+                        <path d="M195 158Q193 137 215 138Q234 141 231 158L224 149L204 149Z" fill="#493B34"/>
+                        <path d="M196 184Q215 174 232 190L241 215H190Z" fill="#527E69"/>
+                        <path d="M198 189L224 203L246 197" fill="none" stroke="#C98F69" stroke-width="10" stroke-linecap="round"/>
+                        <path d="M199 216L194 239M226 216L238 239" stroke="#344F43" stroke-width="8" stroke-linecap="round"/>
+
+                        <!-- Postura encorvada: indicador de zona de riesgo -->
+                        <path d="M190 145Q177 155 182 171" fill="none" stroke="#D29B4D" stroke-width="3" stroke-dasharray="4 4"/>
+
+                        <!-- Zonas clicables -->
+                        <circle class="sst-zona-riesgo" data-riesgo="derrame"
+                                cx="332" cy="346" r="29" tabindex="0" role="button"
+                                aria-label="Identificar derrame en el suelo"/>
+                        <path class="sst-zona-riesgo" data-riesgo="cable"
+                              d="M320 306Q354 281 375 317T475 325L463 350Q438 354 398 342T330 330Z"
+                              tabindex="0" role="button" aria-label="Identificar cable en zona de paso"/>
+                        <path class="sst-zona-riesgo" data-riesgo="caja"
+                              d="M512 221L620 221V308H512Z"
+                              tabindex="0" role="button" aria-label="Identificar caja que obstruye el paso"/>
+                        <ellipse class="sst-zona-riesgo" data-riesgo="postura"
+                                 cx="211" cy="174" rx="35" ry="48" tabindex="0" role="button"
+                                 aria-label="Identificar postura de trabajo inadecuada"/>
+                        <ellipse class="sst-zona-riesgo" data-riesgo="monitor"
+                                 cx="306" cy="149" rx="67" ry="57" tabindex="0" role="button"
+                                 aria-label="Identificar posible ajuste inadecuado de pantalla"/>
+                    </svg>
+                </div>
+
+                <div class="sst-leyenda">
+                    <span>Encuentra los riesgos pulsando sobre la escena.</span>
+                    <span id="sstMensajeRiesgo" aria-live="polite">¡Busca el primero!</span>
+                </div>
+
+                <div class="sst-riesgos-encontrados" id="sstListaRiesgos">
+                    <span data-etiqueta="derrame">Derrame</span>
+                    <span data-etiqueta="cable">Cable</span>
+                    <span data-etiqueta="caja">Obstrucción</span>
+                    <span data-etiqueta="postura">Postura</span>
+                    <span data-etiqueta="monitor">Pantalla</span>
+                </div>
+            </div>
+
+            <div class="sst-resultado" id="sstResultado" hidden>
+                <div class="sst-trofeo" id="sstTrofeo">🏆</div>
+                <span class="sst-caption">DESAFÍO COMPLETADO</span>
+                <h3 id="sstTituloResultado">¡Buen trabajo!</h3>
+                <div class="sst-total">
+                    <strong id="sstPuntuacionFinal">100</strong>
+                    <span>/ 100 puntos</span>
+                </div>
+                <p id="sstTextoResultado"></p>
+                <div class="sst-aprendizaje">
+                    <strong>Lo que identificaste</strong>
+                    <p>
+                        Derrames y cables pueden provocar caídas; las salidas
+                        deben permanecer despejadas; la postura y la ubicación
+                        de la pantalla deben ajustarse para reducir riesgos
+                        ergonómicos.
+                    </p>
+                </div>
+                <button type="button" class="sst-boton-principal" id="sstReiniciar">
+                    Jugar de nuevo <span>↻</span>
+                </button>
+            </div>
+        </div>
+
+<!-- SEGUNDO MINIJUEGO: RETO SST -->
+<div class="sst-reto" id="sstReto">
+    <div class="sst-reto-portada" id="sstRetoPortada">
+        <div class="sst-reto-icono">🎲</div>
+        <span class="sst-reto-etiqueta">DESAFÍO ALEATORIO</span>
+        <h3>Reto SST: ¿qué harías?</h3>
+        <p>
+            Cada partida presenta situaciones distintas. Analiza el escenario,
+            decide cómo actuar y descubre qué tan preventiva es tu respuesta.
+        </p>
+        <div class="sst-reto-estadisticas">
+            <div><strong>5</strong><span>retos por partida</span></div>
+            <div><strong>∞</strong><span>combinaciones</span></div>
+        </div>
+        <button type="button" class="sst-boton-principal" id="sstRetoEmpezar">
+            Jugar una nueva partida <span>→</span>
+        </button>
+    </div>
+
+    <div class="sst-reto-partida" id="sstRetoPartida" hidden>
+        <div class="sst-reto-cabecera">
+            <span id="sstRetoContador">RETO 1 DE 5</span>
+            <strong><span id="sstRetoMarcador">0</span> puntos</strong>
+        </div>
+        <div class="sst-reto-progreso">
+            <div id="sstRetoBarra"></div>
+        </div>
+
+        <div class="sst-reto-categoria" id="sstRetoCategoria">PREVENCIÓN</div>
+        <div class="sst-reto-emoji" id="sstRetoEmoji">⚠️</div>
+        <h3 id="sstRetoPregunta">¿Qué harías en esta situación?</h3>
+        <p class="sst-reto-contexto" id="sstRetoContexto"></p>
+
+        <div class="sst-reto-opciones" id="sstRetoOpciones"></div>
+
+        <div class="sst-reto-feedback" id="sstRetoFeedback" hidden aria-live="polite">
+            <strong id="sstRetoFeedbackTitulo"></strong>
+            <p id="sstRetoFeedbackTexto"></p>
+            <button type="button" class="sst-boton-principal" id="sstRetoSiguiente">
+                Siguiente reto →
+            </button>
+        </div>
+    </div>
+
+    <div class="sst-reto-final" id="sstRetoFinal" hidden>
+        <div class="sst-reto-final-icono" id="sstRetoFinalIcono">🏆</div>
+        <span class="sst-reto-etiqueta">PARTIDA COMPLETADA</span>
+        <h3 id="sstRetoFinalTitulo">¡Reto terminado!</h3>
+        <div class="sst-reto-total">
+            <strong id="sstRetoTotal">0</strong>
+            <span>/ 500 puntos</span>
+        </div>
+        <div class="sst-reto-progreso">
+            <div id="sstRetoFinalBarra"></div>
+        </div>
+        <p id="sstRetoResumen"></p>
+        <div class="sst-reto-insignia">
+            <span>🛡️</span>
+            <div>
+                <strong>La prevención se practica</strong>
+                <p id="sstRetoAprendizaje"></p>
+            </div>
+        </div>
+        <button type="button" class="sst-boton-principal" id="sstRetoRepetir">
+            Otra partida <span>↻</span>
+        </button>
+    </div>
+</div>
+<!-- FIN SEGUNDO MINIJUEGO -->
+
+<!-- TERCER MINIJUEGO: ALERTA 60 -->
+<div class="alerta60" id="alerta60">
+
+    <div class="a60-portada" id="a60Portada">
+        <div class="a60-etiqueta">SIMULACIÓN DE SEGURIDAD LABORAL</div>
+
+        <div class="a60-emblema">🛡️</div>
+
+        <h2>ALERTA <span>60</span></h2>
+
+        <p class="a60-subtitulo">
+            Un turno. Decisiones críticas. Cero riesgos.
+        </p>
+
+        <p class="a60-descripcion">
+            Responde ante situaciones inesperadas, protege al equipo
+            y consigue la mayor puntuación antes de que termine el tiempo.
+        </p>
+
+        <div class="a60-datos">
+            <div>
+                <strong>60</strong>
+                <span>segundos</span>
+            </div>
+            <div>
+                <strong>COMBOS</strong>
+                <span>multiplica puntos</span>
+            </div>
+            <div>
+                <strong>RÉCORD</strong>
+                <span>supera tu marca</span>
+            </div>
+        </div>
+
+        <label for="a60Alias">Tu nombre o alias</label>
+        <input
+            id="a60Alias"
+            type="text"
+            maxlength="18"
+            placeholder="Ej. Operador07"
+            autocomplete="nickname"
+        >
+
+        <button type="button" class="a60-boton" id="a60Iniciar">
+            INICIAR OPERACIÓN →
+        </button>
+
+        <p class="a60-record">
+            Tu récord local: <strong id="a60RecordPortada">0</strong> puntos
+        </p>
+    </div>
+
+    <div class="a60-partida" id="a60Partida" hidden>
+        <div class="a60-panel-superior">
+            <div>
+                <span class="a60-mini-etiqueta">PUNTUACIÓN</span>
+                <strong id="a60Puntos">0</strong>
+            </div>
+            <div>
+                <span class="a60-mini-etiqueta">TIEMPO</span>
+                <strong id="a60Tiempo">60</strong>
+            </div>
+            <div>
+                <span class="a60-mini-etiqueta">RACHA</span>
+                <strong id="a60Racha">x0</strong>
+            </div>
+        </div>
+
+        <div class="a60-tiempo-fondo">
+            <div id="a60BarraTiempo"></div>
+        </div>
+
+        <div class="a60-seguridad">
+            <span>PROTECCIÓN DEL EQUIPO</span>
+            <strong id="a60SeguridadTexto">100%</strong>
+            <div class="a60-seguridad-fondo">
+                <div id="a60BarraSeguridad"></div>
+            </div>
+        </div>
+
+        <div class="a60-incidente">
+            <div class="a60-incidente-top">
+                <span id="a60Categoria">ALERTA DE SEGURIDAD</span>
+                <span id="a60Numero">INCIDENTE 01</span>
+            </div>
+
+            <div class="a60-icono" id="a60Icono">⚠️</div>
+
+            <h3 id="a60Pregunta">Detectando incidente...</h3>
+
+            <p id="a60Contexto"></p>
+
+            <div class="a60-opciones" id="a60Opciones"></div>
+
+            <div
+                class="a60-feedback"
+                id="a60Feedback"
+                aria-live="polite"
+                hidden
+            ></div>
+        </div>
+
+        <p class="a60-pie">
+            Evalúa el riesgo. Actúa de forma segura. Protege al equipo.
+        </p>
+    </div>
+
+    <div class="a60-final" id="a60Final" hidden>
+        <div class="a60-final-icono" id="a60FinalIcono">🏆</div>
+
+        <span class="a60-etiqueta">OPERACIÓN FINALIZADA</span>
+
+        <h2 id="a60FinalTitulo">Turno completado</h2>
+
+        <div class="a60-total">
+            <strong id="a60Total">0</strong>
+            <span>puntos</span>
+        </div>
+
+        <p id="a60MensajeFinal"></p>
+
+        <div class="a60-resumen">
+            <div>
+                <span>Decisiones correctas</span>
+                <strong id="a60Correctas">0</strong>
+            </div>
+            <div>
+                <span>Mejor racha</span>
+                <strong id="a60MejorRacha">0</strong>
+            </div>
+            <div>
+                <span>Récord personal</span>
+                <strong id="a60RecordFinal">0</strong>
+            </div>
+        </div>
+
+        <h3>CLASIFICACIÓN DE ESTE DISPOSITIVO</h3>
+        <p class="a60-nota-ranking">
+            Mejores puntuaciones guardadas en este navegador.
+        </p>
+
+        <div id="a60Ranking"></div>
+
+        <button type="button" class="a60-boton" id="a60Otra">
+            VOLVER A JUGAR ↻
+        </button>
+
+        <button type="button" class="a60-boton-secundario" id="a60Volver">
+            Volver a los juegos SST
+        </button>
+    </div>
+
+</div>
+<!-- FIN ALERTA 60 -->
+
+        <p class="sst-nota">
+            Actividad educativa de prevención. La identificación de peligros
+            en una imagen no sustituye la evaluación de riesgos del puesto
+            de trabajo ni los procedimientos de SST de la organización.
+        </p>
+    </div>
+</section>
+<!-- FIN DEL APARTADO JUEGOS SST -->
+
+
 <!-- PANTALLA EVOLUCIÓN -->
 
 <section id="evolucion" class="screen">
@@ -485,14 +4101,225 @@
         </p>
 
         
+
+<div style="margin: 20px 0; text-align: right;">
+    <button onclick="imprimirInformeBienestar()" class="btn">
+        Imprimir informe
+    </button>
+</div>
+
 <div id="estadisticasBienestar"></div>
-
 <div id="listaRegistros"></div>
-
 
     </div>
 
 </section>
+
+<section id="recursos" class="screen">
+    <div class="recursos-contenedor">
+
+        <button class="recursos-volver" onclick="mostrarPantalla('home')">
+            ← Volver al inicio
+        </button>
+
+        <div class="recursos-encabezado">
+            <span class="recursos-etiqueta">TEMPOLÍDER BIENESTAR</span>
+            <h2>Recursos de bienestar</h2>
+            <p>
+                Herramientas breves para organizar tu jornada,
+                gestionar la presión laboral y cuidar tu bienestar.
+            </p>
+        </div>
+        
+        
+<!-- SIMULADOR DE INTERRUPCIONES LABORALES -->
+<div class="simulador-laboral" id="simuladorLaboral">
+    <div class="simulador-portada" id="simuladorPortada">
+        <div class="simulador-portada-icono">⚡</div>
+        <span class="simulador-etiqueta">RETO INTERACTIVO</span>
+        <h3>Una jornada, muchas interrupciones</h3>
+        <p>
+            Tienes tareas pendientes, solicitudes inesperadas y poco tiempo.
+            Toma decisiones para gestionar la situación sin perder de vista
+            las prioridades.
+        </p>
+        <div class="simulador-datos">
+            <div><strong>3</strong><span>situaciones</span></div>
+            <div><strong>5 min</strong><span>aproximadamente</span></div>
+            <div><strong>0</strong><span>riesgo real</span></div>
+        </div>
+        <button type="button" class="simulador-boton-principal"
+            id="iniciarSimulador">
+            Comenzar desafío <span>→</span>
+        </button>
+        <small>Es una simulación educativa, no una evaluación del desempeño.</small>
+    </div>
+
+    <div class="simulador-juego" id="simuladorJuego" hidden>
+        <div class="simulador-barra-superior">
+            <span id="simuladorRonda">SITUACIÓN 1 DE 3</span>
+            <span class="simulador-puntos">Puntos: <strong id="simuladorPuntos">0</strong></span>
+        </div>
+        <div class="simulador-progreso">
+            <div id="simuladorProgresoRelleno"></div>
+        </div>
+        <div class="simulador-escenario-icono" id="simuladorIcono">📨</div>
+        <span class="simulador-etiqueta">¿QUÉ HARÍAS?</span>
+        <h3 id="simuladorTitulo"></h3>
+        <p id="simuladorSituacion"></p>
+        <div class="simulador-opciones" id="simuladorOpciones"></div>
+        <div class="simulador-retroalimentacion" id="simuladorFeedback" hidden aria-live="polite">
+            <strong id="simuladorFeedbackTitulo"></strong>
+            <p id="simuladorFeedbackTexto"></p>
+            <button type="button" class="simulador-boton-principal"
+                id="simuladorSiguiente">
+                Siguiente situación →
+            </button>
+        </div>
+    </div>
+
+    <div class="simulador-final" id="simuladorFinal" hidden>
+        <div class="simulador-final-icono" id="simuladorFinalIcono">🏁</div>
+        <span class="simulador-etiqueta">DESAFÍO COMPLETADO</span>
+        <h3 id="simuladorFinalTitulo">Terminaste la jornada simulada</h3>
+        <div class="simulador-puntuacion">
+            <strong id="simuladorResultadoPuntos">0</strong>
+            <span>de 300 puntos</span>
+        </div>
+        <div class="simulador-resultado-barra">
+            <div id="simuladorResultadoRelleno"></div>
+        </div>
+        <p id="simuladorFinalTexto"></p>
+        <div class="simulador-aprendizaje">
+            <strong>Para llevar a tu jornada real</strong>
+            <p id="simuladorAprendizaje"></p>
+        </div>
+        <button type="button" class="simulador-boton-principal"
+            id="reiniciarSimulador">
+            Volver a jugar ↻
+        </button>
+    </div>
+</div>
+<!-- FIN DEL SIMULADOR -->
+
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">01</div>
+            <div>
+                <h3>Organiza y prioriza tus tareas</h3>
+                <p>
+                    Cuando tienes varias actividades pendientes, intenta
+                    ordenarlas antes de comenzar. Identifica cuáles requieren
+                    atención inmediata y cuáles pueden programarse.
+                </p>
+                <ul>
+                    <li>Define las tres tareas más importantes del día.</li>
+                    <li>Divide las actividades grandes en pasos pequeños.</li>
+                    <li>Establece tiempos realistas para cada tarea.</li>
+                    <li>Si aparecen nuevas solicitudes, revisa tus prioridades.</li>
+                </ul>
+                <p class="recursos-consejo">
+                    <strong>Prueba esto:</strong> antes de empezar, dedica dos
+                    minutos a decidir qué debes hacer primero.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">02</div>
+            <div>
+                <h3>Maneja la presión laboral</h3>
+                <p>
+                    En momentos de alta demanda, intenta concentrarte en la
+                    siguiente acción concreta, en lugar de pensar en todas
+                    las tareas al mismo tiempo.
+                </p>
+                <ul>
+                    <li>Haz una pausa breve para ordenar tus ideas.</li>
+                    <li>Identifica qué depende de ti y qué requiere apoyo.</li>
+                    <li>Comunica oportunamente los obstáculos o retrasos.</li>
+                    <li>Solicita claridad cuando recibas instrucciones contradictorias.</li>
+                </ul>
+                <p class="recursos-consejo">
+                    <strong>Prueba esto:</strong> pregúntate qué acción concreta
+                    puedes completar en los próximos diez minutos.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">03</div>
+            <div>
+                <h3>Recupera tu concentración</h3>
+                <p>
+                    Cambiar constantemente de actividad puede dificultar la
+                    concentración. Siempre que las responsabilidades lo
+                    permitan, procura terminar una tarea antes de pasar a otra.
+                </p>
+                <ul>
+                    <li>Reduce las distracciones que puedas controlar.</li>
+                    <li>Deja anotado dónde quedaste si debes interrumpir una tarea.</li>
+                    <li>Revisa mensajes y solicitudes en momentos definidos, cuando sea posible.</li>
+                    <li>Retoma una actividad a la vez.</li>
+                </ul>
+                <p class="recursos-consejo">
+                    <strong>Prueba esto:</strong> anota el siguiente paso de tu
+                    tarea antes de atender una interrupción.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">04</div>
+            <div>
+                <h3>Haz pausas conscientes</h3>
+                <p>
+                    Las pausas breves pueden ayudarte a cambiar el ritmo y
+                    recuperar la atención durante la jornada.
+                </p>
+                <ul>
+                    <li>Levántate y cambia de postura si tus funciones lo permiten.</li>
+                    <li>Relaja los hombros y respira con tranquilidad.</li>
+                    <li>Bebe agua y descansa brevemente de la pantalla.</li>
+                    <li>Regresa a tu actividad sin exigirte resolver todo de inmediato.</li>
+                </ul>
+                <p class="recursos-consejo">
+                    <strong>Prueba esto:</strong> utiliza el apartado
+                    «Hacer una pausa» de la aplicación.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">05</div>
+            <div>
+                <h3>Cuida tu bienestar emocional</h3>
+                <p>
+                    Reconocer cómo te sientes puede ayudarte a identificar
+                    cuándo necesitas ajustar el ritmo de trabajo o buscar apoyo.
+                </p>
+                <ul>
+                    <li>Identifica tus emociones sin juzgarte por sentirlas.</li>
+                    <li>Observa si el cansancio o la tensión se mantienen durante el día.</li>
+                    <li>Conversa con una persona de confianza cuando lo necesites.</li>
+                    <li>Busca apoyo profesional si el malestar persiste o afecta tu vida cotidiana.</li>
+                </ul>
+                <p class="recursos-consejo">
+                    <strong>Prueba esto:</strong> utiliza «¿Cómo me siento?»
+                    para registrar tu estado de bienestar.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-pie">
+            Estas herramientas son orientaciones generales de bienestar laboral.
+            No sustituyen la atención profesional ni las medidas organizacionales
+            necesarias para gestionar las cargas de trabajo.
+        </div>
+
+    </div>
+</section>
+
 
         <!-- PANTALLA BIENESTAR -->
 
@@ -603,6 +4430,7 @@ function mostrarFechaActual() {
             fechaTexto.charAt(0).toUpperCase() +
             fechaTexto.slice(1);
     }
+    
 }
 
 window.addEventListener('load', function() {
@@ -1022,6 +4850,274 @@ function mostrarEstadisticasBienestar() {
             }
         `;
     }
+}
+
+function imprimirInformeBienestar() {
+    const registros = JSON.parse(
+        localStorage.getItem("registrosBienestar")
+    ) || [];
+
+    if (registros.length === 0) {
+        alert("Todavía no hay registros de bienestar para generar el informe.");
+        return;
+    }
+
+    const etiquetas = {
+        1: "Me siento muy bien",
+        2: "Me siento bien",
+        3: "Me siento regular",
+        4: "Me siento algo cargado/a",
+        5: "Me siento muy cargado/a"
+    };
+
+    function obtenerFecha(registro) {
+        if (registro.fechaLocal) {
+            return registro.fechaLocal;
+        }
+
+        if (registro.fecha) {
+            const fecha = new Date(registro.fecha);
+
+            return fecha.getFullYear() + "-" +
+                String(fecha.getMonth() + 1).padStart(2, "0") + "-" +
+                String(fecha.getDate()).padStart(2, "0");
+        }
+
+        return "Sin fecha";
+    }
+
+    function escaparHTML(texto) {
+        return String(texto).replace(/[&<>"']/g, function(caracter) {
+            return {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            }[caracter];
+        });
+    }
+
+    const ahora = new Date();
+    const fechaHoy = obtenerFecha({
+        fechaLocal: ahora.getFullYear() + "-" +
+            String(ahora.getMonth() + 1).padStart(2, "0") + "-" +
+            String(ahora.getDate()).padStart(2, "0")
+    });
+
+    const registrosHoy = registros.filter(function(registro) {
+        return obtenerFecha(registro) === fechaHoy;
+    });
+
+    function promedio(datos) {
+        if (!datos.length) return "Sin datos";
+
+        const suma = datos.reduce(function(total, registro) {
+            return total + Number(registro.nivel);
+        }, 0);
+
+        return (suma / datos.length).toFixed(1) + " / 5";
+    }
+
+    function crearFilas(datos) {
+        if (!datos.length) {
+            return '<tr><td colspan="3">No hay registros para este periodo.</td></tr>';
+        }
+
+        return [...datos].reverse().map(function(registro) {
+            const hora = registro.horaLocal ||
+                (registro.fecha
+                    ? new Date(registro.fecha).toLocaleTimeString(
+                        "es-CO",
+                        { hour: "2-digit", minute: "2-digit" }
+                    )
+                    : "Sin hora");
+
+            return `
+                <tr>
+                    <td>${escaparHTML(obtenerFecha(registro))}</td>
+                    <td>${escaparHTML(hora)}</td>
+                    <td>${Number(registro.nivel)}/5 — ${escaparHTML(
+                        etiquetas[registro.nivel] || "Sin descripción"
+                    )}</td>
+                </tr>
+            `;
+        }).join("");
+    }
+
+    function crearDistribucion(datos) {
+        return [1, 2, 3, 4, 5].map(function(nivel) {
+            const cantidad = datos.filter(function(registro) {
+                return Number(registro.nivel) === nivel;
+            }).length;
+
+            const porcentaje = datos.length
+                ? Math.round(cantidad / datos.length * 100)
+                : 0;
+
+            return `
+                <tr>
+                    <td>${nivel} — ${etiquetas[nivel]}</td>
+                    <td>${cantidad}</td>
+                    <td>${porcentaje}%</td>
+                </tr>
+            `;
+        }).join("");
+    }
+
+    const ventana = window.open("", "_blank");
+
+    if (!ventana) {
+        alert("El navegador bloqueó la ventana del informe. Permite las ventanas emergentes e inténtalo de nuevo.");
+        return;
+    }
+
+    ventana.document.write(`
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <title>Informe de bienestar laboral</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    color: #222;
+                    max-width: 850px;
+                    margin: 35px auto;
+                    padding: 0 25px;
+                    line-height: 1.5;
+                }
+                h1 { margin-bottom: 5px; }
+                h2 {
+                    margin-top: 28px;
+                    border-bottom: 1px solid #ccc;
+                    padding-bottom: 6px;
+                }
+                .subtitulo { color: #666; margin-top: 0; }
+                .tarjetas {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 12px;
+                    margin: 20px 0;
+                }
+                .tarjeta {
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    padding: 14px;
+                }
+                .valor { font-size: 23px; font-weight: bold; }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 12px;
+                }
+                th, td {
+                    border: 1px solid #ddd;
+                    padding: 9px;
+                    text-align: left;
+                    font-size: 13px;
+                }
+                th { background: #f0f2f4; }
+                .nota {
+                    margin-top: 25px;
+                    font-size: 12px;
+                    color: #666;
+                }
+                .acciones { margin-bottom: 25px; }
+                button {
+                    padding: 10px 16px;
+                    margin-right: 8px;
+                    cursor: pointer;
+                }
+                @media print {
+                    body { margin: 0; padding: 0; }
+                    .acciones { display: none; }
+                    h2 { break-after: avoid; }
+                    table { break-inside: auto; }
+                    tr { break-inside: avoid; }
+                }
+                    
+
+            </style>
+            
+        </head>
+        <body>
+            <div class="acciones">
+                <button onclick="window.print()">Imprimir / Guardar como PDF</button>
+                <button onclick="window.close()">Cerrar informe</button>
+            </div>
+
+            <h1>TEMPOLÍDER Bienestar</h1>
+            <p class="subtitulo">Informe de registros de bienestar laboral</p>
+            <p><strong>Fecha de generación:</strong>
+                ${escaparHTML(ahora.toLocaleDateString("es-CO"))}
+            </p>
+
+            <h2>Resumen del día</h2>
+            <div class="tarjetas">
+                <div class="tarjeta">
+                    Registros de hoy
+                    <div class="valor">${registrosHoy.length}</div>
+                </div>
+                <div class="tarjeta">
+                    Promedio de hoy
+                    <div class="valor">${promedio(registrosHoy)}</div>
+                </div>
+                <div class="tarjeta">
+                    Total de registros
+                    <div class="valor">${registros.length}</div>
+                </div>
+                <div class="tarjeta">
+                    Promedio general
+                    <div class="valor">${promedio(registros)}</div>
+                </div>
+            </div>
+
+            <p>
+                <strong>Interpretación:</strong> los niveles van de 1 a 5.
+                Un valor menor representa una percepción más favorable
+                del bienestar; un valor mayor indica una mayor carga percibida.
+            </p>
+
+            <h2>Distribución de hoy</h2>
+            <table>
+                <thead><tr><th>Nivel</th><th>Registros</th><th>Porcentaje</th></tr></thead>
+                <tbody>${crearDistribucion(registrosHoy)}</tbody>
+            </table>
+
+            <h2>Distribución general</h2>
+            <table>
+                <thead><tr><th>Nivel</th><th>Registros</th><th>Porcentaje</th></tr></thead>
+                <tbody>${crearDistribucion(registros)}</tbody>
+            </table>
+
+            <h2>Historial de registros</h2>
+            <table>
+                <thead>
+                    <tr><th>Fecha</th><th>Hora</th><th>Estado registrado</th></tr>
+                </thead>
+                <tbody>${crearFilas(registros)}</tbody>
+            </table>
+
+            <p class="nota">
+                Este informe se genera con los registros almacenados
+                en este navegador en el dispositivo utilizado.
+                No constituye una evaluación clínica ni un diagnóstico psicológico.
+            </p>
+
+            <script>
+                window.onload = function() {
+                    setTimeout(function() {
+                        window.focus();
+                        window.print();
+                    }, 400);
+                };
+            <\/script>
+        </body>
+        </html>
+    `);
+
+    ventana.document.close();
 }
 
 function agregarTarea() {
@@ -1673,6 +5769,1399 @@ async function crearEventoGoogle(nombreTarea, horaTarea) {
 
     console.log("Resultado Google Calendar:", resultado);
 }
+
+
+let temporizadorPausa = null;
+let segundosPausa = 0;
+let actividadPausa = "";
+let indiceInstruccionPausa = 0;
+let instruccionesPausa = [];
+
+
+const actividadesPausa = {
+    respiracion: {
+        titulo: "Respiración consciente",
+        duracion: 60,
+        instrucciones: [
+            "Busca una postura cómoda y relaja los hombros.",
+            "Inhala suavemente por la nariz, sin forzar el aire.",
+            "Exhala despacio y deja que tu cuerpo se relaje.",
+            "Continúa respirando a tu ritmo natural, sin exigirte."
+        ]
+    },
+    corporal: {
+        titulo: "Descanso corporal",
+        duracion: 90,
+        instrucciones: [
+            "Baja los hombros y relaja los músculos de la cara.",
+            "Haz círculos suaves con los hombros hacia atrás.",
+            "Abre y cierra las manos lentamente varias veces.",
+            "Gira la cabeza suavemente a cada lado, sin forzar el cuello.",
+            "Estira la espalda de forma cómoda y vuelve a tu postura habitual."
+        ]
+    },
+    mental: {
+        titulo: "Despeja tu mente",
+        duracion: 60,
+        instrucciones: [
+            "Deja de mirar tus tareas y observa el lugar donde estás.",
+            "Identifica tres objetos que puedas ver a tu alrededor.",
+            "Presta atención a dos sonidos que puedas escuchar.",
+            "Respira con naturalidad y dirige tu atención al momento presente."
+        ]
+    }
+};
+
+function iniciarPausa(tipo) {
+    clearInterval(temporizadorPausa);
+    temporizadorPausa = null;
+
+    const actividad = actividadesPausa[tipo];
+    if (!actividad) return;
+
+    actividadPausa = tipo;
+    segundosPausa = actividad.duracion;
+    indiceInstruccionPausa = 0;
+    instruccionesPausa = actividad.instrucciones;
+
+    document.getElementById("menuPausas").hidden = true;
+    document.getElementById("pausaFinalizada").hidden = true;
+    document.getElementById("actividadPausa").hidden = false;
+
+    document.getElementById("tituloActividadPausa").textContent =
+        actividad.titulo;
+
+    actualizarInstruccionPausa();
+
+    document.getElementById("relojPausa").textContent =
+        formatearTiempoPausa(segundosPausa);
+
+    temporizadorPausa = setInterval(() => {
+        segundosPausa--;
+
+        document.getElementById("relojPausa").textContent =
+            formatearTiempoPausa(segundosPausa);
+
+        if (segundosPausa <= 0) {
+            clearInterval(temporizadorPausa);
+            temporizadorPausa = null;
+
+            document.getElementById("actividadPausa").hidden = true;
+            document.getElementById("pausaFinalizada").hidden = false;
+        }
+    }, 1000);
+}
+
+function actualizarInstruccionPausa() {
+    document.getElementById("instruccionPausa").textContent =
+        instruccionesPausa[indiceInstruccionPausa];
+
+    document.getElementById("numeroInstruccionPausa").textContent =
+        "PASO " + (indiceInstruccionPausa + 1);
+
+    const boton = document.getElementById("botonSiguientePausa");
+
+    boton.textContent =
+        indiceInstruccionPausa === instruccionesPausa.length - 1
+            ? "Repetir instrucciones"
+            : "Siguiente instrucción";
+}
+
+function siguienteInstruccionPausa() {
+    if (!instruccionesPausa.length) return;
+
+    indiceInstruccionPausa =
+        (indiceInstruccionPausa + 1) % instruccionesPausa.length;
+
+    actualizarInstruccionPausa();
+}
+
+function formatearTiempoPausa(segundos) {
+    const minutos = Math.floor(segundos / 60);
+    const restantes = segundos % 60;
+
+    return minutos + ":" + String(restantes).padStart(2, "0");
+}
+
+function finalizarPausa() {
+    clearInterval(temporizadorPausa);
+    temporizadorPausa = null;
+
+    segundosPausa = 0;
+    actividadPausa = "";
+    instruccionesPausa = [];
+    indiceInstruccionPausa = 0;
+
+    document.getElementById("actividadPausa").hidden = true;
+    document.getElementById("pausaFinalizada").hidden = true;
+    document.getElementById("menuPausas").hidden = false;
+}
+
+
 </script>
+
+<script>
+document.querySelectorAll('#recursos .recursos-tarjeta')
+.forEach((tarjeta, indice) => {
+    const iconos = ['📋', '🌿', '🎯', '☕', '💚'];
+
+    const titulo = tarjeta.querySelector('h3');
+
+    if (titulo) {
+        const icono = document.createElement('div');
+        icono.className = 'recursos-icono';
+        icono.setAttribute('aria-hidden', 'true');
+        icono.textContent = iconos[indice] || '💡';
+        titulo.parentNode.insertBefore(icono, titulo);
+    }
+
+    const boton = document.createElement('button');
+    boton.type = 'button';
+    boton.className = 'recursos-toggle';
+    boton.innerHTML = 'Ver recomendaciones <span>⌄</span>';
+    boton.setAttribute('aria-expanded', 'false');
+
+    boton.addEventListener('click', () => {
+        const abierto = tarjeta.classList.toggle('recurso-abierto');
+
+        boton.setAttribute('aria-expanded', String(abierto));
+        boton.innerHTML = abierto
+            ? 'Ocultar recomendaciones <span>⌃</span>'
+            : 'Ver recomendaciones <span>⌄</span>';
+    });
+
+    tarjeta.appendChild(boton);
+});
+</script>
+
+<script>
+(() => {
+    const raiz = document.getElementById('simuladorLaboral');
+    if (!raiz || raiz.dataset.iniciado === 'true') return;
+    raiz.dataset.iniciado = 'true';
+
+    const buscar = id => raiz.querySelector('#' + id);
+
+    const portada = buscar('simuladorPortada');
+    const juego = buscar('simuladorJuego');
+    const final = buscar('simuladorFinal');
+    const opciones = buscar('simuladorOpciones');
+    const feedback = buscar('simuladorFeedback');
+
+    const rondas = [
+        {
+            icono: '📨',
+            titulo: 'Un mensaje interrumpe tu tarea',
+            situacion: 'Estás preparando un informe que debes entregar en una hora. Recibes un mensaje de un compañero que solicita información para una tarea que vence mañana. ¿Qué haces?',
+            opciones: [
+                {
+                    texto: 'Dejar el informe inmediatamente para responder el mensaje.',
+                    puntos: 0,
+                    correcto: false,
+                    titulo: 'Interrupción evitable',
+                    explicacion: 'Cambiar de tarea por cada solicitud puede fragmentar la concentración. Antes de interrumpir una actividad, conviene comprobar la urgencia y el plazo real.'
+                },
+                {
+                    texto: 'Comprobar si el mensaje es urgente y acordar cuándo responder.',
+                    puntos: 100,
+                    correcto: true,
+                    titulo: 'Buena gestión de prioridades',
+                    explicacion: 'Verificar la urgencia permite proteger el tiempo de concentración sin ignorar a los compañeros. Si no es urgente, puedes atenderlo después de avanzar en el informe.'
+                },
+                {
+                    texto: 'Ignorar todos los mensajes durante el resto de la jornada.',
+                    puntos: 25,
+                    correcto: false,
+                    titulo: 'Una medida demasiado rígida',
+                    explicacion: 'Reducir las interrupciones puede ayudar, pero conviene mantener un canal para identificar solicitudes realmente urgentes y acordar tiempos de respuesta.'
+                }
+            ]
+        },
+        {
+            icono: '⏱️',
+            titulo: 'Dos tareas tienen el mismo plazo',
+            situacion: 'Tu responsable solicita una presentación para hoy. Al mismo tiempo, tienes pendiente una actividad administrativa que también vence hoy. No puedes terminarlas simultáneamente. ¿Cómo procedes?',
+            opciones: [
+                {
+                    texto: 'Empiezo por la tarea que me resulta más fácil, sin revisar el resto.',
+                    puntos: 25,
+                    correcto: false,
+                    titulo: 'La facilidad no siempre marca la prioridad',
+                    explicacion: 'Empezar por una tarea sencilla puede servir en algunos casos, pero es importante considerar impacto, plazo, esfuerzo y expectativas antes de decidir.'
+                },
+                {
+                    texto: 'Valoro plazos e impacto y, si persiste el conflicto, acuerdo prioridades con mi responsable.',
+                    puntos: 100,
+                    correcto: true,
+                    titulo: 'Decisión fundamentada',
+                    explicacion: 'Comparar los plazos y el impacto permite tomar una decisión más informada. Cuando ambas tareas compiten por el mismo tiempo, comunicar la capacidad disponible ayuda a acordar expectativas realistas.'
+                },
+                {
+                    texto: 'Intento hacer ambas a la vez para no quedar mal con nadie.',
+                    puntos: 0,
+                    correcto: false,
+                    titulo: 'La multitarea tiene límites',
+                    explicacion: 'Alternar constantemente entre tareas puede aumentar errores y dificultar la concentración. Es preferible aclarar prioridades y trabajar por bloques cuando sea posible.'
+                }
+            ]
+        },
+        {
+            icono: '🔔',
+            titulo: 'Aparece una solicitud inesperada',
+            situacion: 'Estás concentrado en una actividad importante. Un compañero te pide ayuda inmediata, pero no explica qué necesita. Tu jornada ya está bastante cargada. ¿Qué haces?',
+            opciones: [
+                {
+                    texto: 'Acepto de inmediato y dejo mis tareas pendientes para después.',
+                    puntos: 0,
+                    correcto: false,
+                    titulo: 'Aceptar sin revisar la capacidad puede aumentar la sobrecarga',
+                    explicacion: 'Ayudar a otros es valioso, pero aceptar nuevas tareas sin evaluar su urgencia y tu disponibilidad puede comprometer los compromisos existentes.'
+                },
+                {
+                    texto: 'Pregunto qué necesita, para cuándo y cuánto tiempo requiere antes de comprometerme.',
+                    puntos: 100,
+                    correcto: true,
+                    titulo: 'Comunicación y límites laborales',
+                    explicacion: 'Aclarar la solicitud permite distinguir una urgencia real de algo que puede programarse. También ayuda a comunicar tu disponibilidad y negociar plazos cuando sea necesario.'
+                },
+                {
+                    texto: 'Le digo que no puedo ayudar nunca porque tengo demasiado trabajo.',
+                    puntos: 25,
+                    correcto: false,
+                    titulo: 'Conviene responder con información concreta',
+                    explicacion: 'Si no tienes capacidad disponible, puedes explicarlo y proponer una alternativa realista. Conocer la solicitud primero permite responder con mayor precisión.'
+                }
+            ]
+        }
+    ];
+
+    let indice = 0;
+    let puntos = 0;
+    let respondido = false;
+
+    function iniciar() {
+        indice = 0;
+        puntos = 0;
+        respondido = false;
+
+        portada.hidden = true;
+        final.hidden = true;
+        juego.hidden = false;
+
+        mostrarRonda();
+    }
+
+    function mostrarRonda() {
+        respondido = false;
+        const ronda = rondas[indice];
+
+        buscar('simuladorRonda').textContent =
+            'SITUACIÓN ' + (indice + 1) + ' DE ' + rondas.length;
+
+        buscar('simuladorPuntos').textContent = puntos;
+        buscar('simuladorProgresoRelleno').style.width =
+            ((indice / rondas.length) * 100) + '%';
+
+        buscar('simuladorIcono').textContent = ronda.icono;
+        buscar('simuladorTitulo').textContent = ronda.titulo;
+        buscar('simuladorSituacion').textContent = ronda.situacion;
+
+        feedback.hidden = true;
+        opciones.replaceChildren();
+
+        ronda.opciones.forEach((opcion, i) => {
+            const boton = document.createElement('button');
+            boton.type = 'button';
+            boton.className = 'simulador-opcion';
+
+            const letra = document.createElement('span');
+            letra.className = 'simulador-opcion-letra';
+            letra.textContent = String.fromCharCode(65 + i);
+
+            const texto = document.createElement('span');
+            texto.className = 'simulador-opcion-contenido';
+            texto.textContent = opcion.texto;
+
+            boton.append(letra, texto);
+            boton.addEventListener('click', () => elegir(opcion, boton));
+            opciones.appendChild(boton);
+        });
+    }
+
+    function elegir(opcion, botonElegido) {
+        if (respondido) return;
+        respondido = true;
+
+        puntos += opcion.puntos;
+
+        opciones.querySelectorAll('button').forEach(boton => {
+            boton.disabled = true;
+        });
+
+        botonElegido.classList.add(
+            opcion.correcto ? 'seleccion-correcta' : 'seleccion-incorrecta'
+        );
+
+        buscar('simuladorPuntos').textContent = puntos;
+        buscar('simuladorFeedbackTitulo').textContent =
+            opcion.titulo + ' · +' + opcion.puntos + ' puntos';
+        buscar('simuladorFeedbackTexto').textContent = opcion.explicacion;
+
+        feedback.hidden = false;
+
+        buscar('simuladorSiguiente').textContent =
+            indice === rondas.length - 1
+                ? 'Ver mis resultados →'
+                : 'Siguiente situación →';
+
+        buscar('simuladorSiguiente').focus();
+    }
+
+    function siguiente() {
+        if (!respondido) return;
+
+        indice++;
+
+        if (indice >= rondas.length) {
+            mostrarResultado();
+        } else {
+            mostrarRonda();
+        }
+    }
+
+    function mostrarResultado() {
+        juego.hidden = true;
+        final.hidden = false;
+
+        buscar('simuladorResultadoPuntos').textContent = puntos;
+        buscar('simuladorResultadoRelleno').style.width =
+            (puntos / 300 * 100) + '%';
+
+        let titulo;
+        let texto;
+        let aprendizaje;
+
+        if (puntos >= 275) {
+            titulo = '¡Muy buenas decisiones!';
+            texto = 'Has identificado alternativas que favorecen la priorización, la comunicación y el uso consciente del tiempo.';
+            aprendizaje = 'Mantén el hábito de comprobar la urgencia, valorar el impacto y comunicar tu capacidad antes de aceptar nuevas tareas.';
+        } else if (puntos >= 175) {
+            titulo = 'Vas por buen camino';
+            texto = 'Reconociste algunas estrategias útiles. Revisar las explicaciones puede ayudarte a afrontar situaciones similares.';
+            aprendizaje = 'Antes de cambiar de actividad, aclara qué es urgente, qué puede esperar y qué acuerdos necesitas con tu equipo.';
+        } else {
+            titulo = 'Una oportunidad para aprender';
+            texto = 'Las situaciones laborales pueden ser complejas. Usa la retroalimentación para explorar otras formas de gestionar las interrupciones.';
+            aprendizaje = 'No todo debe resolverse inmediatamente. Priorizar, negociar plazos y comunicar límites razonables son habilidades que se pueden practicar.';
+        }
+
+        buscar('simuladorFinalTitulo').textContent = titulo;
+        buscar('simuladorFinalTexto').textContent = texto;
+        buscar('simuladorAprendizaje').textContent = aprendizaje;
+        buscar('simuladorFinalIcono').textContent =
+            puntos >= 275 ? '🏆' : puntos >= 175 ? '🌱' : '🧭';
+
+        buscar('simuladorProgresoRelleno').style.width = '100%';
+    }
+
+    buscar('iniciarSimulador').addEventListener('click', iniciar);
+    buscar('simuladorSiguiente').addEventListener('click', siguiente);
+    buscar('reiniciarSimulador').addEventListener('click', iniciar);
+})();
+</script>
+
+<script>
+(() => {
+    const raiz = document.getElementById('juegosSST');
+    if (!raiz || raiz.dataset.juegoInicializado === 'true') return;
+    raiz.dataset.juegoInicializado = 'true';
+
+    const porId = id => raiz.querySelector('#' + id);
+
+    const inicio = porId('sstInicio');
+    const partida = porId('sstPartida');
+    const resultado = porId('sstResultado');
+    const escena = porId('sstEscena');
+    const zonas = Array.from(escena.querySelectorAll('[data-riesgo]'));
+
+    const riesgos = {
+        derrame: {
+            nombre: 'Derrame',
+            mensaje: '¡Bien visto! Un líquido en el suelo puede provocar resbalones y caídas. Debe señalizarse y gestionarse de forma segura.'
+        },
+        cable: {
+            nombre: 'Cable',
+            mensaje: '¡Correcto! Un cable atravesado en una zona de paso puede provocar tropiezos. Hay que ordenar el cableado y mantener las rutas despejadas.'
+        },
+        caja: {
+            nombre: 'Obstrucción',
+            mensaje: '¡Detectado! Las cajas no deben bloquear una salida ni las rutas de circulación. El acceso debe mantenerse despejado.'
+        },
+        postura: {
+            nombre: 'Postura',
+            mensaje: '¡Buen ojo! La postura de trabajo debe revisarse y ajustarse para favorecer una posición cómoda y reducir la carga musculoesquelética.'
+        },
+        monitor: {
+            nombre: 'Pantalla',
+            mensaje: '¡Encontrado! La ubicación de la pantalla debe permitir una visualización cómoda. Su altura y distancia deben ajustarse a la persona y al puesto.'
+        }
+    };
+
+    let detectados = new Set();
+    let puntos = 0;
+    let bloqueado = false;
+
+    function iniciar() {
+        detectados = new Set();
+        puntos = 0;
+        bloqueado = false;
+
+        inicio.hidden = true;
+        resultado.hidden = true;
+        partida.hidden = false;
+
+        zonas.forEach(zona => {
+            zona.classList.remove('sst-detectado');
+            zona.setAttribute('aria-pressed', 'false');
+        });
+
+        raiz.querySelectorAll('[data-etiqueta]').forEach(etiqueta => {
+            etiqueta.classList.remove('sst-etiqueta-detectada');
+        });
+
+        porId('sstEncontrados').textContent = '0';
+        porId('sstPuntos').textContent = '0';
+        porId('sstBarraProgreso').style.width = '0%';
+        porId('sstMensajeRiesgo').textContent = '¡Busca el primero!';
+    }
+
+    function detectar(zona) {
+        if (bloqueado) return;
+
+        const id = zona.dataset.riesgo;
+        if (!riesgos[id] || detectados.has(id)) return;
+
+        detectados.add(id);
+        puntos = detectados.size * 20;
+
+        zona.classList.add('sst-detectado');
+        zona.setAttribute('aria-pressed', 'true');
+
+        const etiqueta = raiz.querySelector('[data-etiqueta="' + id + '"]');
+        if (etiqueta) {
+            etiqueta.classList.add('sst-etiqueta-detectada');
+        }
+
+        porId('sstEncontrados').textContent = detectados.size;
+        porId('sstPuntos').textContent = puntos;
+        porId('sstBarraProgreso').style.width =
+            (detectados.size / zonas.length * 100) + '%';
+
+        porId('sstMensajeRiesgo').textContent =
+            '+' + 20 + ' puntos · ' + riesgos[id].nombre;
+
+        if (detectados.size === zonas.length) {
+            terminar();
+        }
+    }
+
+    function terminar() {
+        bloqueado = true;
+        partida.hidden = true;
+        resultado.hidden = false;
+
+        porId('sstPuntuacionFinal').textContent = puntos;
+
+        if (puntos === 100) {
+            porId('sstTrofeo').textContent = '🏆';
+            porId('sstTituloResultado').textContent = '¡Encontraste todos los peligros!';
+            porId('sstTextoResultado').textContent =
+                'Completaste el desafío con la puntuación máxima. Sigue aplicando la observación preventiva en tu entorno laboral.';
+        } else {
+            porId('sstTrofeo').textContent = '🎯';
+            porId('sstTituloResultado').textContent = 'Desafío completado';
+            porId('sstTextoResultado').textContent =
+                'Has identificado ' + detectados.size +
+                ' de los ' + zonas.length +
+                ' peligros de la escena.';
+        }
+    }
+
+    zonas.forEach(zona => {
+        zona.addEventListener('click', () => detectar(zona));
+
+        zona.addEventListener('keydown', evento => {
+            if (evento.key === 'Enter' || evento.key === ' ') {
+                evento.preventDefault();
+                detectar(zona);
+            }
+        });
+    });
+
+    porId('sstComenzar').addEventListener('click', iniciar);
+    porId('sstReiniciar').addEventListener('click', iniciar);
+})();
+</script>
+
+<script>
+(() => {
+    const raiz = document.getElementById('sstReto');
+    if (!raiz || raiz.dataset.inicializado === 'true') return;
+    raiz.dataset.inicializado = 'true';
+
+    const id = nombre => raiz.querySelector('#' + nombre);
+
+    const banco = [
+        {
+            categoria: 'ERGONOMÍA',
+            emoji: '🪑',
+            pregunta: 'Llevas dos horas trabajando frente al computador.',
+            contexto: 'Notas tensión en el cuello y los hombros. ¿Qué medida preventiva sería más adecuada?',
+            opciones: [
+                { texto: 'Ajustar el puesto para favorecer una postura cómoda y alternar la postura durante la jornada.', puntos: 100, correcta: true, explicacion: 'Correcto. Ajustar silla, pantalla y periféricos, junto con cambios posturales y pausas apropiadas, contribuye a reducir la carga musculoesquelética.' },
+                { texto: 'Continuar igual hasta terminar todas las tareas.', puntos: 0, correcta: false, explicacion: 'Ignorar las molestias puede prolongar una condición desfavorable. Conviene revisar la configuración del puesto y atender las señales físicas.' },
+                { texto: 'Subir los hombros para mantener la espalda rígida.', puntos: 0, correcta: false, explicacion: 'Mantener tensión muscular no es una medida preventiva. El puesto debe adaptarse para permitir una postura cómoda y funcional.' }
+            ]
+        },
+        {
+            categoria: 'RIESGO ELÉCTRICO',
+            emoji: '🔌',
+            pregunta: 'Encuentras un cable con el aislamiento roto.',
+            contexto: 'El cable está conectado a un equipo de la oficina. ¿Qué deberías hacer?',
+            opciones: [
+                { texto: 'Cubrirlo con papel y continuar usando el equipo.', puntos: 0, correcta: false, explicacion: 'El papel no es una reparación segura. El cable dañado puede causar descarga eléctrica o incendio.' },
+                { texto: 'Evitar manipularlo, impedir su uso de forma segura y reportarlo para su revisión por personal competente.', puntos: 100, correcta: true, explicacion: 'Correcto. No debes tocar conductores expuestos ni intentar repararlos. La situación debe reportarse y el equipo debe quedar fuera de uso de manera segura.' },
+                { texto: 'Mover el cable con la mano para comprobar si funciona.', puntos: 0, correcta: false, explicacion: 'Manipular un cable dañado puede exponer a una descarga. No lo pruebes ni lo muevas; repórtalo.' }
+            ]
+        },
+        {
+            categoria: 'EMERGENCIAS',
+            emoji: '🚪',
+            pregunta: 'La ruta de evacuación está bloqueada por cajas.',
+            contexto: 'No hay una emergencia activa, pero observas que el paso está obstruido. ¿Qué procede?',
+            opciones: [
+                { texto: 'Dejar las cajas porque todavía se puede pasar de lado.', puntos: 0, correcta: false, explicacion: 'Una ruta obstruida dificulta el tránsito y puede retrasar una evacuación. Debe mantenerse despejada.' },
+                { texto: 'Reportar la obstrucción y gestionar su retiro sin exponerte a riesgos.', puntos: 100, correcta: true, explicacion: 'Correcto. Las rutas de evacuación deben permanecer despejadas. La obstrucción debe corregirse y reportarse según el procedimiento de la organización.' },
+                { texto: 'Esperar hasta el próximo simulacro para avisar.', puntos: 0, correcta: false, explicacion: 'Los peligros no deben dejarse para después. Es importante reportarlos y corregirlos oportunamente.' }
+            ]
+        },
+        {
+            categoria: 'ORDEN Y ASEO',
+            emoji: '💧',
+            pregunta: 'Encuentras líquido derramado cerca de varios escritorios.',
+            contexto: 'Personas están transitando por la zona. ¿Cuál es la actuación más segura?',
+            opciones: [
+                { texto: 'Advertir a las personas, señalizar o aislar la zona y gestionar una limpieza segura.', puntos: 100, correcta: true, explicacion: 'Correcto. Evitar el tránsito por la zona y gestionar la limpieza reduce el riesgo de resbalones. Si el líquido es desconocido o peligroso, no lo manipules.' },
+                { texto: 'Pasar por encima y esperar a que se seque solo.', puntos: 0, correcta: false, explicacion: 'El líquido puede provocar resbalones y caídas. Se debe controlar el acceso y gestionar la situación.' },
+                { texto: 'Cubrir el derrame con hojas de papel y marcharse.', puntos: 0, correcta: false, explicacion: 'El papel puede no absorber todo el líquido y convertirse en otro peligro. La limpieza debe hacerse de forma apropiada al material derramado.' }
+            ]
+        },
+        {
+            categoria: 'ELEMENTOS DE PROTECCIÓN',
+            emoji: '🦺',
+            pregunta: 'Vas a realizar una tarea que requiere protección ocular.',
+            contexto: 'Las gafas de seguridad están disponibles, pero te resultan incómodas. ¿Qué debes hacer?',
+            opciones: [
+                { texto: 'Realizar la tarea rápidamente sin las gafas.', puntos: 0, correcta: false, explicacion: 'La duración corta de una tarea no elimina el riesgo de lesión ocular. Se debe usar la protección indicada.' },
+                { texto: 'Utilizar las gafas de seguridad apropiadas y reportar el problema de ajuste para encontrar una solución.', puntos: 100, correcta: true, explicacion: 'Correcto. La protección debe corresponder al riesgo y ajustarse adecuadamente. Si incomoda o no sirve, debe revisarse antes de continuar la tarea.' },
+                { texto: 'Usar gafas de sol comunes en su lugar.', puntos: 0, correcta: false, explicacion: 'Las gafas comunes no necesariamente brindan protección frente al peligro presente. Se requiere el elemento adecuado para el riesgo identificado.' }
+            ]
+        },
+        {
+            categoria: 'RIESGO PSICOSOCIAL',
+            emoji: '📚',
+            pregunta: 'Recibes varias tareas urgentes al mismo tiempo.',
+            contexto: 'Los plazos parecen incompatibles y no puedes completarlas todas simultáneamente. ¿Qué opción ayuda a prevenir la sobrecarga?',
+            opciones: [
+                { texto: 'Trabajar sin parar y no comunicar las dificultades.', puntos: 0, correcta: false, explicacion: 'Ocultar una sobrecarga no resuelve la incompatibilidad de plazos. Es necesario comunicar las dificultades y revisar las prioridades.' },
+                { texto: 'Aclarar prioridades, informar la capacidad disponible y acordar plazos realistas con la persona responsable.', puntos: 100, correcta: true, explicacion: 'Correcto. La gestión de cargas requiere comunicación y priorización. Los riesgos psicosociales también necesitan medidas organizacionales, no solo estrategias individuales.' },
+                { texto: 'Aceptar todos los plazos sin revisar el trabajo pendiente.', puntos: 0, correcta: false, explicacion: 'Aceptar compromisos incompatibles puede incrementar la presión y los errores. Es preferible acordar prioridades y recursos.' }
+            ]
+        },
+        {
+            categoria: 'PREVENCIÓN DE CAÍDAS',
+            emoji: '🔎',
+            pregunta: 'Ves un cable atravesando una zona de paso.',
+            contexto: 'Los compañeros caminan continuamente por ese lugar. ¿Cuál es la mejor medida?',
+            opciones: [
+                { texto: 'Señalarlo y reportarlo, procurando que el cableado se organice de manera segura.', puntos: 100, correcta: true, explicacion: 'Correcto. El cableado debe mantenerse fuera de las rutas de paso o protegerse con una solución adecuada. La advertencia ayuda mientras se corrige.' },
+                { texto: 'Saltar por encima del cable.', puntos: 0, correcta: false, explicacion: 'Saltar sobre el obstáculo no elimina el riesgo y puede provocar una caída.' },
+                { texto: 'Esperar a que alguien se tropiece para demostrar que es peligroso.', puntos: 0, correcta: false, explicacion: 'No es necesario que ocurra un accidente para actuar. Los peligros deben reportarse y controlarse preventivamente.' }
+            ]
+        },
+        {
+            categoria: 'MANEJO DE CARGAS',
+            emoji: '📦',
+            pregunta: 'Necesitas mover una caja pesada.',
+            contexto: 'La caja dificulta el agarre y no conoces su peso. ¿Qué deberías hacer?',
+            opciones: [
+                { texto: 'Levantarla de un tirón para terminar rápido.', puntos: 0, correcta: false, explicacion: 'Un movimiento brusco y una carga cuyo peso se desconoce pueden aumentar el riesgo de lesión.' },
+                { texto: 'Evaluar la carga y el recorrido, pedir ayuda o usar una ayuda mecánica si hace falta.', puntos: 100, correcta: true, explicacion: 'Correcto. Se debe valorar el peso, el agarre, el recorrido y la capacidad para moverla con seguridad. No todas las cargas deben levantarse manualmente.' },
+                { texto: 'Girar el tronco mientras levantas para cambiar de dirección.', puntos: 0, correcta: false, explicacion: 'Girar el tronco bajo carga puede aumentar el esfuerzo sobre la espalda. Conviene planear el recorrido y evitar torsiones.' }
+            ]
+        },
+        {
+            categoria: 'SEGURIDAD VIAL LABORAL',
+            emoji: '🚗',
+            pregunta: 'Debes contestar un mensaje mientras conduces por trabajo.',
+            contexto: 'El teléfono suena y el mensaje parece importante. ¿Qué haces?',
+            opciones: [
+                { texto: 'Leerlo rápidamente sin dejar de conducir.', puntos: 0, correcta: false, explicacion: 'Mirar el teléfono desvía la atención y aumenta el riesgo vial. La importancia del mensaje no hace segura esa conducta.' },
+                { texto: 'Esperar hasta estacionar en un lugar seguro antes de revisar el teléfono.', puntos: 100, correcta: true, explicacion: 'Correcto. La atención debe permanecer en la conducción. Detente en un lugar permitido y seguro antes de usar el teléfono.' },
+                { texto: 'Responder en un semáforo y continuar inmediatamente.', puntos: 0, correcta: false, explicacion: 'El tráfico puede reanudarse y seguir usando el teléfono genera distracción. Espera a estar estacionado de forma segura.' }
+            ]
+        },
+        {
+            categoria: 'HIGIENE Y SALUD',
+            emoji: '🧼',
+            pregunta: 'Compartes un área de trabajo y encuentras una superficie de uso común sucia.',
+            contexto: 'Varias personas utilizan ese espacio durante la jornada. ¿Qué acción es apropiada?',
+            opciones: [
+                { texto: 'Ignorarlo porque la limpieza no forma parte de la prevención.', puntos: 0, correcta: false, explicacion: 'El orden y la higiene contribuyen a mantener condiciones de trabajo seguras. Las responsabilidades deben seguir el procedimiento del lugar.' },
+                { texto: 'Aplicar las medidas de higiene establecidas y reportar la necesidad de limpieza al responsable correspondiente.', puntos: 100, correcta: true, explicacion: 'Correcto. La limpieza debe gestionarse según los procedimientos y los productos adecuados, con responsabilidades claras.' },
+                { texto: 'Mezclar productos de limpieza para que actúen más rápido.', puntos: 0, correcta: false, explicacion: 'Mezclar productos puede generar reacciones peligrosas. Utiliza únicamente los productos y procedimientos autorizados.' }
+            ]
+        },
+        {
+            categoria: 'SEÑALIZACIÓN',
+            emoji: '⚠️',
+            pregunta: 'Encuentras una señal que advierte sobre un riesgo en una zona.',
+            contexto: 'Tienes que entrar a realizar una tarea. ¿Cómo procedes?',
+            opciones: [
+                { texto: 'Ignorar la señal porque conoces bien el lugar.', puntos: 0, correcta: false, explicacion: 'Conocer el lugar no elimina el peligro. Las señales deben respetarse y las condiciones de acceso deben verificarse.' },
+                { texto: 'Identificar el riesgo, seguir las instrucciones de seguridad y usar las medidas de protección indicadas.', puntos: 100, correcta: true, explicacion: 'Correcto. La señalización alerta sobre condiciones o restricciones. Deben seguirse los procedimientos correspondientes antes de entrar.' },
+                { texto: 'Retirar la señal para que no estorbe.', puntos: 0, correcta: false, explicacion: 'Retirar una señal sin autorización puede exponer a otras personas al peligro. Debe mantenerse visible mientras corresponda.' }
+            ]
+        },
+        {
+            categoria: 'PREVENCIÓN DE INCENDIOS',
+            emoji: '🔥',
+            pregunta: 'Notas olor a quemado cerca de un equipo eléctrico.',
+            contexto: 'No ves llamas, pero el olor es persistente. ¿Qué deberías hacer?',
+            opciones: [
+                { texto: 'Continuar trabajando hasta ver humo.', puntos: 0, correcta: false, explicacion: 'No es necesario esperar a que aparezca humo o fuego. Una señal anormal debe reportarse y gestionarse según el procedimiento de seguridad.' },
+                { texto: 'Alejarte del posible peligro, advertir a quien corresponda y seguir el procedimiento de emergencia de la organización.', puntos: 100, correcta: true, explicacion: 'Correcto. No manipules el equipo sospechoso. Reporta la situación y sigue el protocolo local; si hay peligro inmediato, activa la respuesta de emergencia prevista.' },
+                { texto: 'Abrir el equipo y revisar los cables por tu cuenta.', puntos: 0, correcta: false, explicacion: 'Abrir un equipo eléctrico puede exponerte a descargas o quemaduras. La revisión debe hacerla personal competente.' }
+            ]
+        }
+    ];
+
+    let partidaActual = [];
+    let indice = 0;
+    let puntos = 0;
+    let respondido = false;
+
+    function mezclar(lista) {
+        const copia = lista.slice();
+
+        for (let i = copia.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copia[i], copia[j]] = [copia[j], copia[i]];
+        }
+
+        return copia;
+    }
+
+    function empezar() {
+        partidaActual = mezclar(banco).slice(0, 5);
+        indice = 0;
+        puntos = 0;
+        respondido = false;
+
+        id('sstRetoPortada').hidden = true;
+        id('sstRetoFinal').hidden = true;
+        id('sstRetoPartida').hidden = false;
+
+        mostrarReto();
+    }
+
+    function mostrarReto() {
+        respondido = false;
+        const reto = partidaActual[indice];
+
+        id('sstRetoContador').textContent =
+            'RETO ' + (indice + 1) + ' DE ' + partidaActual.length;
+        id('sstRetoMarcador').textContent = puntos;
+        id('sstRetoBarra').style.width =
+            (indice / partidaActual.length * 100) + '%';
+
+        id('sstRetoCategoria').textContent = reto.categoria;
+        id('sstRetoEmoji').textContent = reto.emoji;
+        id('sstRetoPregunta').textContent = reto.pregunta;
+        id('sstRetoContexto').textContent = reto.contexto;
+
+        id('sstRetoFeedback').hidden = true;
+        id('sstRetoOpciones').replaceChildren();
+
+        const opciones = mezclar(reto.opciones);
+
+        opciones.forEach((opcion, i) => {
+            const boton = document.createElement('button');
+            boton.type = 'button';
+            boton.className = 'sst-reto-opcion';
+
+            const letra = document.createElement('span');
+            letra.className = 'sst-reto-letra';
+            letra.textContent = String.fromCharCode(65 + i);
+
+            const texto = document.createElement('span');
+            texto.className = 'sst-reto-texto-opcion';
+            texto.textContent = opcion.texto;
+
+            boton.append(letra, texto);
+            boton.addEventListener('click', () => responder(opcion, boton));
+            id('sstRetoOpciones').appendChild(boton);
+        });
+    }
+
+    function responder(opcion, boton) {
+        if (respondido) return;
+        respondido = true;
+
+        puntos += opcion.puntos;
+
+        id('sstRetoOpciones').querySelectorAll('button').forEach(elemento => {
+            elemento.disabled = true;
+        });
+
+        boton.classList.add(opcion.correcta ? 'reto-acierto' : 'reto-error');
+        id('sstRetoMarcador').textContent = puntos;
+
+        id('sstRetoFeedbackTitulo').textContent = opcion.correcta
+            ? '¡Respuesta preventiva! +100 puntos'
+            : 'Revisa esta decisión · +0 puntos';
+
+        id('sstRetoFeedbackTexto').textContent = opcion.explicacion;
+        id('sstRetoFeedback').hidden = false;
+
+        id('sstRetoSiguiente').textContent =
+            indice === partidaActual.length - 1
+                ? 'Ver resultados →'
+                : 'Siguiente reto →';
+    }
+
+    function siguiente() {
+        if (!respondido) return;
+
+        indice++;
+
+        if (indice >= partidaActual.length) {
+            terminar();
+        } else {
+            mostrarReto();
+        }
+    }
+
+    function terminar() {
+        id('sstRetoPartida').hidden = true;
+        id('sstRetoFinal').hidden = false;
+
+        id('sstRetoTotal').textContent = puntos;
+        id('sstRetoFinalBarra').style.width = (puntos / 500 * 100) + '%';
+
+        const aciertos = puntos / 100;
+        let titulo;
+        let resumen;
+        let aprendizaje;
+        let icono;
+
+        if (aciertos === 5) {
+            titulo = '¡Excelente criterio preventivo!';
+            resumen = 'Acertaste las cinco situaciones de esta partida. Has reconocido decisiones orientadas a prevenir riesgos.';
+            aprendizaje = 'Mantén la atención en los peligros, sigue los procedimientos de SST y reporta las condiciones inseguras.';
+            icono = '🏆';
+        } else if (aciertos >= 3) {
+            titulo = '¡Buen avance!';
+            resumen = 'Resolviste correctamente ' + aciertos + ' de 5 situaciones. Repasa la retroalimentación para reforzar tus decisiones.';
+            aprendizaje = 'La prevención depende de identificar peligros, evaluar la situación y actuar según los procedimientos establecidos.';
+            icono = '🛡️';
+        } else {
+            titulo = 'Sigue practicando';
+            resumen = 'Resolviste correctamente ' + aciertos + ' de 5 situaciones. Cada escenario es una oportunidad para aprender.';
+            aprendizaje = 'Antes de actuar, identifica el peligro, evita exponerte y sigue las medidas preventivas y los procedimientos de tu organización.';
+            icono = '🧭';
+        }
+
+        id('sstRetoFinalIcono').textContent = icono;
+        id('sstRetoFinalTitulo').textContent = titulo;
+        id('sstRetoResumen').textContent = resumen;
+        id('sstRetoAprendizaje').textContent = aprendizaje;
+    }
+
+    id('sstRetoEmpezar').addEventListener('click', empezar);
+    id('sstRetoSiguiente').addEventListener('click', siguiente);
+    id('sstRetoRepetir').addEventListener('click', empezar);
+})();
+</script>
+
+<script>
+(() => {
+    const $ = id => document.getElementById(id);
+    const raiz = $("alerta60");
+
+    if (!raiz || raiz.dataset.inicializado === "true") return;
+    raiz.dataset.inicializado = "true";
+
+    const incidentes = [
+        {
+            categoria: "RIESGO LOCATIVO",
+            icono: "💧",
+            pregunta: "Encuentras agua derramada junto a una zona de paso.",
+            contexto: "Varias personas transitan por el lugar y alguien podría resbalar.",
+            opciones: [
+                "Señalizar el área, evitar el paso y gestionar la limpieza.",
+                "Pasar con cuidado y dejar que alguien más se encargue.",
+                "Cubrir el agua con papel y continuar trabajando."
+            ],
+            correcta: 0,
+            explicacion: "Aísla y señaliza el peligro. La limpieza debe realizarse de forma segura y según el procedimiento de la empresa."
+        },
+        {
+            categoria: "RIESGO ELÉCTRICO",
+            icono: "⚡",
+            pregunta: "Un cable tiene el aislamiento roto y sigue conectado.",
+            contexto: "El cable está cerca de varios puestos de trabajo.",
+            opciones: [
+                "Moverlo rápidamente con la mano.",
+                "Evitar el contacto, restringir el acceso y reportarlo para su atención segura.",
+                "Cubrirlo con cinta adhesiva y seguir utilizándolo."
+            ],
+            correcta: 1,
+            explicacion: "No manipules cables dañados. Evita el contacto y solicita la intervención de personal autorizado."
+        },
+        {
+            categoria: "ERGONOMÍA",
+            icono: "🪑",
+            pregunta: "Llevas horas frente al computador y sientes tensión en el cuello.",
+            contexto: "Todavía tienes varias tareas pendientes.",
+            opciones: [
+                "Ignorar la molestia hasta terminar todo.",
+                "Inclinar más el cuello para ver mejor la pantalla.",
+                "Ajustar el puesto, cambiar de postura y realizar una pausa breve."
+            ],
+            correcta: 2,
+            explicacion: "Ajustar el puesto y alternar posturas ayuda a reducir la carga musculoesquelética. Reporta molestias persistentes."
+        },
+        {
+            categoria: "EMERGENCIAS",
+            icono: "🔥",
+            pregunta: "Detectas humo que sale de una oficina cercana.",
+            contexto: "No sabes qué lo está causando.",
+            opciones: [
+                "Activar el procedimiento de emergencia, alertar y evacuar según las instrucciones.",
+                "Entrar a investigar sin avisar a nadie.",
+                "Esperar unos minutos para comprobar si desaparece."
+            ],
+            correcta: 0,
+            explicacion: "La prioridad es alertar, seguir el plan de emergencias y evacuar de forma segura. No te expongas investigando el origen."
+        },
+        {
+            categoria: "RIESGO PSICOSOCIAL",
+            icono: "🧠",
+            pregunta: "Un compañero está sobrecargado y comete errores por agotamiento.",
+            contexto: "Dice que no puede terminar todas las tareas a tiempo.",
+            opciones: [
+                "Decirle que debe trabajar más rápido.",
+                "Escuchar, revisar prioridades y comunicar la sobrecarga al responsable.",
+                "Asumir que es un problema personal y no intervenir."
+            ],
+            correcta: 1,
+            explicacion: "La sobrecarga requiere revisar las demandas y los recursos disponibles. Escuchar y escalar la situación ayuda a prevenir riesgos."
+        },
+        {
+            categoria: "ORDEN Y ASEO",
+            icono: "📦",
+            pregunta: "Hay cajas bloqueando parcialmente una salida.",
+            contexto: "La salida podría necesitarse durante una emergencia.",
+            opciones: [
+                "Dejarlas ahí si todavía queda espacio para pasar.",
+                "Apilarlas más alto para liberar un poco el piso.",
+                "Mantener la salida despejada y reportar o retirar la obstrucción de forma segura."
+            ],
+            correcta: 2,
+            explicacion: "Las rutas de evacuación deben permanecer libres. Las obstrucciones se deben corregir oportunamente."
+        },
+        {
+            categoria: "ELEMENTOS DE PROTECCIÓN",
+            icono: "🦺",
+            pregunta: "Vas a entrar a una zona donde el procedimiento exige protección ocular.",
+            contexto: "Tus gafas de seguridad no están disponibles.",
+            opciones: [
+                "No entrar hasta contar con la protección requerida y consultar al responsable.",
+                "Entrar solo unos segundos sin protección.",
+                "Usar gafas comunes como reemplazo."
+            ],
+            correcta: 0,
+            explicacion: "No ingreses a una zona de riesgo sin los elementos exigidos. Solicita el equipo apropiado."
+        },
+        {
+            categoria: "MANEJO DE CARGAS",
+            icono: "📦",
+            pregunta: "Debes mover una caja pesada que dificulta tu visión.",
+            contexto: "El trayecto incluye una esquina y un pasillo.",
+            opciones: [
+                "Levantarla de un tirón para terminar rápido.",
+                "Evaluar el peso, despejar la ruta y solicitar ayuda o una ayuda mecánica.",
+                "Transportarla a ciegas siguiendo la pared."
+            ],
+            correcta: 1,
+            explicacion: "Evalúa la carga y el recorrido. Utiliza ayudas mecánicas o solicita apoyo cuando sea necesario."
+        },
+        {
+            categoria: "SEGURIDAD VIAL",
+            icono: "🚗",
+            pregunta: "Un compañero va a conducir y comenta que está muy somnoliento.",
+            contexto: "El desplazamiento laboral debe comenzar pronto.",
+            opciones: [
+                "Pedirle que abra la ventana y continúe.",
+                "Sugerirle café y que conduzca despacio.",
+                "Evitar que conduzca en esas condiciones y gestionar una alternativa segura."
+            ],
+            correcta: 2,
+            explicacion: "La somnolencia compromete la atención y la reacción. Se debe detener la conducción y buscar una alternativa segura."
+        },
+        {
+            categoria: "HIGIENE LABORAL",
+            icono: "🧼",
+            pregunta: "Vas a comer después de manipular residuos de trabajo.",
+            contexto: "Tienes las manos sucias y el descanso ya comenzó.",
+            opciones: [
+                "Lavarte las manos adecuadamente antes de comer.",
+                "Limpiarte las manos en la ropa.",
+                "Comer primero y lavarte después."
+            ],
+            correcta: 0,
+            explicacion: "La higiene de manos ayuda a reducir la contaminación. Sigue las medidas de higiene correspondientes a tu actividad."
+        },
+        {
+            categoria: "SEÑALIZACIÓN",
+            icono: "🚧",
+            pregunta: "Ves una señal que advierte una zona de acceso restringido.",
+            contexto: "El camino alternativo es un poco más largo.",
+            opciones: [
+                "Entrar rápidamente si no ves a nadie.",
+                "Respetar la restricción y utilizar una ruta autorizada.",
+                "Retirar la señal temporalmente para pasar."
+            ],
+            correcta: 1,
+            explicacion: "Las restricciones se deben respetar. Utiliza rutas autorizadas y consulta al responsable si necesitas acceder."
+        },
+        {
+            categoria: "PREVENCIÓN DE INCENDIOS",
+            icono: "🧯",
+            pregunta: "Encuentras un extintor bloqueado por materiales almacenados.",
+            contexto: "El equipo debe estar disponible en caso de emergencia.",
+            opciones: [
+                "Dejarlo así mientras no exista un incendio.",
+                "Mover los materiales sin evaluar si es seguro.",
+                "Reportar y gestionar la liberación segura del acceso al equipo."
+            ],
+            correcta: 2,
+            explicacion: "El acceso a los equipos de emergencia debe mantenerse libre. La condición se debe corregir sin generar nuevos riesgos."
+        },
+        {
+            categoria: "PAUSAS ACTIVAS",
+            icono: "⏸️",
+            pregunta: "Llevas mucho tiempo en la misma posición realizando tareas repetitivas.",
+            contexto: "Notas fatiga y disminución de la concentración.",
+            opciones: [
+                "Hacer una pausa breve, cambiar de postura y retomar según la organización del trabajo.",
+                "Continuar sin descansar para no perder el ritmo.",
+                "Acelerar los movimientos para acabar antes."
+            ],
+            correcta: 0,
+            explicacion: "Las pausas y los cambios de postura ayudan a manejar la fatiga. Organízalos de acuerdo con las necesidades y los procedimientos del trabajo."
+        },
+        {
+            categoria: "REPORTE DE INCIDENTES",
+            icono: "📋",
+            pregunta: "Un objeto cae cerca de una persona, pero nadie resulta lesionado.",
+            contexto: "Un compañero dice que no hace falta informar porque no hubo daños.",
+            opciones: [
+                "Ignorarlo porque no pasó nada.",
+                "Reportar el incidente o casi accidente según el procedimiento de la empresa.",
+                "Esperar a que ocurra un accidente real."
+            ],
+            correcta: 1,
+            explicacion: "Los casi accidentes pueden revelar peligros que deben investigarse y corregirse antes de que provoquen lesiones."
+        },
+        {
+            categoria: "TRABAJO SEGURO",
+            icono: "🛠️",
+            pregunta: "Una herramienta presenta una pieza suelta durante su uso.",
+            contexto: "El trabajo debe entregarse al finalizar el turno.",
+            opciones: [
+                "Usarla con más cuidado para acabar.",
+                "Pedirle a un compañero que la sostenga.",
+                "Suspender su uso, aislarla si corresponde y reportarla para revisión."
+            ],
+            correcta: 2,
+            explicacion: "Una herramienta defectuosa no debe seguir utilizándose. Debe retirarse de servicio y revisarse por personal competente."
+        },
+        {
+            categoria: "COMUNICACIÓN SEGURA",
+            icono: "📢",
+            pregunta: "Notas una condición peligrosa, pero no sabes quién debe corregirla.",
+            contexto: "Varias áreas comparten ese espacio.",
+            opciones: [
+                "Informar por el canal establecido y mantener a las personas alejadas del peligro si es seguro hacerlo.",
+                "Suponer que otra área ya la reportó.",
+                "Publicar una queja sin comunicar el riesgo por los canales de trabajo."
+            ],
+            correcta: 0,
+            explicacion: "Reportar de forma oportuna permite asignar responsables y aplicar medidas preventivas."
+        }
+    ];
+
+    const CLAVE_RECORD = "alerta60_record_v1";
+    const CLAVE_RANKING = "alerta60_ranking_v1";
+
+    let activos = false;
+    let temporizador = null;
+    let espera = null;
+    let partida = [];
+    let indice = 0;
+    let puntos = 0;
+    let seguridad = 100;
+    let racha = 0;
+    let mejorRacha = 0;
+    let correctas = 0;
+    let respondido = false;
+    let fin = 0;
+    let alias = "Operador";
+    let record = 0;
+
+    function leerJSON(clave, defecto) {
+        try {
+            const dato = localStorage.getItem(clave);
+            return dato ? JSON.parse(dato) : defecto;
+        } catch (error) {
+            return defecto;
+        }
+    }
+
+    function mezclar(lista) {
+        const copia = [...lista];
+        for (let i = copia.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copia[i], copia[j]] = [copia[j], copia[i]];
+        }
+        return copia;
+    }
+
+    function escapar(texto) {
+        return String(texto).replace(/[&<>"']/g, caracter => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        })[caracter]);
+    }
+
+    function obtenerRecord() {
+        const datos = leerJSON(CLAVE_RECORD, {});
+        const nombre = alias.toLowerCase();
+        return Math.max(0, Number(datos[nombre]) || 0);
+    }
+
+    function mostrarRecord() {
+        $("a60RecordPortada").textContent = obtenerRecord();
+    }
+
+    function iniciar() {
+        if (activos) return;
+
+        alias = ($("a60Alias").value.trim() || "Operador").slice(0, 18);
+        $("a60Alias").value = alias;
+
+        puntos = 0;
+        seguridad = 100;
+        racha = 0;
+        mejorRacha = 0;
+        correctas = 0;
+        indice = 0;
+        respondido = false;
+        partida = mezclar(incidentes);
+
+        $("a60Portada").hidden = true;
+        $("a60Final").hidden = true;
+        $("a60Partida").hidden = false;
+
+        actualizarMarcadores();
+
+        activos = true;
+        fin = Date.now() + 60000;
+
+        mostrarIncidente();
+        actualizarTiempo();
+
+        temporizador = setInterval(actualizarTiempo, 100);
+    }
+
+    function actualizarMarcadores() {
+        $("a60Puntos").textContent = puntos;
+        $("a60Racha").textContent = "x" + racha;
+        $("a60SeguridadTexto").textContent = seguridad + "%";
+        $("a60BarraSeguridad").style.width = seguridad + "%";
+
+        if (seguridad > 60) {
+            $("a60BarraSeguridad").style.background = "#78d49b";
+            $("a60SeguridadTexto").style.color = "#83d6a5";
+        } else if (seguridad > 30) {
+            $("a60BarraSeguridad").style.background = "#e8c779";
+            $("a60SeguridadTexto").style.color = "#e8c779";
+        } else {
+            $("a60BarraSeguridad").style.background = "#e17868";
+            $("a60SeguridadTexto").style.color = "#e17868";
+        }
+    }
+
+    function actualizarTiempo() {
+        if (!activos) return;
+
+        const restante = Math.max(0, fin - Date.now());
+        const segundos = Math.ceil(restante / 1000);
+
+        $("a60Tiempo").textContent = segundos;
+        $("a60BarraTiempo").style.width = (restante / 60000 * 100) + "%";
+
+        if (segundos <= 10) {
+            $("a60Tiempo").style.color = "#e17868";
+        } else {
+            $("a60Tiempo").style.color = "#e8c779";
+        }
+
+        if (restante <= 0) terminar();
+    }
+
+    function mostrarIncidente() {
+        if (!activos) return;
+
+        if (indice >= partida.length) {
+            partida = mezclar(incidentes);
+            indice = 0;
+        }
+
+        respondido = false;
+        const caso = partida[indice];
+
+        $("a60Categoria").textContent = caso.categoria;
+        $("a60Numero").textContent =
+            "INCIDENTE " + String(indice + 1).padStart(2, "0");
+        $("a60Icono").textContent = caso.icono;
+        $("a60Pregunta").textContent = caso.pregunta;
+        $("a60Contexto").textContent = caso.contexto;
+        $("a60Feedback").hidden = true;
+
+        const opciones = mezclar(
+            caso.opciones.map((texto, original) => ({
+                texto,
+                correcta: original === caso.correcta
+            }))
+        );
+
+        const contenedor = $("a60Opciones");
+        contenedor.replaceChildren();
+
+        opciones.forEach((opcion, i) => {
+            const boton = document.createElement("button");
+            boton.type = "button";
+            boton.className = "a60-opcion";
+
+            const letra = document.createElement("span");
+            letra.className = "a60-letra";
+            letra.textContent = String.fromCharCode(65 + i);
+
+            const texto = document.createElement("span");
+            texto.textContent = opcion.texto;
+
+            boton.append(letra, texto);
+            boton.addEventListener("click", () => responder(opcion, boton));
+            contenedor.appendChild(boton);
+        });
+    }
+
+    function responder(opcion, boton) {
+        if (!activos || respondido) return;
+        if (Date.now() >= fin) {
+            terminar();
+            return;
+        }
+
+        respondido = true;
+
+        const caso = partida[indice];
+        const botones = $("a60Opciones").querySelectorAll("button");
+
+        botones.forEach(b => b.disabled = true);
+
+        const feedback = $("a60Feedback");
+        feedback.hidden = false;
+
+        if (opcion.correcta) {
+            racha++;
+            correctas++;
+            mejorRacha = Math.max(mejorRacha, racha);
+
+            const multiplicador = Math.min(5, 1 + Math.floor((racha - 1) / 3));
+            const ganados = 100 * multiplicador;
+
+            puntos += ganados;
+            seguridad = Math.min(100, seguridad + 3);
+
+            boton.classList.add("a60-correcta");
+            feedback.className = "a60-feedback";
+            feedback.innerHTML =
+                "<strong>✓ DECISIÓN SEGURA +" + ganados + " PUNTOS</strong><br>" +
+                "Combo x" + multiplicador + ". " + escapar(caso.explicacion);
+        } else {
+            racha = 0;
+            seguridad = Math.max(0, seguridad - 15);
+
+            boton.classList.add("a60-incorrecta");
+
+            botones.forEach(b => {
+                const texto = b.querySelector("span:last-child").textContent;
+                const indiceOriginal = caso.opciones.indexOf(texto);
+                if (indiceOriginal === caso.correcta) {
+                    b.classList.add("a60-correcta");
+                }
+            });
+
+            feedback.className = "a60-feedback a60-error";
+            feedback.innerHTML =
+                "<strong>✕ RIESGO NO CONTROLADO</strong><br>" +
+                "La protección del equipo disminuye. " + escapar(caso.explicacion);
+        }
+
+        actualizarMarcadores();
+
+        espera = setTimeout(() => {
+            if (!activos) return;
+            indice++;
+            mostrarIncidente();
+        }, 1800);
+    }
+
+    function terminar() {
+        if (!activos) return;
+
+        activos = false;
+        clearInterval(temporizador);
+        clearTimeout(espera);
+
+        temporizador = null;
+        espera = null;
+
+        $("a60Partida").hidden = true;
+        $("a60Final").hidden = false;
+
+        const records = leerJSON(CLAVE_RECORD, {});
+        const nombreClave = alias.toLowerCase();
+        const recordAnterior = Math.max(0, Number(records[nombreClave]) || 0);
+        const nuevoRecord = puntos > recordAnterior;
+
+        if (nuevoRecord) {
+            records[nombreClave] = puntos;
+            try {
+                localStorage.setItem(CLAVE_RECORD, JSON.stringify(records));
+            } catch (error) {}
+        }
+
+        record = Math.max(recordAnterior, puntos);
+
+        const historial = leerJSON(CLAVE_RANKING, []);
+        historial.push({
+            alias,
+            puntos,
+            fecha: Date.now(),
+            correctas,
+            mejorRacha
+        });
+
+        historial.sort((a, b) => b.puntos - a.puntos || a.fecha - b.fecha);
+        const top = historial.slice(0, 10);
+
+        try {
+            localStorage.setItem(CLAVE_RANKING, JSON.stringify(top));
+        } catch (error) {}
+
+        $("a60FinalIcono").textContent =
+            puntos >= 1000 ? "🏆" : puntos >= 500 ? "🛡️" : "🎯";
+
+        $("a60FinalTitulo").textContent =
+            nuevoRecord ? "¡Nuevo récord personal!" : "Operación finalizada";
+
+        $("a60Total").textContent = puntos;
+        $("a60Correctas").textContent = correctas;
+        $("a60MejorRacha").textContent = mejorRacha;
+        $("a60RecordFinal").textContent = record;
+
+        $("a60MensajeFinal").textContent =
+            puntos >= 1000
+                ? "Gran desempeño. Has demostrado una sólida capacidad para identificar riesgos y tomar decisiones preventivas."
+                : puntos >= 500
+                    ? "Buen trabajo. Sigue practicando para mejorar tu rapidez y mantener decisiones seguras bajo presión."
+                    : "Cada incidente es una oportunidad para aprender. Repasa las recomendaciones y vuelve a intentarlo.";
+
+        const lista = document.createElement("ol");
+        lista.className = "a60-ranking-lista";
+
+        if (top.length === 0) {
+            const vacio = document.createElement("li");
+            vacio.textContent = "Todavía no hay puntuaciones.";
+            lista.appendChild(vacio);
+        } else {
+            top.forEach((fila, i) => {
+                const item = document.createElement("li");
+                const nombre = document.createElement("span");
+                const puntuacion = document.createElement("strong");
+
+                nombre.textContent =
+                    (i + 1) + ". " + String(fila.alias || "Operador").slice(0, 18);
+                puntuacion.textContent = fila.puntos + " pts";
+
+                item.append(nombre, puntuacion);
+                lista.appendChild(item);
+            });
+        }
+
+        $("a60Ranking").replaceChildren(lista);
+        mostrarRecord();
+    }
+
+    function volverPortada() {
+        if (activos) {
+            activos = false;
+            clearInterval(temporizador);
+            clearTimeout(espera);
+        }
+
+        $("a60Partida").hidden = true;
+        $("a60Final").hidden = true;
+        $("a60Portada").hidden = false;
+        mostrarRecord();
+    }
+
+    $("a60Iniciar").addEventListener("click", iniciar);
+    $("a60Otra").addEventListener("click", volverPortada);
+
+    $("a60Volver").addEventListener("click", () => {
+        volverPortada();
+
+        if (typeof mostrarPantalla === "function") {
+            mostrarPantalla("juegosSST");
+        }
+    });
+
+    $("a60Alias").addEventListener("keydown", evento => {
+        if (evento.key === "Enter") iniciar();
+    });
+
+    mostrarRecord();
+})();
+</script>
+
 </body>
 </html>
