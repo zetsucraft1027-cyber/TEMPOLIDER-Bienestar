@@ -3282,6 +3282,307 @@ button:focus-visible {
     }
 }
 
+
+/* =========================================
+   DISEÑO VISUAL — MANUAL TEMPOLÍDER BIENESTAR
+   ========================================= */
+
+#manual {
+    background: #f5f8f5;
+    padding: 24px 18px 40px;
+    color: #263b33;
+}
+
+#manual .recursos-contenido {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    line-height: 1.7;
+}
+
+/* Encabezado y cierre del manual */
+#manual .recursos-pie {
+    background: linear-gradient(135deg, #203b35 0%, #287a68 100%);
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(32, 59, 53, 0.14);
+}
+
+#manual .recursos-pie h2,
+#manual .recursos-pie h3 {
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 14px;
+    line-height: 1.3;
+}
+
+#manual .recursos-pie p,
+#manual .recursos-pie li {
+    color: #edf7f0;
+}
+
+#manual .recursos-pie p:last-child {
+    margin-bottom: 0;
+}
+
+#manual .recursos-pie ul {
+    padding-left: 22px;
+}
+
+/* Tarjetas de contenido */
+#manual .recursos-tarjeta {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: start;
+    gap: 18px;
+    background: #ffffff;
+    padding: 26px;
+    border: 1px solid #dfe9e1;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(32, 59, 53, 0.06);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+#manual .recursos-tarjeta:hover {
+    box-shadow: 0 8px 24px rgba(32, 59, 53, 0.10);
+}
+
+/* Número de cada apartado */
+#manual .recursos-numero {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #eaf4ec;
+    color: #287a68;
+    border: 1px solid #dfe9e1;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+/* Jerarquía de títulos */
+#manual .recursos-tarjeta h3 {
+    color: #203b35;
+    font-size: 21px;
+    line-height: 1.35;
+    margin: 3px 0 16px;
+    font-weight: 750;
+}
+
+#manual .recursos-tarjeta h4 {
+    color: #287a68;
+    font-size: 16px;
+    line-height: 1.45;
+    margin: 24px 0 10px;
+    padding-left: 12px;
+    border-left: 4px solid #287a68;
+}
+
+#manual .recursos-tarjeta h4:first-of-type {
+    margin-top: 20px;
+}
+
+/* Texto y listas */
+#manual .recursos-tarjeta p {
+    color: #52675d;
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 0 0 14px;
+}
+
+#manual .recursos-tarjeta ol,
+#manual .recursos-tarjeta ul {
+    padding-left: 24px;
+    margin: 10px 0 20px;
+}
+
+#manual .recursos-tarjeta li {
+    color: #43574d;
+    font-size: 15px;
+    line-height: 1.75;
+    padding-left: 4px;
+    margin-bottom: 9px;
+}
+
+#manual .recursos-tarjeta li::marker {
+    color: #287a68;
+    font-weight: 700;
+}
+
+#manual .recursos-tarjeta strong {
+    color: #263b33;
+}
+
+/* Consejos destacados */
+#manual .recursos-consejo {
+    background: #eaf4ec;
+    color: #263b33;
+    border: 1px solid #dfe9e1;
+    border-left: 4px solid #287a68;
+    border-radius: 10px;
+    padding: 15px 17px;
+    margin: 18px 0 4px;
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+#manual .recursos-consejo strong {
+    color: #203b35;
+}
+
+/* Botón para volver */
+#manual button.back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: auto;
+    min-height: 44px;
+    margin: 0 auto 22px;
+    padding: 11px 20px;
+    background: #ffffff;
+    color: #287a68;
+    border: 1px solid #dfe9e1;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(32, 59, 53, 0.06);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+#manual button.back:hover {
+    background: #eaf4ec;
+    border-color: #b8d8c8;
+}
+
+/* Botón final */
+#manual .recursos-pie button.primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    max-width: 100%;
+    min-height: 46px;
+    margin-top: 18px;
+    padding: 12px 22px;
+    background: #ffffff;
+    color: #287a68;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#manual .recursos-pie button.primary-button:hover {
+    background: #eaf4ec;
+    transform: translateY(-1px);
+}
+
+/* Adaptación a celulares */
+@media (max-width: 600px) {
+    #manual {
+        padding: 16px 12px 28px;
+    }
+
+    #manual .recursos-contenido {
+        gap: 14px;
+    }
+
+    #manual .recursos-pie {
+        padding: 23px 20px;
+        border-radius: 16px;
+    }
+
+    #manual .recursos-tarjeta {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 20px 17px;
+        border-radius: 15px;
+    }
+
+    #manual .recursos-numero {
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        font-size: 15px;
+    }
+
+    #manual .recursos-tarjeta h3 {
+        font-size: 19px;
+    }
+
+    #manual .recursos-tarjeta h4 {
+        font-size: 15px;
+        margin-top: 21px;
+    }
+
+    #manual .recursos-tarjeta p,
+    #manual .recursos-tarjeta li {
+        font-size: 14px;
+    }
+
+    #manual button.back {
+        margin-left: 0;
+        margin-bottom: 16px;
+    }
+}
+
+/* Igualar Manual de uso con las demás opciones del menú */
+button.option[onclick*="manual"] {
+    font-family: inherit;
+    font-size: 16px;
+    text-align: left;
+}
+
+button.option[onclick*="manual"] > span:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+button.option[onclick*="manual"] strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+button.option[onclick*="manual"] small {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.4;
+}
+.encabezado-menu {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 12px;
+}
+
+.boton-manual {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 14px;
+    border: 1px solid var(--bienestar-borde);
+    border-radius: 12px;
+    background: var(--bienestar-verde-suave);
+    color: var(--bienestar-verde-oscuro);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
     </style>
 
 </head>
@@ -3378,7 +3679,11 @@ button:focus-visible {
                     Elige una opción para comenzar.
                 </p>
             </section>
-
+<div class="encabezado-menu">
+    <button class="boton-manual" onclick="mostrarPantalla('manual')">
+        📖 Manual
+    </button>
+</div>
             <section class="menu">
 
                 <button class="option" onclick="mostrarPantalla('bienestar')">
@@ -4320,7 +4625,499 @@ button:focus-visible {
         </div>
 
     </div>
+    </section>
+
+
+<section class="screen" id="manual">
+
+    <button class="back" onclick="mostrarPantalla('home')">
+        ← Volver al inicio
+    </button>
+
+    <div class="recursos-contenido">
+
+        <div class="recursos-pie">
+            <h2>Manual de usuario</h2>
+            <p><strong>TEMPOLÍDER Bienestar</strong></p>
+            <p>
+                Guía para utilizar las herramientas de organización de la
+                jornada, seguimiento del bienestar y promoción de la seguridad
+                y salud en el trabajo.
+            </p>
+            <p>
+                En este manual encontrarás instrucciones paso a paso para
+                configurar tus horarios, registrar tareas, conectar Google
+                Calendar cuando esté disponible y aprovechar los recursos
+                de la plataforma.
+            </p>
+        </div>
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">01</div>
+            <div>
+                <h3>Conoce la plataforma</h3>
+                <p>
+                    TEMPOLÍDER Bienestar es una herramienta digital de apoyo
+                    para facilitar la organización de las actividades
+                    laborales y promover hábitos relacionados con el bienestar
+                    durante la jornada.
+                </p>
+                <h4>¿Cómo comenzar?</h4>
+                <ol>
+                    <li>Abre TEMPOLÍDER Bienestar desde el enlace proporcionado o desde el acceso instalado en tu dispositivo.</li>
+                    <li>En la pantalla principal identifica las herramientas disponibles.</li>
+                    <li>Selecciona el apartado que deseas utilizar.</li>
+                    <li>Lee las indicaciones antes de registrar información o realizar una actividad.</li>
+                    <li>Utiliza el botón «Volver» para regresar a la pantalla anterior o «Volver al inicio» para regresar al menú principal, cuando estén disponibles.</li>
+                </ol>
+                <p class="recursos-consejo">
+                    <strong>Recomendación:</strong> utiliza la plataforma
+                    como apoyo para organizar tus actividades. Las instrucciones
+                    y responsabilidades laborales de la organización siguen
+                    siendo aplicables.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">02</div>
+            <div>
+                <h3>Organizar mi jornada</h3>
+                <p>
+                    Este apartado reúne la configuración del horario laboral
+                    y la planificación de las tareas. Su finalidad es ayudarte
+                    a distribuir las actividades según su importancia y el
+                    tiempo disponible.
+                </p>
+
+                <h4>2.1. Configurar el horario laboral</h4>
+                <ol>
+                    <li>Ingresa a «Organizar mi jornada» desde la pantalla principal.</li>
+                    <li>Si aparece la configuración inicial, comienza registrando la hora de entrada.</li>
+                    <li>Selecciona la hora de inicio y la hora de finalización del almuerzo.</li>
+                    <li>Indica si tu jornada continúa después del almuerzo, según la opción que aparezca.</li>
+                    <li>Registra la hora de salida.</li>
+                    <li>Revisa todos los horarios para comprobar que sean correctos.</li>
+                    <li>Guarda la configuración mediante el control disponible en pantalla.</li>
+                    <li>Si cambia tu horario habitual, utiliza la opción de edición para actualizarlo.</li>
+                </ol>
+
+                <p>
+                    La configuración del horario permite que la plataforma
+                    utilice esos datos como referencia para organizar las
+                    actividades y validar los horarios de las tareas.
+                </p>
+
+                <p class="recursos-consejo">
+                    <strong>Importante:</strong> registra tu horario real.
+                    Si cambian tus horas de entrada, almuerzo o salida,
+                    actualiza la configuración para evitar inconsistencias
+                    al programar actividades.
+                </p>
+
+                <h4>2.2. Registrar una tarea</h4>
+                <ol>
+                    <li>En el apartado de organización, localiza el formulario para agregar tareas.</li>
+                    <li>Escribe un nombre concreto que describa la actividad que debes realizar.</li>
+                    <li>Selecciona la prioridad de la tarea: alta, media o baja.</li>
+                    <li>Indica si corresponde a la mañana o a la tarde, según las opciones disponibles.</li>
+                    <li>Selecciona la hora prevista para realizarla.</li>
+                    <li>Comprueba que la hora sea compatible con el horario laboral configurado y no coincida con el almuerzo o con una hora posterior a la salida.</li>
+                    <li>Guarda o agrega la tarea mediante el botón correspondiente.</li>
+                    <li>Verifica que la actividad aparezca en la lista de tareas registradas.</li>
+                </ol>
+
+                <h4>2.3. Elegir la prioridad correcta</h4>
+                <ul>
+                    <li><strong>Alta:</strong> actividades urgentes o importantes que requieren atención prioritaria debido a sus plazos o consecuencias.</li>
+                    <li><strong>Media:</strong> actividades relevantes que deben completarse durante la jornada y permiten una planificación razonable.</li>
+                    <li><strong>Baja:</strong> actividades que pueden programarse después de atender las tareas prioritarias, siempre que sus plazos lo permitan.</li>
+                </ul>
+
+                <p>
+                    Asigna la prioridad teniendo en cuenta los plazos, las
+                    consecuencias de retrasar la actividad y las indicaciones
+                    de tu responsable. No es necesario marcar todas las tareas
+                    como prioritarias.
+                </p>
+
+                <h4>2.4. Organizar las actividades durante el día</h4>
+                <ol>
+                    <li>Consulta la lista de tareas después de registrarlas.</li>
+                    <li>Identifica cuáles necesitan atención primero.</li>
+                    <li>Distribuye las actividades de acuerdo con el tiempo disponible.</li>
+                    <li>Evita programar más tareas de las que razonablemente puedes completar.</li>
+                    <li>Cuando cambien tus compromisos, revisa los horarios y actualiza las tareas mediante las opciones disponibles.</li>
+                    <li>Consulta nuevamente la lista para verificar cómo quedó organizada tu jornada.</li>
+                </ol>
+
+                <p class="recursos-consejo">
+                    <strong>Recomendación:</strong> comienza la jornada
+                    revisando tus compromisos y las tareas más importantes.
+                    Deja margen para imprevistos y respeta los tiempos de
+                    descanso establecidos.
+                </p>
+
+                <h4>2.5. Conectar la cuenta de Google Calendar</h4>
+                <p>
+                    Si la opción de conexión con Google está habilitada,
+                    puedes vincular tu cuenta para utilizar la integración
+                    de calendario disponible en TEMPOLÍDER Bienestar.
+                </p>
+                <ol>
+                    <li>Ingresa a «Organizar mi jornada».</li>
+                    <li>Localiza la opción para conectar Google Calendar o tu cuenta de Google.</li>
+                    <li>Selecciona la opción de conexión para iniciar el proceso.</li>
+                    <li>Si Google solicita elegir una cuenta, selecciona la que deseas utilizar.</li>
+                    <li>Lee cuidadosamente los permisos solicitados y revisa qué acceso necesita la integración.</li>
+                    <li>Autoriza el acceso solo si estás de acuerdo con los permisos que aparecen en pantalla.</li>
+                    <li>Cuando finalice el proceso, regresa a TEMPOLÍDER Bienestar.</li>
+                    <li>Comprueba si la plataforma muestra un mensaje o indicador que confirme la conexión.</li>
+                </ol>
+
+                <p>
+                    Si no se completa la conexión, revisa que hayas elegido
+                    la cuenta correcta y terminado todos los pasos de
+                    autorización. Si aparece un error, sigue las indicaciones
+                    que muestre la aplicación.
+                </p>
+
+                <h4>2.6. Enviar o sincronizar tareas con Google Calendar</h4>
+                <p>
+                    Una vez conectada la cuenta, utiliza la opción de
+                    integración disponible para enviar o sincronizar las
+                    actividades que permita la plataforma.
+                </p>
+                <ol>
+                    <li>Comprueba que la tarea esté guardada y tenga una hora asignada.</li>
+                    <li>Busca la acción disponible para enviar o sincronizar la tarea con Google Calendar, si corresponde.</li>
+                    <li>Completa la acción y revisa el mensaje de confirmación que aparezca.</li>
+                    <li>Abre Google Calendar con la cuenta vinculada.</li>
+                    <li>Busca la actividad en la fecha y hora previstas para verificar si se creó correctamente.</li>
+                    <li>Si modificas una tarea, comprueba si debes repetir la sincronización para actualizar la información del calendario.</li>
+                </ol>
+
+                <p>
+                    Conectar una cuenta no significa necesariamente que
+                    todas las tareas se envíen automáticamente. El
+                    comportamiento depende de las funciones implementadas
+                    en la integración.
+                </p>
+
+                <h4>2.7. Configurar recordatorios del calendario</h4>
+                <ol>
+                    <li>Abre Google Calendar y verifica que estés utilizando la cuenta conectada.</li>
+                    <li>Localiza la actividad que deseas recordar.</li>
+                    <li>Si el evento permite configurar notificaciones, revisa su fecha, hora y opciones de alerta.</li>
+                    <li>Comprueba que las notificaciones de Google Calendar estén habilitadas en el dispositivo.</li>
+                    <li>Revisa los permisos del navegador o de la aplicación si no recibes las alertas.</li>
+                </ol>
+
+                <p class="recursos-consejo">
+                    <strong>Ten presente:</strong> la conexión, la
+                    sincronización de tareas y el envío de notificaciones
+                    son procesos diferentes. Verifica que la actividad
+                    aparezca en el calendario y que tenga una alerta
+                    configurada cuando necesites recibir un recordatorio.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">03</div>
+            <div>
+                <h3>¿Cómo me siento?</h3>
+                <p>
+                    Este apartado permite registrar una valoración personal
+                    de cómo te encuentras durante la jornada. Su objetivo es
+                    favorecer la identificación de tu estado de bienestar.
+                </p>
+
+                <h4>¿Cómo registrar tu estado?</h4>
+                <ol>
+                    <li>Selecciona «¿Cómo me siento?» en la pantalla principal.</li>
+                    <li>Lee la pregunta que aparece en pantalla.</li>
+                    <li>Revisa las cinco opciones disponibles.</li>
+                    <li>Selecciona la que mejor describa cómo te encuentras en ese momento.</li>
+                    <li>Espera el mensaje de confirmación del registro.</li>
+                    <li>Regresa al inicio para continuar utilizando la plataforma.</li>
+                </ol>
+
+                <h4>¿Qué significa la escala?</h4>
+                <ul>
+                    <li><strong>1 — Me siento muy bien.</strong></li>
+                    <li><strong>2 — Me siento bien.</strong></li>
+                    <li><strong>3 — Me siento regular.</strong></li>
+                    <li><strong>4 — Me siento algo cargado/a.</strong></li>
+                    <li><strong>5 — Me siento muy cargado/a.</strong></li>
+                </ul>
+
+                <p>
+                    La escala permite expresar una percepción personal
+                    del momento. No es una prueba diagnóstica ni una
+                    evaluación del rendimiento laboral.
+                </p>
+
+                <p class="recursos-consejo">
+                    <strong>Recomendación:</strong> responde con honestidad.
+                    No hay respuestas correctas o incorrectas; lo importante
+                    es registrar cómo te sientes realmente.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">04</div>
+            <div>
+                <h3>Hacer una pausa</h3>
+                <p>
+                    Este apartado ofrece un espacio para detener brevemente
+                    la actividad laboral y realizar acciones sencillas
+                    orientadas al descanso y la recuperación de la atención.
+                </p>
+
+                <h4>¿Cómo utilizarlo?</h4>
+                <ol>
+                    <li>Selecciona «Hacer una pausa» desde el menú principal.</li>
+                    <li>Lee la orientación o actividad que aparece.</li>
+                    <li>Sigue las indicaciones disponibles.</li>
+                    <li>Realiza la actividad de forma segura y compatible con tus funciones.</li>
+                    <li>Cuando termines, regresa a la aplicación y continúa con tu jornada.</li>
+                </ol>
+
+                <h4>Acciones que puedes realizar durante una pausa</h4>
+                <ul>
+                    <li>Cambiar de postura si tus funciones lo permiten.</li>
+                    <li>Relajar los hombros y respirar con tranquilidad.</li>
+                    <li>Descansar brevemente de la pantalla.</li>
+                    <li>Beber agua cuando sea posible.</li>
+                </ul>
+
+                <p>
+                    Las recomendaciones de la aplicación complementan
+                    las medidas organizacionales y los descansos que
+                    correspondan a tu jornada laboral.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">05</div>
+            <div>
+                <h3>Recursos de bienestar</h3>
+                <p>
+                    En este apartado encontrarás recomendaciones generales
+                    para favorecer hábitos de bienestar durante la jornada.
+                </p>
+
+                <h4>¿Cómo aprovechar los recursos?</h4>
+                <ol>
+                    <li>Abre la opción «Recursos» desde la pantalla principal.</li>
+                    <li>Revisa los temas disponibles y lee cada recomendación.</li>
+                    <li>Identifica cuáles orientaciones pueden ser útiles para tu situación laboral.</li>
+                    <li>Aplica las sugerencias cuando sean apropiadas y compatibles con tus funciones.</li>
+                    <li>Utiliza otras herramientas de la plataforma cuando una recomendación te invite a registrar tu bienestar o realizar una pausa.</li>
+                </ol>
+
+                <p>
+                    Estos materiales son orientaciones generales. No
+                    reemplazan la atención profesional ni las acciones
+                    que la organización debe implementar para gestionar
+                    los riesgos laborales.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">06</div>
+            <div>
+                <h3>Mi evolución</h3>
+                <p>
+                    Este apartado permite consultar los indicadores o
+                    registros de bienestar que estén disponibles en la
+                    plataforma.
+                </p>
+
+                <h4>¿Cómo consultar tus registros?</h4>
+                <ol>
+                    <li>Selecciona «Mi evolución» desde el menú principal.</li>
+                    <li>Observa los indicadores, estadísticas o gráficos que aparezcan.</li>
+                    <li>Lee los datos y las etiquetas que acompañan cada indicador.</li>
+                    <li>Si existen varios registros, observa las diferencias entre ellos.</li>
+                    <li>Utiliza la información para reflexionar sobre tus hábitos y tu experiencia durante la jornada.</li>
+                </ol>
+
+                <p>
+                    Los resultados dependen de los registros realizados y
+                    de las funciones disponibles. Una variación puntual
+                    no constituye por sí sola un diagnóstico ni una
+                    conclusión definitiva sobre el bienestar de una persona.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">07</div>
+            <div>
+                <h3>Notificaciones y recordatorios</h3>
+                <p>
+                    Las notificaciones pueden servir como apoyo para recordar
+                    actividades y momentos de bienestar. Su funcionamiento
+                    depende de la función utilizada, los permisos y la
+                    configuración del dispositivo.
+                </p>
+
+                <h4>7.1. Permitir notificaciones</h4>
+                <ol>
+                    <li>Si el navegador o el dispositivo solicita permiso para enviar notificaciones, lee el mensaje.</li>
+                    <li>Autoriza el permiso si deseas recibirlas.</li>
+                    <li>Si anteriormente bloqueaste las notificaciones, revisa los permisos del sitio en la configuración del navegador.</li>
+                    <li>En el celular, comprueba también los permisos de notificación del navegador o de la aplicación instalada.</li>
+                </ol>
+
+                <h4>7.2. Si no recibes una alerta</h4>
+                <ol>
+                    <li>Comprueba que la tarea esté guardada y tenga asignada la hora correcta.</li>
+                    <li>Si utilizas Google Calendar, verifica que la actividad aparezca en el calendario.</li>
+                    <li>Comprueba que el evento tenga una alerta configurada.</li>
+                    <li>Revisa los permisos de notificaciones del navegador, del calendario y del dispositivo.</li>
+                    <li>Verifica que no esté activado un modo de concentración o «No molestar» que silencie las alertas.</li>
+                    <li>Comprueba que la fecha y la hora del dispositivo sean correctas.</li>
+                </ol>
+
+                <p class="recursos-consejo">
+                    <strong>Ten presente:</strong> no dependas exclusivamente
+                    de las notificaciones para cumplir tareas o compromisos.
+                    Revisa tu planificación directamente en la plataforma
+                    y en el calendario cuando corresponda.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">08</div>
+            <div>
+                <h3>Juegos de seguridad y salud en el trabajo</h3>
+                <p>
+                    Las actividades SST permiten practicar la identificación
+                    de peligros y la toma de decisiones preventivas mediante
+                    retos interactivos.
+                </p>
+
+                <h4>Detecta el peligro</h4>
+                <ol>
+                    <li>Abre el juego y observa con atención la escena presentada.</li>
+                    <li>Examina los elementos y las condiciones del entorno.</li>
+                    <li>Selecciona las zonas en las que identifiques peligros o situaciones inseguras.</li>
+                    <li>Lee la retroalimentación que aparezca para comprender por qué una condición puede ser riesgosa.</li>
+                </ol>
+
+                <h4>Reto SST: ¿qué harías?</h4>
+                <ol>
+                    <li>Lee la situación laboral descrita en cada escenario.</li>
+                    <li>Examina las alternativas disponibles.</li>
+                    <li>Selecciona la acción que consideres más segura y apropiada.</li>
+                    <li>Revisa la retroalimentación y continúa con los escenarios siguientes.</li>
+                    <li>Al terminar, consulta la puntuación que muestre el juego.</li>
+                </ol>
+
+                <h4>ALERTA 60</h4>
+                <ol>
+                    <li>Lee las instrucciones antes de comenzar.</li>
+                    <li>Inicia el reto y presta atención a las situaciones o preguntas que aparezcan.</li>
+                    <li>Selecciona tus respuestas dentro del tiempo establecido.</li>
+                    <li>Procura responder con rapidez sin dejar de leer las opciones.</li>
+                    <li>Al finalizar el tiempo, revisa el resultado y la puntuación obtenida.</li>
+                </ol>
+
+                <p class="recursos-consejo">
+                    <strong>Objetivo:</strong> reforzar conocimientos
+                    sobre prevención de riesgos laborales. Los juegos
+                    complementan la formación, pero no sustituyen las
+                    capacitaciones ni los procedimientos oficiales de SST.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-tarjeta">
+            <div class="recursos-numero">09</div>
+            <div>
+                <h3>Preguntas frecuentes</h3>
+
+                <h4>¿Qué hago si una pantalla aparece en blanco?</h4>
+                <p>
+                    Regresa al inicio e intenta abrir el apartado nuevamente.
+                    Si el problema continúa, recarga la página. Si persiste,
+                    informa del error al responsable de la plataforma.
+                </p>
+
+                <h4>¿Qué hago si una tarea no aparece en la lista?</h4>
+                <p>
+                    Comprueba que hayas completado el registro y utilizado
+                    la opción de guardar. Vuelve a revisar la lista antes
+                    de registrar la misma tarea nuevamente.
+                </p>
+
+                <h4>¿Qué hago si una tarea no aparece en Google Calendar?</h4>
+                <p>
+                    Comprueba que la cuenta correcta esté conectada y que
+                    hayas completado el proceso de envío o sincronización
+                    disponible. Después, abre Google Calendar y verifica
+                    la fecha y la cuenta seleccionadas.
+                </p>
+
+                <h4>¿Qué hago si no recibo notificaciones?</h4>
+                <p>
+                    Revisa los permisos del dispositivo, la configuración
+                    de alertas del calendario y la fecha y hora de la tarea.
+                    Tener una cuenta conectada no garantiza por sí solo
+                    que todas las alertas estén activadas.
+                </p>
+
+                <h4>¿Puedo usar la plataforma desde el celular?</h4>
+                <p>
+                    Abre el enlace de la plataforma en el navegador del
+                    dispositivo. En Android, Chrome puede ofrecer la opción
+                    «Instalar aplicación» o «Añadir a pantalla de inicio».
+                    En iPhone, abre el enlace en Safari, pulsa «Compartir»
+                    y selecciona «Añadir a pantalla de inicio».
+                </p>
+
+                <h4>¿La plataforma reemplaza la atención profesional?</h4>
+                <p>
+                    No. TEMPOLÍDER Bienestar es una herramienta de apoyo
+                    para la organización y el bienestar laboral. No realiza
+                    diagnósticos ni sustituye la atención psicológica,
+                    médica o de seguridad y salud en el trabajo.
+                </p>
+            </div>
+        </div>
+
+        <div class="recursos-pie">
+            <h3>Recomendaciones finales</h3>
+            <ul>
+                <li>Mantén actualizado tu horario laboral.</li>
+                <li>Registra las tareas con descripciones claras y prioridades realistas.</li>
+                <li>Revisa tu planificación durante la jornada.</li>
+                <li>Verifica la conexión y la sincronización con Google Calendar cuando utilices esa integración.</li>
+                <li>Utiliza las pausas y los recursos de bienestar disponibles.</li>
+                <li>Registra tu estado de bienestar con honestidad y responsabilidad.</li>
+            </ul>
+            <p>
+                La herramienta busca facilitar la organización del trabajo
+                y apoyar el bienestar durante la jornada. Su uso debe
+                complementarse con las medidas organizacionales y los
+                procedimientos establecidos por la empresa.
+            </p>
+            <button class="primary-button" onclick="mostrarPantalla('home')">
+                Volver al inicio
+            </button>
+        </div>
+
+    </div>
+
 </section>
+
 
 
         <!-- PANTALLA BIENESTAR -->
