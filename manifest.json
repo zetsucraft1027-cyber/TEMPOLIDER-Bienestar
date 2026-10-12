@@ -1,0 +1,14 @@
+
+{
+  "id": "./",
+  "name": "Tempolíder Bienestar",
+  "short_name": "Tempolíder",
+  "description": "Herramienta digital para la promoción del bienestar y la organización de la jornada laboral.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f7fb",
+  "theme_color": "#123b63",
+  "lang": "es-CO"
+}
